@@ -5,6 +5,18 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero'); // Track active section
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,6 +106,23 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
     }
   }, [currentView]);
 
+  // Close mobile menu when clicking outside or on navigation
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
   // Function to scroll to a section with multiple selector options
   const scrollToSection = (sectionSelectors, behavior = 'smooth') => {
     let element = null;
@@ -113,6 +142,9 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
 
   // Function to handle navigation clicks
   const handleNavClick = (section) => {
+    // Close mobile menu when navigating
+    setIsMobileMenuOpen(false);
+    
     if (section === 'home') {
       // Navigate to home page and scroll to top
       onNavigate && onNavigate('home');
@@ -164,6 +196,8 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
 
   // Function to handle external links
   const handleExternalLink = (url) => {
+    // Close mobile menu when clicking external links
+    setIsMobileMenuOpen(false);
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
@@ -186,6 +220,12 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
     }
   };
 
+  // Toggle mobile menu
+  const toggleMobileMenu = (e) => {
+    e.stopPropagation();
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header
       style={{
@@ -200,8 +240,13 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
         borderBottom: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : 'none'
       }}
     >
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '80px' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '0 16px' : '0 24px' }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between', 
+          height: isMobile ? '70px' : '80px' 
+        }}>
           
           {/* Logo - Click to go home */}
           <div 
@@ -217,7 +262,7 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
               src={argusLogo} 
               alt="Argus Logo" 
               style={{
-                height: '90px',
+                height: isMobile ? '70px' : '90px',
                 width: 'auto',
                 objectFit: 'contain'
               }}
@@ -225,106 +270,265 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-            <button 
-              onClick={() => handleNavClick('home')}
-              style={{ 
-                background: 'none',
-                border: 'none',
-                color: isNavItemActive('home') ? '#3b82f6' : 'white', 
-                textDecoration: 'none', 
-                fontWeight: '500', 
-                transition: 'color 0.2s',
-                cursor: 'pointer',
-                fontSize: '1rem'
-              }}
-              onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
-              onMouseLeave={(e) => e.target.style.color = isNavItemActive('home') ? '#3b82f6' : 'white'}
-            >
-              Home
-            </button>
-            
-            <button 
-              onClick={() => handleNavClick('how-it-works')}
-              style={{ 
-                background: 'none',
-                border: 'none',
-                color: isNavItemActive('how-it-works') ? '#3b82f6' : 'white', 
-                textDecoration: 'none', 
-                fontWeight: '500', 
-                transition: 'color 0.2s',
-                cursor: 'pointer',
-                fontSize: '1rem'
-              }}
-              onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
-              onMouseLeave={(e) => e.target.style.color = isNavItemActive('how-it-works') ? '#3b82f6' : 'white'}
-            >
-              How It Works
-            </button>
-            
-            <button 
-              onClick={() => handleNavClick('the-future')}
-              style={{ 
-                background: 'none',
-                border: 'none',
-                color: isNavItemActive('the-future') ? '#3b82f6' : 'white', 
-                textDecoration: 'none', 
-                fontWeight: '500', 
-                transition: 'color 0.2s',
-                cursor: 'pointer',
-                fontSize: '1rem'
-              }}
-              onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
-              onMouseLeave={(e) => e.target.style.color = isNavItemActive('the-future') ? '#3b82f6' : 'white'}
-            >
-              The Future
-            </button>
-            
+          {!isMobile && (
+            <nav style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+              <button 
+                onClick={() => handleNavClick('home')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: isNavItemActive('home') ? '#3b82f6' : 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  transition: 'color 0.2s',
+                  cursor: 'pointer',
+                  fontSize: '1rem'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
+                onMouseLeave={(e) => e.target.style.color = isNavItemActive('home') ? '#3b82f6' : 'white'}
+              >
+                Home
+              </button>
+              
+              <button 
+                onClick={() => handleNavClick('how-it-works')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: isNavItemActive('how-it-works') ? '#3b82f6' : 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  transition: 'color 0.2s',
+                  cursor: 'pointer',
+                  fontSize: '1rem'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
+                onMouseLeave={(e) => e.target.style.color = isNavItemActive('how-it-works') ? '#3b82f6' : 'white'}
+              >
+                How It Works
+              </button>
+              
+              <button 
+                onClick={() => handleNavClick('the-future')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: isNavItemActive('the-future') ? '#3b82f6' : 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  transition: 'color 0.2s',
+                  cursor: 'pointer',
+                  fontSize: '1rem'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
+                onMouseLeave={(e) => e.target.style.color = isNavItemActive('the-future') ? '#3b82f6' : 'white'}
+              >
+                The Future
+              </button>
+              
+              <button 
+                onClick={() => handleExternalLink('https://calendly.com/getargusai/30min?month=2025-08')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  transition: 'color 0.2s',
+                  cursor: 'pointer',
+                  fontSize: '1rem'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
+                onMouseLeave={(e) => e.target.style.color = 'white'}
+              >
+                Contact Us
+              </button>
+            </nav>
+          )}
+
+          {/* Desktop CTA Button */}
+          {!isMobile && (
             <button 
               onClick={() => handleExternalLink('https://calendly.com/getargusai/30min?month=2025-08')}
-              style={{ 
+              style={{
+                padding: '12px 24px',
+                background: 'linear-gradient(135deg, #2563eb, #0891b2)',
+                color: 'white',
+                fontWeight: '600',
+                borderRadius: '8px',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+              }}
+            >
+              Get a Demo
+            </button>
+          )}
+
+          {/* Mobile Hamburger Menu Button */}
+          {isMobile && (
+            <button
+              onClick={toggleMobileMenu}
+              style={{
                 background: 'none',
                 border: 'none',
-                color: 'white', 
-                textDecoration: 'none', 
-                fontWeight: '500', 
-                transition: 'color 0.2s',
+                color: 'white',
                 cursor: 'pointer',
-                fontSize: '1rem'
+                padding: '8px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px',
+                transition: 'all 0.3s ease'
               }}
-              onMouseEnter={(e) => e.target.style.color = '#3b82f6'}
-              onMouseLeave={(e) => e.target.style.color = 'white'}
             >
-              Contact Us
+              <div style={{
+                width: '24px',
+                height: '2px',
+                backgroundColor: 'white',
+                transition: 'all 0.3s ease',
+                transform: isMobileMenuOpen ? 'rotate(45deg) translateY(6px)' : 'none'
+              }}></div>
+              <div style={{
+                width: '24px',
+                height: '2px',
+                backgroundColor: 'white',
+                transition: 'all 0.3s ease',
+                opacity: isMobileMenuOpen ? 0 : 1
+              }}></div>
+              <div style={{
+                width: '24px',
+                height: '2px',
+                backgroundColor: 'white',
+                transition: 'all 0.3s ease',
+                transform: isMobileMenuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none'
+              }}></div>
             </button>
-          </nav>
-
-          {/* CTA Button */}
-          <button 
-            onClick={() => handleExternalLink('https://calendly.com/getargusai/30min?month=2025-08')}
-            style={{
-              padding: '12px 24px',
-              background: 'linear-gradient(135deg, #2563eb, #0891b2)',
-              color: 'white',
-              fontWeight: '600',
-              borderRadius: '8px',
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.2)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-            }}
-          >
-            Get a Demo
-          </button>
+          )}
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobile && (
+          <div style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            backdropFilter: 'blur(12px)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
+            opacity: isMobileMenuOpen ? 1 : 0,
+            visibility: isMobileMenuOpen ? 'visible' : 'hidden',
+            transition: 'all 0.3s ease',
+            zIndex: 40
+          }}>
+            <nav style={{
+              display: 'flex',
+              flexDirection: 'column',
+              padding: '1rem 16px'
+            }}>
+              <button 
+                onClick={() => handleNavClick('home')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: isNavItemActive('home') ? '#3b82f6' : 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  padding: '12px 0',
+                  textAlign: 'left',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                Home
+              </button>
+              
+              <button 
+                onClick={() => handleNavClick('how-it-works')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: isNavItemActive('how-it-works') ? '#3b82f6' : 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  padding: '12px 0',
+                  textAlign: 'left',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                How It Works
+              </button>
+              
+              <button 
+                onClick={() => handleNavClick('the-future')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: isNavItemActive('the-future') ? '#3b82f6' : 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  padding: '12px 0',
+                  textAlign: 'left',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                The Future
+              </button>
+              
+              <button 
+                onClick={() => handleExternalLink('https://calendly.com/getargusai/30min?month=2025-08')}
+                style={{ 
+                  background: 'none',
+                  border: 'none',
+                  color: 'white', 
+                  textDecoration: 'none', 
+                  fontWeight: '500', 
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  padding: '12px 0',
+                  textAlign: 'left',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}
+              >
+                Contact Us
+              </button>
+
+              {/* Mobile CTA Button */}
+              <button 
+                onClick={() => handleExternalLink('https://calendly.com/getargusai/30min?month=2025-08')}
+                style={{
+                  padding: '12px 24px',
+                  background: 'linear-gradient(135deg, #2563eb, #0891b2)',
+                  color: 'white',
+                  fontWeight: '600',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  marginTop: '16px',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                Get a Demo
+              </button>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );

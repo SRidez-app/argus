@@ -3,7 +3,19 @@ import TheFutureImage from '../assets/images/TheFuture.png';
 
 const TheFuture = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,7 +48,7 @@ const TheFuture = () => {
       id="the-future"
       className="future-section"
       style={{
-        minHeight: '100vh',
+        minHeight: isMobile ? 'auto' : '100vh',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -58,7 +70,7 @@ const TheFuture = () => {
       <div style={{
         maxWidth: '1200px',
         margin: '0 auto',
-        padding: '4rem 2rem',
+        padding: isMobile ? '3rem 1rem' : '4rem 2rem',
         position: 'relative',
         zIndex: 2
       }}>
@@ -66,8 +78,8 @@ const TheFuture = () => {
         {/* Main Container */}
         <div style={{
           background: 'rgba(30, 41, 59, 0.4)',
-          borderRadius: '32px',
-          padding: '4rem 3rem',
+          borderRadius: isMobile ? '20px' : '32px',
+          padding: isMobile ? '2.5rem 1.5rem' : '4rem 3rem',
           boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 100px rgba(59, 130, 246, 0.05)',
           border: '1px solid rgba(59, 130, 246, 0.2)',
           backdropFilter: 'blur(12px)',
@@ -109,7 +121,7 @@ const TheFuture = () => {
           }}>
             {/* Main Headline */}
             <h1 style={{
-              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontSize: isMobile ? 'clamp(1.8rem, 8vw, 2.5rem)' : 'clamp(2.5rem, 5vw, 4rem)',
               fontWeight: '800',
               color: '#ffffff',
               marginBottom: '1.5rem',
@@ -124,12 +136,12 @@ const TheFuture = () => {
 
             {/* Subheadline with SEO Keywords */}
             <p style={{
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+              fontSize: isMobile ? 'clamp(1rem, 4vw, 1.25rem)' : 'clamp(1.1rem, 2.5vw, 1.5rem)',
               color: '#e2e8f0',
-              marginBottom: '3rem',
+              marginBottom: isMobile ? '2rem' : '3rem',
               lineHeight: '1.6',
               maxWidth: '800px',
-              margin: '0 auto 3rem auto',
+              margin: isMobile ? '0 auto 2rem auto' : '0 auto 3rem auto',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
@@ -146,7 +158,7 @@ const TheFuture = () => {
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
-              marginBottom: '3rem',
+              marginBottom: isMobile ? '2rem' : '3rem',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(60px)',
               transition: 'all 0.8s ease-out 0.6s'
@@ -157,7 +169,7 @@ const TheFuture = () => {
                 style={{
                   maxWidth: '100%',
                   height: 'auto',
-                  borderRadius: '12px',
+                  borderRadius: isMobile ? '8px' : '12px',
                   boxShadow: '0 10px 40px rgba(59, 130, 246, 0.2)',
                   border: '1px solid rgba(59, 130, 246, 0.1)'
                 }}
@@ -168,34 +180,42 @@ const TheFuture = () => {
             <div style={{
               display: 'flex',
               justifyContent: 'center',
-              gap: '1rem',
+              gap: isMobile ? '0.75rem' : '1rem',
               flexWrap: 'wrap',
               marginBottom: '2rem',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-              transition: 'all 0.8s ease-out 0.8s'
+              transition: 'all 0.8s ease-out 0.8s',
+              flexDirection: isMobile ? 'column' : 'row',
+              alignItems: 'center'
             }}>
               <button 
                 onClick={() => window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank')}
                 style={{
-                  padding: '1rem 2rem',
-                  borderRadius: '12px',
+                  padding: isMobile ? '0.875rem 1.5rem' : '1rem 2rem',
+                  borderRadius: isMobile ? '10px' : '12px',
                   border: 'none',
                   background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
                   color: '#ffffff',
-                  fontSize: '1rem',
+                  fontSize: isMobile ? '0.95rem' : '1rem',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+                  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
+                  width: isMobile ? '100%' : 'auto',
+                  maxWidth: isMobile ? '280px' : 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
+                  if (!isMobile) {
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  if (!isMobile) {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  }
                 }}
               >
                 Schedule Demo
@@ -204,25 +224,31 @@ const TheFuture = () => {
               <button 
                 onClick={() => window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank')}
                 style={{
-                  padding: '1rem 2rem',
-                  borderRadius: '12px',
+                  padding: isMobile ? '0.875rem 1.5rem' : '1rem 2rem',
+                  borderRadius: isMobile ? '10px' : '12px',
                   border: '2px solid #22c55e',
                   background: 'transparent',
                   color: '#22c55e',
-                  fontSize: '1rem',
+                  fontSize: isMobile ? '0.95rem' : '1rem',
                   fontWeight: '600',
                   cursor: 'pointer',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  width: isMobile ? '100%' : 'auto',
+                  maxWidth: isMobile ? '280px' : 'none'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = '#22c55e';
-                  e.target.style.color = '#000000';
-                  e.target.style.transform = 'translateY(-2px)';
+                  if (!isMobile) {
+                    e.target.style.background = '#22c55e';
+                    e.target.style.color = '#000000';
+                    e.target.style.transform = 'translateY(-2px)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#22c55e';
-                  e.target.style.transform = 'translateY(0)';
+                  if (!isMobile) {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = '#22c55e';
+                    e.target.style.transform = 'translateY(0)';
+                  }
                 }}
               >
                 Contact Us
