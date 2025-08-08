@@ -17,18 +17,53 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
     };
 
     const updateActiveSection = () => {
-      // Define sections to track (you may need to adjust these selectors based on your actual component structure)
+      // Define sections to track with fallback selectors
       const sections = [
-        { id: 'hero', selector: '[data-section="hero"]' },
-        { id: 'problem', selector: '[data-section="problem"]' },
-        { id: 'process', selector: '[data-section="process"]' },
-        { id: 'the-future', selector: '[data-section="the-future"]' }
+        { 
+          id: 'hero', 
+          selectors: [
+            '[data-section="hero"]',
+            '.hero-section',
+            '#hero'
+          ]
+        },
+        { 
+          id: 'problem', 
+          selectors: [
+            '[data-section="problem"]',
+            '.problem-section',
+            '#problem'
+          ]
+        },
+        { 
+          id: 'process', 
+          selectors: [
+            '[data-section="process"]',
+            '.process-section',
+            '#process'
+          ]
+        },
+        { 
+          id: 'the-future', 
+          selectors: [
+            '[data-section="the-future"]',
+            '.the-future-section',
+            '#the-future'
+          ]
+        }
       ];
 
       let currentSection = 'hero'; // default
 
       for (const section of sections) {
-        const element = document.querySelector(section.selector);
+        let element = null;
+        
+        // Try each selector until we find the element
+        for (const selector of section.selectors) {
+          element = document.querySelector(selector);
+          if (element) break;
+        }
+        
         if (element) {
           const rect = element.getBoundingClientRect();
           // Consider a section active if it's in the top half of the viewport
@@ -59,46 +94,70 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
     }
   }, [currentView]);
 
+  // Function to scroll to a section with multiple selector options
+  const scrollToSection = (sectionSelectors, behavior = 'smooth') => {
+    let element = null;
+    
+    // Try each selector until we find the element
+    for (const selector of sectionSelectors) {
+      element = document.querySelector(selector);
+      if (element) break;
+    }
+    
+    if (element) {
+      element.scrollIntoView({ behavior, block: 'start' });
+      return true;
+    }
+    return false;
+  };
+
   // Function to handle navigation clicks
   const handleNavClick = (section) => {
     if (section === 'home') {
-      // Navigate to home page
+      // Navigate to home page and scroll to top
       onNavigate && onNavigate('home');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     } else if (section === 'how-it-works') {
-      // If we're not on home, go to home first, then scroll to process section
+      // Navigate to home first if not already there, then scroll to process section
       if (currentView !== 'home') {
         onNavigate && onNavigate('home');
         // Wait for navigation to complete, then scroll to process section
         setTimeout(() => {
-          const processElement = document.querySelector('[data-section="process"]');
-          if (processElement) {
-            processElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          scrollToSection([
+            '[data-section="process"]',
+            '.process-section',
+            '#process'
+          ]);
         }, 300);
       } else {
-        // If we're already on home, just scroll to process section
-        const processElement = document.querySelector('[data-section="process"]');
-        if (processElement) {
-          processElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        // If already on home, just scroll to process section
+        scrollToSection([
+          '[data-section="process"]',
+          '.process-section',
+          '#process'
+        ]);
       }
     } else if (section === 'the-future') {
-      // If we're not on home, go to home first, then scroll to the-future section
+      // Navigate to home first if not already there, then scroll to the-future section
       if (currentView !== 'home') {
         onNavigate && onNavigate('home');
         // Wait for navigation to complete, then scroll to the-future section
         setTimeout(() => {
-          const futureElement = document.querySelector('[data-section="the-future"]');
-          if (futureElement) {
-            futureElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          scrollToSection([
+            '[data-section="the-future"]',
+            '.the-future-section',
+            '#the-future'
+          ]);
         }, 300);
       } else {
-        // If we're already on home, just scroll to the-future section
-        const futureElement = document.querySelector('[data-section="the-future"]');
-        if (futureElement) {
-          futureElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        // If already on home, just scroll to the-future section
+        scrollToSection([
+          '[data-section="the-future"]',
+          '.the-future-section',
+          '#the-future'
+        ]);
       }
     }
   };

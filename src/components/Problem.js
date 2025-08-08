@@ -7,7 +7,19 @@ import moneyImg from '../assets/images/money.png';
 
 const ProblemSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const currentSection = sectionRef.current; // Capture the ref value
@@ -59,12 +71,19 @@ const ProblemSection = () => {
     }
   ];
 
+  // Determine grid columns based on screen size
+  const getGridColumns = () => {
+    if (isMobile) return '1fr';
+    if (window.innerWidth <= 1024) return 'repeat(2, 1fr)';
+    return 'repeat(3, 1fr)';
+  };
+
   return (
     <section 
       ref={sectionRef}
       style={{
         minHeight: '100vh',
-        background: 'transparent', // Changed to transparent like Process
+        background: 'transparent',
         padding: '4rem 0',
         position: 'relative',
         overflow: 'hidden'
@@ -87,19 +106,19 @@ const ProblemSection = () => {
       <div style={{
         maxWidth: '1400px',
         margin: '0 auto',
-        padding: '0 2rem',
+        padding: isMobile ? '0 1rem' : '0 2rem',
         position: 'relative',
         zIndex: 2
       }}>
 
         {/* Main Container - Much more transparent like Process */}
         <div style={{
-          background: 'rgba(30, 41, 59, 0.4)', // Much more transparent
-          borderRadius: '32px',
-          padding: '4rem 3rem',
+          background: 'rgba(30, 41, 59, 0.4)',
+          borderRadius: isMobile ? '20px' : '32px',
+          padding: isMobile ? '2rem 1.5rem' : '4rem 3rem',
           boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 100px rgba(59, 130, 246, 0.05)',
           border: '1px solid rgba(59, 130, 246, 0.2)',
-          backdropFilter: 'blur(12px)', // Subtle blur
+          backdropFilter: 'blur(12px)',
           position: 'relative',
           overflow: 'hidden',
           opacity: isVisible ? 1 : 0,
@@ -129,10 +148,11 @@ const ProblemSection = () => {
             borderRadius: '50%',
             filter: 'blur(15px)'
           }}></div>
+
         {/* Header Section */}
         <div style={{
           textAlign: 'center',
-          marginBottom: '5rem',
+          marginBottom: isMobile ? '3rem' : '5rem',
           position: 'relative', 
           zIndex: 2,
           opacity: isVisible ? 1 : 0,
@@ -140,12 +160,12 @@ const ProblemSection = () => {
           transition: 'all 0.8s ease-out 0.2s'
         }}>
           <h1 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+            fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(1.8rem, 4vw, 2.8rem)',
             fontWeight: '900',
             color: '#ffffff',
-            marginBottom: '2rem',
+            marginBottom: isMobile ? '1.5rem' : '2rem',
             lineHeight: '1.1',
-            textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)' // Better readability like Process
+            textShadow: '0 2px 8px rgba(0, 0, 0, 0.8)'
           }}>
             Did Your Evidence Disappear in the First{' '}
             <span style={{
@@ -156,67 +176,74 @@ const ProblemSection = () => {
           </h1>
           
           <p style={{
-            fontSize: '1.2rem',
+            fontSize: isMobile ? '1rem' : '1.2rem',
             color: '#e2e8f0',
             maxWidth: '800px',
             margin: '0 auto',
             lineHeight: '1.7',
             opacity: '0.9',
-            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)' // Better readability like Process
+            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
           }}>
             While you focus on your client's care, critical video evidence vanishes forever from traffic camera systems.
           </p>
         </div>
 
         {/* Problems Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '2rem',
-          marginBottom: '4rem',
-          position: 'relative',
-          zIndex: 2
-        }}>
+        <div 
+          className="problems-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: getGridColumns(),
+            gap: isMobile ? '1.5rem' : '2rem',
+            marginBottom: isMobile ? '3rem' : '4rem',
+            position: 'relative',
+            zIndex: 2
+          }}
+        >
           {problems.map((problem, index) => (
             <div 
               key={problem.id}
               style={{
                 position: 'relative',
-                height: '350px',
-                borderRadius: '20px',
+                height: isMobile ? '280px' : '350px',
+                borderRadius: isMobile ? '16px' : '20px',
                 overflow: 'hidden',
                 cursor: 'pointer',
                 transform: 'perspective(1000px) rotateY(0deg)',
                 transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
                 boxShadow: '0 15px 40px rgba(0, 0, 0, 0.3)',
                 opacity: isVisible ? 1 : 0,
-                transformBox: isVisible ? 'translateY(0)' : 'translateY(60px)', // Fixed: removed duplicate transform key
+                transform: isVisible ? 'translateY(0)' : 'translateY(60px)',
                 transitionDelay: isVisible ? `${0.4 + index * 0.2}s` : '0s',
                 transitionDuration: '0.8s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'perspective(1000px) rotateY(-5deg) translateY(-20px) scale(1.02)';
-                e.currentTarget.style.boxShadow = '0 40px 80px rgba(0, 0, 0, 0.4)';
-                
-                const overlay = e.currentTarget.querySelector('.problem-overlay');
-                const content = e.currentTarget.querySelector('.problem-content');
-                const bgImage = e.currentTarget.querySelector('.problem-bg');
-                
-                if (overlay) overlay.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.3), rgba(30, 41, 59, 0.4))'; // Lighter on hover
-                if (content) content.style.transform = 'translateY(-10px)';
-                if (bgImage) bgImage.style.transform = 'scale(1.1)';
+                if (!isMobile) {
+                  e.currentTarget.style.transform = 'perspective(1000px) rotateY(-5deg) translateY(-20px) scale(1.02)';
+                  e.currentTarget.style.boxShadow = '0 40px 80px rgba(0, 0, 0, 0.4)';
+                  
+                  const overlay = e.currentTarget.querySelector('.problem-overlay');
+                  const content = e.currentTarget.querySelector('.problem-content');
+                  const bgImage = e.currentTarget.querySelector('.problem-bg');
+                  
+                  if (overlay) overlay.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.3), rgba(30, 41, 59, 0.4))';
+                  if (content) content.style.transform = 'translateY(-10px)';
+                  if (bgImage) bgImage.style.transform = 'scale(1.1)';
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) translateY(0px) scale(1)';
-                e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
-                
-                const overlay = e.currentTarget.querySelector('.problem-overlay');
-                const content = e.currentTarget.querySelector('.problem-content');
-                const bgImage = e.currentTarget.querySelector('.problem-bg');
-                
-                if (overlay) overlay.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.5))';
-                if (content) content.style.transform = 'translateY(0)';
-                if (bgImage) bgImage.style.transform = 'scale(1.05)';
+                if (!isMobile) {
+                  e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) translateY(0px) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
+                  
+                  const overlay = e.currentTarget.querySelector('.problem-overlay');
+                  const content = e.currentTarget.querySelector('.problem-content');
+                  const bgImage = e.currentTarget.querySelector('.problem-bg');
+                  
+                  if (overlay) overlay.style.background = 'linear-gradient(135deg, rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.5))';
+                  if (content) content.style.transform = 'translateY(0)';
+                  if (bgImage) bgImage.style.transform = 'scale(1.05)';
+                }
               }}
             >
               {/* Background Image */}
@@ -247,7 +274,7 @@ const ProblemSection = () => {
                   left: 0,
                   right: 0,
                   bottom: 0,
-                  background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.5))', // More transparent like Process
+                  background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.5))',
                   transition: 'background 0.4s ease'
                 }}
               />
@@ -262,28 +289,28 @@ const ProblemSection = () => {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
-                  padding: '1.5rem',
+                  padding: isMobile ? '1.5rem 1.25rem' : '1.5rem',
                   transition: 'transform 0.4s ease'
                 }}
               >
                 {/* Content */}
                 <div>
                   <h3 style={{
-                    fontSize: '1.5rem',
+                    fontSize: isMobile ? '1.25rem' : '1.5rem',
                     fontWeight: '800',
                     color: '#ffffff',
                     marginBottom: '1rem',
                     lineHeight: '1.2',
-                    textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)' // Better readability like Process
+                    textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
                   }}>
                     {problem.title}
                   </h3>
                   
                   <p style={{
-                    fontSize: '0.95rem',
+                    fontSize: isMobile ? '0.9rem' : '0.95rem',
                     color: '#e2e8f0',
                     lineHeight: '1.5',
-                    textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)' // Better readability like Process
+                    textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
                   }}>
                     {problem.description}
                   </p>
@@ -295,10 +322,10 @@ const ProblemSection = () => {
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '100px',
-                height: '100px',
+                width: isMobile ? '60px' : '100px',
+                height: isMobile ? '60px' : '100px',
                 background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2), transparent)',
-                borderBottomLeft: '50px solid rgba(239, 68, 68, 0.1)',
+                borderBottomLeft: isMobile ? '30px solid rgba(239, 68, 68, 0.1)' : '50px solid rgba(239, 68, 68, 0.1)',
                 zIndex: 4
               }} />
             </div>
@@ -308,9 +335,9 @@ const ProblemSection = () => {
         {/* Call to Action */}
         <div style={{
           textAlign: 'center',
-          padding: '4rem 2rem',
-          borderRadius: '24px',
-          background: 'rgba(255, 255, 255, 0.08)', // More transparent like Process
+          padding: isMobile ? '2.5rem 1.5rem' : '4rem 2rem',
+          borderRadius: isMobile ? '16px' : '24px',
+          background: 'rgba(255, 255, 255, 0.08)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           position: 'relative',
           zIndex: 2,
@@ -320,11 +347,11 @@ const ProblemSection = () => {
           transition: 'all 0.8s ease-out 1.2s'
         }}>
           <h2 style={{
-            fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+            fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 4vw, 3.5rem)',
             fontWeight: '800',
             color: '#ffffff',
             marginBottom: '1.5rem',
-            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)' // Better readability like Process
+            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
           }}>
             We Get Your Evidence{' '}
             <span style={{
@@ -335,12 +362,12 @@ const ProblemSection = () => {
           </h2>
           
           <p style={{
-            fontSize: '1.25rem',
+            fontSize: isMobile ? '1rem' : '1.25rem',
             color: '#cbd5e1',
             maxWidth: '600px',
             margin: '0 auto 2rem',
             lineHeight: '1.6',
-            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)' // Better readability like Process
+            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
           }}>
             Atlanta • Savannah • Augusta • Alpharetta  • Macon • Warner Robins   
           </p>
@@ -374,25 +401,6 @@ const ProblemSection = () => {
           to {
             opacity: 1;
             transform: translateY(0) scale(1);
-          }
-        }
-        
-        @media (max-width: 768px) {
-          div[style*="gridTemplateColumns"] {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-        }
-        
-        @media (max-width: 1024px) {
-          div[style*="repeat(3, 1fr)"] {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .problem-content {
-            padding: 1.5rem !important;
           }
         }
       `}</style>
