@@ -103,7 +103,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              Welcome to ARGUS. These Terms of Service ("Terms") govern your use of our services, website, and applications (collectively, the "Services"). By accessing or using our Services, you agree to these Terms. If you do not agree, you may not use our Services.
+              Welcome to ARGUS AI. These Terms of Service ("Terms") govern your use of our services, website, and applications (collectively, the "Services"). By accessing or using our Services, you agree to these Terms. If you do not agree, you may not use our Services.
             </p>
 
             <h2 style={{
@@ -120,7 +120,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              By using ARGUS.live and its associated platforms, you confirm that you have read, understood, and accepted these Terms. ARGUS ("TDG") reserves the right to modify these Terms at any time. Changes take effect upon posting, and your continued use constitutes acceptance of the revised Terms.
+              By using ARGUSAI.live and its associated platforms, you confirm that you have read, understood, and accepted these Terms. ARGUS AI reserves the right to modify these Terms at any time. Changes take effect upon posting, and your continued use constitutes acceptance of the revised Terms.
             </p>
 
             <h2 style={{
@@ -137,7 +137,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS provides real-time and historical traffic data, video feeds, analytics, and related services to businesses, government agencies, and individuals. Use of these services is subject to compliance with these Terms and applicable laws.
+              ARGUS AI provides real-time and historical traffic data, video feeds, analytics, and related services to businesses, government agencies, and individuals. Use of these services is subject to compliance with these Terms and applicable laws.
             </p>
 
             <h2 style={{
@@ -187,7 +187,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              All content, including video feeds, metadata, software, and analytics, is owned or licensed by ARGUS. Users acknowledge that:
+              All content, including video feeds, metadata, software, and analytics, is owned or licensed by ARGUS AI. Users acknowledge that:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -283,7 +283,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              No part of ARGUS.live or any content provided by ARGUS—including, but not limited to, video feeds, data, partner sites, and applications—may be:
+              No part of ARGUSAI.live or any content provided by ARGUS AI—including, but not limited to, video feeds, data, partner sites, and applications—may be:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -375,7 +375,7 @@ const TermsOfService = ({ onNavigate }) => {
             }}>
               <li style={{ marginBottom: '0.5rem' }}>Direct, indirect, incidental, special, consequential, or punitive damages resulting from the use of or inability to use TDG's services.</li>
               <li style={{ marginBottom: '0.5rem' }}>Loss of data, revenue, business opportunities, or personal injury resulting from reliance on TDG's data or service interruptions.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Any damage, including damage caused by viruses, cyberattacks, hacking, or technical failures, that affects users' devices, systems, or networks as a result of accessing ARGUS.live.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Any damage, including damage caused by viruses, cyberattacks, hacking, or technical failures, that affects users' devices, systems, or networks as a result of accessing ARGUSAI.live.</li>
               <li style={{ marginBottom: '0.5rem' }}>Any failure, interruption, or delay of service due to acts of nature, government actions, cyberattacks, or unforeseen circumstances beyond TDG's control.</li>
             </ul>
             <p style={{
@@ -405,7 +405,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              Users agree to indemnify and hold harmless ARGUS, its affiliates, officers, directors, employees, and partners from any claims, damages, liabilities, costs, or expenses (including legal fees) arising from:
+              Users agree to indemnify and hold harmless ARGUS AI, its affiliates, officers, directors, employees, and partners from any claims, damages, liabilities, costs, or expenses (including legal fees) arising from:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -486,7 +486,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              TDG reserves the right to modify these Terms at any time. Significant changes will be communicated via email or posted on ARGUS.live. Continued use of the Services after modifications constitutes acceptance of the revised Terms.
+              TDG reserves the right to modify these Terms at any time. Significant changes will be communicated via email or posted on ARGUSAI.live. Continued use of the Services after modifications constitutes acceptance of the revised Terms.
             </p>
 
             <h2 style={{
@@ -510,9 +510,9 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <p style={{ marginBottom: '0.5rem' }}><strong>ARGUS</strong></p>
-              <p style={{ marginBottom: '0.5rem' }}>Email: hello@ARGUS.live</p>
-              <p style={{ marginBottom: '0.5rem' }}>Website: www.ARGUS.live</p>
+              <p style={{ marginBottom: '0.5rem' }}><strong>ARGUS AI</strong></p>
+              <p style={{ marginBottom: '0.5rem' }}>Email: hello@argusai.live</p>
+              <p style={{ marginBottom: '0.5rem' }}>Website: www.argusai.live</p>
             </div>
           </div>
         </div>

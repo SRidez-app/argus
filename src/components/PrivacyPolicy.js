@@ -104,14 +104,14 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS ("TDG," "we," "us," or "our") is committed to protecting the privacy and security of our users. This Privacy Policy outlines the types of information we collect, how we use it, and the measures we take to safeguard your data.
+              ARGUS AI  ("TDG," "we," "us," or "our") is committed to protecting the privacy and security of our users. This Privacy Policy outlines the types of information we collect, how we use it, and the measures we take to safeguard your data.
             </p>
 
             <p style={{
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              By using ARGUS.live or any associated services, you consent to the practices outlined in this Privacy Policy.
+              By using ARGUSAI.live or any associated services, you consent to the practices outlined in this Privacy Policy.
             </p>
 
             <h2 style={{
@@ -128,7 +128,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS collects certain types of information to improve our services, enhance user experience, and maintain security. This includes:
+              ARGUS AI collects certain types of information to improve our services, enhance user experience, and maintain security. This includes:
             </p>
 
             <h3 style={{
@@ -145,7 +145,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              When you visit ARGUS.live, we may automatically collect:
+              When you visit ARGUSAI.live, we may automatically collect:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -197,7 +197,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS uses collected information to:
+              ARGUS AI uses collected information to:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -232,7 +232,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS takes your privacy seriously and does not share personal data except under the following circumstances:
+              ARGUS AI takes your privacy seriously and does not share personal data except under the following circumstances:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -241,7 +241,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
             }}>
               <li style={{ marginBottom: '0.5rem' }}><strong>With Service Providers:</strong> Trusted vendors may process data on our behalf (e.g., cloud hosting, payment processing), subject to strict confidentiality agreements.</li>
               <li style={{ marginBottom: '0.5rem' }}><strong>For Legal Compliance:</strong> We may disclose user data when required by law, such as in response to court orders, legal requests, or regulatory requirements.</li>
-              <li style={{ marginBottom: '0.5rem' }}><strong>In Business Transactions:</strong> If ARGUS undergoes a merger, acquisition, or asset sale, user information may be transferred as part of the business operation.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>In Business Transactions:</strong> If ARGUS AI undergoes a merger, acquisition, or asset sale, user information may be transferred as part of the business operation.</li>
             </ul>
             <p style={{
               marginBottom: '1.5rem',
@@ -264,7 +264,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS uses cookies, pixels, and other tracking technologies to enhance user experience and gather insights. These may include:
+              ARGUS AI uses cookies, pixels, and other tracking technologies to enhance user experience and gather insights. These may include:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -296,7 +296,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS partners with third-party advertisers and analytics providers who may collect non-personally identifiable data to:
+              ARGUS AI partners with third-party advertisers and analytics providers who may collect non-personally identifiable data to:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -365,14 +365,14 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS strictly prohibits the unauthorized redistribution of its data, video feeds, and content.
+              ARGUS AI strictly prohibits the unauthorized redistribution of its data, video feeds, and content.
             </p>
             <ul style={{
               marginLeft: '1.5rem',
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <li style={{ marginBottom: '0.5rem' }}>No content from ARGUS.live may be rebroadcasted, embedded, or resold without prior written consent.</li>
+              <li style={{ marginBottom: '0.5rem' }}>No content from ARGUS AI.live may be rebroadcasted, embedded, or resold without prior written consent.</li>
               <li style={{ marginBottom: '0.5rem' }}>You may not use TDG's content in any commercial application, software, or third-party platform without authorization.</li>
               <li style={{ marginBottom: '0.5rem' }}>Any approved redistribution must retain author attributions, copyright notices, and trademarks.</li>
               <li style={{ marginBottom: '0.5rem' }}>Unauthorized use may result in legal action, including account termination, civil liability, and criminal prosecution.</li>
@@ -392,7 +392,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS may provide links to third-party websites for reference or partner integrations. However, we are not responsible for the privacy practices or content of these external sites.
+              ARGUS AI may provide links to third-party websites for reference or partner integrations. However, we are not responsible for the privacy practices or content of these external sites.
             </p>
             <p style={{
               marginBottom: '1.5rem',
@@ -431,7 +431,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              To exercise any of these rights, contact us at hello@ARGUS.live.
+              To exercise any of these rights, contact us at  hello@argusai.live.
             </p>
 
             <h2 style={{
@@ -448,13 +448,13 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS reserves the right to update or modify this Privacy Policy at any time. Changes will be reflected on this page, and where required, we will provide notice to users.
+              ARGUS AI reserves the right to update or modify this Privacy Policy at any time. Changes will be reflected on this page, and where required, we will provide notice to users.
             </p>
             <p style={{
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              Your continued use of ARGUS.live after policy updates constitutes acceptance of the revised terms.
+              Your continued use of ARGUSAI.live after policy updates constitutes acceptance of the revised terms.
             </p>
 
             <h2 style={{
@@ -478,9 +478,9 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <p style={{ marginBottom: '0.5rem' }}><strong>ARGUS</strong></p>
-              <p style={{ marginBottom: '0.5rem' }}>Email: hello@ARGUS.live</p>
-              <p style={{ marginBottom: '0.5rem' }}>Website: www.ARGUS.live</p>
+              <p style={{ marginBottom: '0.5rem' }}><strong>ARGUS AI</strong></p>
+              <p style={{ marginBottom: '0.5rem' }}>Email:  hello@argusai.live.live</p>
+              <p style={{ marginBottom: '0.5rem' }}>Website: www.argusai.live</p>
             </div>
           </div>
         </div>
