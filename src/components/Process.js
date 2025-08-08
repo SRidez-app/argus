@@ -35,7 +35,19 @@ const processSteps = [
 
 const Process = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,6 +73,12 @@ const Process = () => {
     };
   }, []);
 
+  // Determine grid columns based on screen size
+  const getGridColumns = () => {
+    if (isMobile) return '1fr';
+    return 'repeat(auto-fit, minmax(280px, 1fr))';
+  };
+
   return (
     <section 
       ref={sectionRef}
@@ -68,7 +86,7 @@ const Process = () => {
       id="process"
       className="process-section"
       style={{
-        padding: '5rem 0',
+        padding: isMobile ? '3rem 0' : '5rem 0',
         position: 'relative',
         background: 'transparent'
       }}
@@ -87,13 +105,18 @@ const Process = () => {
         pointerEvents: 'none'
       }}></div>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', position: 'relative' }}>
+      <div style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        padding: isMobile ? '0 16px' : '0 24px', 
+        position: 'relative' 
+      }}>
         
         {/* Main Container - Much more transparent */}
         <div style={{
           background: 'rgba(30, 41, 59, 0.4)', // Much more transparent
-          borderRadius: '32px',
-          padding: '4rem 3rem',
+          borderRadius: isMobile ? '20px' : '32px',
+          padding: isMobile ? '2.5rem 1.5rem' : '4rem 3rem',
           boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 100px rgba(59, 130, 246, 0.05)',
           border: '1px solid rgba(59, 130, 246, 0.2)',
           backdropFilter: 'blur(12px)', // Subtle blur
@@ -130,7 +153,7 @@ const Process = () => {
           {/* Header Section */}
           <div style={{ 
             textAlign: 'center', 
-            marginBottom: '4rem', 
+            marginBottom: isMobile ? '3rem' : '4rem', 
             position: 'relative', 
             zIndex: 2,
             opacity: isVisible ? 1 : 0,
@@ -138,7 +161,7 @@ const Process = () => {
             transition: 'all 0.8s ease-out 0.2s'
           }}>
             <h2 style={{
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontSize: isMobile ? 'clamp(1.8rem, 8vw, 2.5rem)' : 'clamp(2rem, 5vw, 3.5rem)',
               fontWeight: '800',
               color: '#ffffff',
               marginBottom: '1rem',
@@ -149,7 +172,7 @@ const Process = () => {
             </h2>
             
             <h3 style={{
-              fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+              fontSize: isMobile ? 'clamp(1.25rem, 6vw, 1.8rem)' : 'clamp(1.5rem, 4vw, 2.5rem)',
               fontWeight: '700',
               marginBottom: '1.5rem',
               color: '#06b6d4',
@@ -159,7 +182,7 @@ const Process = () => {
             </h3>
             
             <p style={{
-              fontSize: '1.25rem',
+              fontSize: isMobile ? '1rem' : '1.25rem',
               color: '#e2e8f0',
               maxWidth: '800px',
               margin: '0 auto',
@@ -174,8 +197,8 @@ const Process = () => {
           {/* AI Process Steps */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2.5rem',
+            gridTemplateColumns: getGridColumns(),
+            gap: isMobile ? '2rem' : '2.5rem',
             marginBottom: '3rem',
             position: 'relative',
             zIndex: 2
@@ -186,8 +209,8 @@ const Process = () => {
                 style={{
                   background: 'rgba(62, 133, 247, 0.15)', // More transparent cards
                   border: '1px solid rgba(59, 130, 246, 0.3)',
-                  borderRadius: '20px',
-                  padding: '2rem',
+                  borderRadius: isMobile ? '16px' : '20px',
+                  padding: isMobile ? '1.5rem' : '2rem',
                   textAlign: 'center',
                   backdropFilter: 'blur(8px)', // Glassmorphism effect
                   transition: 'all 0.3s ease',
@@ -198,22 +221,26 @@ const Process = () => {
                   cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.2)';
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.2)';
+                    e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                  }
                 }}
               >
                 {/* Icon Container */}
                 <div style={{
-                  width: '80px',
-                  height: '80px',
+                  width: isMobile ? '64px' : '80px',
+                  height: isMobile ? '64px' : '80px',
                   background: 'rgba(255, 255, 255, 0.95)',
-                  borderRadius: '16px',
+                  borderRadius: isMobile ? '12px' : '16px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -226,8 +253,8 @@ const Process = () => {
                     src={step.icon} 
                     alt={`${step.title} icon`}
                     style={{
-                      width: '48px',
-                      height: '48px',
+                      width: isMobile ? '36px' : '48px',
+                      height: isMobile ? '36px' : '48px',
                       objectFit: 'contain'
                     }}
                   />
@@ -235,7 +262,7 @@ const Process = () => {
 
                 {/* Step Title */}
                 <h4 style={{
-                  fontSize: '2.5rem',
+                  fontSize: isMobile ? '2rem' : '2.5rem',
                   fontWeight: '900',
                   marginBottom: '1rem',
                   background: 'linear-gradient(135deg, #22c55e, #16a34a)',
@@ -248,7 +275,7 @@ const Process = () => {
                 
                 {/* Subtitle */}
                 <h5 style={{
-                  fontSize: '1.5rem',
+                  fontSize: isMobile ? '1.25rem' : '1.5rem',
                   fontWeight: '700',
                   color: '#ffffff',
                   marginBottom: '1.5rem',
@@ -260,7 +287,7 @@ const Process = () => {
                 
                 {/* Description */}
                 <p style={{
-                  fontSize: '1rem',
+                  fontSize: isMobile ? '0.9rem' : '1rem',
                   color: '#cbd5e1',
                   lineHeight: '1.6',
                   marginBottom: '1rem',
@@ -271,7 +298,7 @@ const Process = () => {
                 
                 {/* Details */}
                 <p style={{
-                  fontSize: '0.875rem',
+                  fontSize: isMobile ? '0.8rem' : '0.875rem',
                   color: '#94a3b8',
                   fontStyle: 'italic',
                   lineHeight: '1.5',
@@ -286,8 +313,8 @@ const Process = () => {
           {/* Bottom Summary */}
           <div style={{
             background: 'rgba(255, 255, 255, 0.08)', // More transparent
-            padding: '2.5rem',
-            borderRadius: '20px',
+            padding: isMobile ? '2rem 1.5rem' : '2.5rem',
+            borderRadius: isMobile ? '16px' : '20px',
             border: '1px solid rgba(255, 255, 255, 0.1)',
             textAlign: 'center',
             position: 'relative',
@@ -298,7 +325,7 @@ const Process = () => {
             transition: 'all 0.8s ease-out 1.2s'
           }}>
             <p style={{
-              fontSize: '1.125rem',
+              fontSize: isMobile ? '1rem' : '1.125rem',
               color: '#e2e8f0',
               lineHeight: '1.7',
               maxWidth: '800px',
@@ -322,17 +349,6 @@ const Process = () => {
           to {
             opacity: 1;
             transform: translateY(0);
-          }
-        }
-        
-        @media (max-width: 768px) {
-          div[style*="gridTemplateColumns"] {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-          
-          div[style*="padding: '4rem 3rem'"] {
-            padding: 2.5rem 1.5rem !important;
           }
         }
       `}</style>
