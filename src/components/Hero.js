@@ -1,6 +1,11 @@
 import React from 'react';
 
 const Hero = () => {
+  // Function to handle the button click and open Calendly
+  const handleGetEvidenceClick = () => {
+    window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section style={{
       position: 'relative',
@@ -58,7 +63,9 @@ const Hero = () => {
           flexWrap: 'wrap',
           marginTop: '2.5rem'
         }}>
-          <button style={{
+          <button 
+            onClick={handleGetEvidenceClick}
+            style={{
            padding: '1.5rem 1.5rem',
             background: 'linear-gradient(135deg, #2563eb, #0891b2)',
             color: 'white',
@@ -70,7 +77,16 @@ const Hero = () => {
             transition: 'all 0.3s ease',
             boxShadow: '0 8px 25px rgba(37, 99, 235, 0.3)',
             minWidth: '180px'
-          }}>
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 12px 35px rgba(37, 99, 235, 0.4)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.3)';
+          }}
+          >
             Get Evidence Now
           </button>
           
