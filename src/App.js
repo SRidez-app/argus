@@ -4,18 +4,50 @@ import ArgusHeader from './components/Header.js';
 import Hero from './components/Hero.js';
 import Problem from './components/Problem.js';
 import Process from './components/Process.js';
-
+import Footer from './components/Footer.js';
+import PrivacyPolicy from './components/PrivacyPolicy.js';
+import TermsOfService from './components/TermsOfService.js';
+import TheFuture from './components/TheFuture.js';
+import CookieSettings from './components/CookieSettings.js';
+import Map from './components/Map.js';
 
 function App() {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [currentView, setCurrentView] = useState(() => {
+    // Read URL fragment and set initial state accordingly
+    const hash = window.location.hash.substring(1); // Remove the #
+    if (hash === 'privacy-policy') return 'privacy-policy';
+    if (hash === 'terms-of-service') return 'terms-of-service';
+    if (hash === 'the-future') return 'the-future';
+    return 'home'; // Default to home for any other hash or no hash
+  });
 
   // Network configuration
   const nodeCount = 120;
   const connectionDistance = 140;
   const pulseSpeed = 0.010;
   const rotationSpeed = 0.0005; 
+
+  useEffect(() => {
+    // Listen for hash changes (back/forward button)
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash === 'privacy-policy') {
+        setCurrentView('privacy-policy');
+      } else if (hash === 'terms-of-service') {
+        setCurrentView('terms-of-service');
+      } else if (hash === 'the-future') {
+        setCurrentView('the-future');
+      } else {
+        setCurrentView('home');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -187,6 +219,63 @@ function App() {
     };
   }, [dimensions]);
 
+  // Function to handle navigation
+  const handleNavigation = (view) => {
+    setCurrentView(view);
+    
+    // Update URL to match the view
+    if (view === 'home') {
+      window.location.hash = '';
+    } else {
+      window.location.hash = view;
+    }
+    
+    // Always scroll to top when changing views
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+  };
+
+  // Render different views based on currentView state
+  const renderContent = () => {
+    switch (currentView) {
+      case 'privacy-policy':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <PrivacyPolicy onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'terms-of-service':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <TermsOfService onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'the-future':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <TheFuture onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'home':
+      default:
+        return (
+          <div style={{ 
+            position: 'relative', 
+            zIndex: 10,
+            background: 'transparent'
+          }}>
+            <Hero />
+            <Problem />
+            <Process />
+            <TheFuture />
+            <Map />
+            <Footer onNavigate={handleNavigation} />
+          </div>
+        );
+    }
+  };
+
   return (
     <div style={{ 
       position: 'relative',
@@ -208,19 +297,12 @@ function App() {
 
       {/* Fixed Header */}
       <div style={{ position: 'relative', zIndex: 20 }}>
-        <ArgusHeader />
+        <ArgusHeader onNavigate={handleNavigation} currentView={currentView} />
       </div>
       
-      {/* Scrollable Content */}
-      <div style={{ 
-        position: 'relative', 
-        zIndex: 10,
-        background: 'transparent'
-      }}>
-        <Hero />
-        <Problem />
-        <Process />
-      </div>
+      {/* Dynamic Content based on currentView */}
+      {renderContent()}
+      <CookieSettings />
     </div>
   );
 }

@@ -1,19 +1,45 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Import the images
-import evidenceImg from '../assets/images/evidence.jpg';
-import bureaucracyImg from '../assets/images/bureaucracy.jpg';
-import moneyImg from '../assets/images/money.jpg';
+import evidenceImg from '../assets/images/evidence.png';
+import bureaucracyImg from '../assets/images/bureaucracy.png';
+import moneyImg from '../assets/images/money.png';
 
 const ProblemSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const currentSection = sectionRef.current; // Capture the ref value
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1, // Trigger when 10% of the component is visible
+        rootMargin: '0px 0px -100px 0px' // Start animation 100px before it comes into view
+      }
+    );
+
+    if (currentSection) {
+      observer.observe(currentSection);
+    }
+
+    return () => {
+      if (currentSection) {
+        observer.unobserve(currentSection);
+      }
+    };
+  }, []);
   
   const problems = [
     {
       id: 1,
       title: "Evidence Disappears Fast",
       description: "Most traffic cameras only store footage for 24-72 hours. By the time you know you need it, it's deleted forever.",
-      statistic: "72 Hours",
       image: evidenceImg,
       delay: 0
     },
@@ -21,7 +47,6 @@ const ProblemSection = () => {
       id: 2,
       title: "Complex Bureaucracy", 
       description: "Multiple agencies, different procedures, endless paperwork. Each day of delay means lost evidence.",
-      statistic: "12+ Agencies",
       image: bureaucracyImg,
       delay: 0.2
     },
@@ -29,7 +54,6 @@ const ProblemSection = () => {
       id: 3,
       title: "Your Time = Lost Money",
       description: "Spending hours tracking down footage means less time on high-value legal work and client development.",
-      statistic: "15+ Hours", 
       image: moneyImg,
       delay: 0.4
     }
@@ -77,7 +101,10 @@ const ProblemSection = () => {
           border: '1px solid rgba(59, 130, 246, 0.2)',
           backdropFilter: 'blur(12px)', // Subtle blur
           position: 'relative',
-          overflow: 'hidden'
+          overflow: 'hidden',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(60px)',
+          transition: 'all 0.8s ease-out'
         }}>
           
           {/* Decorative glow elements - more subtle */}
@@ -107,7 +134,10 @@ const ProblemSection = () => {
           textAlign: 'center',
           marginBottom: '5rem',
           position: 'relative', 
-          zIndex: 2
+          zIndex: 2,
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+          transition: 'all 0.8s ease-out 0.2s'
         }}>
           <h1 style={{
             fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
@@ -119,11 +149,7 @@ const ProblemSection = () => {
           }}>
             Did Your Evidence Disappear in the First{' '}
             <span style={{
-              background: 'linear-gradient(135deg, #ef4444, #dc2626, #b91c1c)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              position: 'relative'
+              color: '#ef4444'
             }}>
               72 Hours?
             </span>
@@ -162,7 +188,11 @@ const ProblemSection = () => {
                 cursor: 'pointer',
                 transform: 'perspective(1000px) rotateY(0deg)',
                 transition: 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
-                boxShadow: '0 15px 40px rgba(0, 0, 0, 0.3)'
+                boxShadow: '0 15px 40px rgba(0, 0, 0, 0.3)',
+                opacity: isVisible ? 1 : 0,
+                transformBox: isVisible ? 'translateY(0)' : 'translateY(60px)', // Fixed: removed duplicate transform key
+                transitionDelay: isVisible ? `${0.4 + index * 0.2}s` : '0s',
+                transitionDuration: '0.8s'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'perspective(1000px) rotateY(-5deg) translateY(-20px) scale(1.02)';
@@ -231,32 +261,11 @@ const ProblemSection = () => {
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'flex-start',
+                  justifyContent: 'center',
                   padding: '1.5rem',
                   transition: 'transform 0.4s ease'
                 }}
               >
-                {/* Top Badge */}
-                <div style={{
-                  alignSelf: 'flex-start',
-                  marginBottom: '1rem'
-                }}>
-                  <div style={{
-                    background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-                    color: '#ffffff',
-                    fontSize: '0.85rem',
-                    fontWeight: '800',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '50px',
-                    boxShadow: '0 8px 25px rgba(239, 68, 68, 0.3)',
-                    transform: 'translateY(0)',
-                    transition: 'transform 0.3s ease',
-                    border: '2px solid rgba(255, 255, 255, 0.2)'
-                  }}>
-                    {problem.statistic}
-                  </div>
-                </div>
-                
                 {/* Content */}
                 <div>
                   <h3 style={{
@@ -305,7 +314,10 @@ const ProblemSection = () => {
           border: '1px solid rgba(255, 255, 255, 0.1)',
           position: 'relative',
           zIndex: 2,
-          backdropFilter: 'blur(6px)'
+          backdropFilter: 'blur(6px)',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+          transition: 'all 0.8s ease-out 1.2s'
         }}>
           <h2 style={{
             fontSize: 'clamp(2rem, 4vw, 3.5rem)',
@@ -316,10 +328,7 @@ const ProblemSection = () => {
           }}>
             We Get Your Evidence{' '}
             <span style={{
-              background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
+              color: '#ef4444'
             }}>
               Before It's Gone
             </span>

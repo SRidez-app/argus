@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+// Import the images
+import camImg from '../assets/images/Cam.png';
+import archiveImg from '../assets/images/archive.png';
+import deliverImg from '../assets/images/deliver.png';
+
 // AI-powered process steps for SEO optimization
 const processSteps = [
   {
@@ -7,21 +12,24 @@ const processSteps = [
     title: "Detect",
     subtitle: "AI-Powered Accident Detection",
     description: "Our advanced computer vision technology monitors traffic camera networks across Georgia to instantly identify vehicular accidents and critical incidents for personal injury case evidence.",
-    details: "Real-time incident detection via 911 integration and traffic management systems"
+    details: "Real-time incident detection via 911 integration and traffic management systems",
+    icon: camImg
   },
   {
     id: 2,
-    title: "Augment", 
+    title: "Archive", 
     subtitle: "Enhanced Evidence Analysis",
     description: "AI algorithms enhance human decision-making by providing precise accident reconstruction data, vehicle trajectory analysis, and impact assessments for Georgia auto accident attorneys.",
-    details: "AI-augmented reporting delivers faster, more accurate insights for legal professionals"
+    details: "AI-augmented reporting delivers faster, more accurate insights for legal professionals",
+    icon: archiveImg
   },
   {
     id: 3,
-    title: "Analyze",
+    title: "Deliver",
     subtitle: "Comprehensive Case Documentation", 
     description: "Detailed forensic analysis combining AI computer vision with legal expertise to provide court-ready evidence packages for personal injury litigation in Georgia courts.",
-    details: "Complete data analysis for case planning and courtroom justice"
+    details: "Complete data analysis for case planning and courtroom justice",
+    icon: deliverImg
   }
 ];
 
@@ -56,6 +64,7 @@ const Process = () => {
   return (
     <section 
       ref={sectionRef}
+      data-section="process"
       style={{
         padding: '5rem 0',
         position: 'relative',
@@ -200,6 +209,31 @@ const Process = () => {
                   e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.3)';
                 }}
               >
+                {/* Icon Container */}
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  borderRadius: '16px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 1.5rem auto',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  backdropFilter: 'blur(10px)'
+                }}>
+                  <img 
+                    src={step.icon} 
+                    alt={`${step.title} icon`}
+                    style={{
+                      width: '48px',
+                      height: '48px',
+                      objectFit: 'contain'
+                    }}
+                  />
+                </div>
+
                 {/* Step Title */}
                 <h4 style={{
                   fontSize: '2.5rem',
