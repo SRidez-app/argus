@@ -15,8 +15,8 @@ const CookieSettings = () => {
   const bannerRef = useRef(null);
   const settingsRef = useRef(null);
 
-  // Replace YOUR_GA4_MEASUREMENT_ID with your actual GA4 ID
-  const GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // Get this from Google Analytics
+  
+  const GA4_MEASUREMENT_ID = 'G-METTS4SGRH';
 
   // Cookie utility functions
   const setCookie = (name, value, days) => {
