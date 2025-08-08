@@ -59,11 +59,11 @@ const Hero = () => {
           marginTop: '2.5rem'
         }}>
           <button style={{
-           padding: '0.75rem 1.5rem',
+           padding: '1.5rem 1.5rem',
             background: 'linear-gradient(135deg, #2563eb, #0891b2)',
             color: 'white',
             fontWeight: '600',
-            fontSize: '1.125rem',
+            fontSize: '1.325rem',
             borderRadius: '12px',
             border: 'none',
             cursor: 'pointer',
@@ -74,21 +74,7 @@ const Hero = () => {
             Get Evidence Now
           </button>
           
-          <button style={{
-          padding: '0.75rem 1.5rem',
-            background: 'transparent',
-            color: 'white',
-            fontWeight: '600',
-            fontSize: '1.125rem',
-            borderRadius: '12px',
-            border: '2px solid rgba(255, 255, 255, 0.3)',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            backdropFilter: 'blur(8px)',
-            minWidth: '180px'
-          }}>
-            View Case Studies
-          </button>
+   
         </div>
 
     

@@ -8,45 +8,28 @@ const georgiaLocations = [
     name: "Atlanta Metro Area",
     description: "Comprehensive I-285 perimeter, downtown, and suburban corridor coverage",
     cameraCount: "2,400+",
-    responseTime: "0-2 Hours",
-    keyAreas: ["I-285 Perimeter", "Downtown Atlanta", "Buckhead", "Midtown", "Airport Connector"],
-    priority: "emergency"
+    keyAreas: ["I-285 Perimeter", "Downtown Atlanta", "Buckhead", "Midtown", "Airport Connector"]
   },
   {
     id: 2,
     name: "I-75 Corridor",
     description: "Major interstate coverage from Macon through Atlanta to Tennessee border",
     cameraCount: "800+",
-    responseTime: "2-4 Hours", 
-    keyAreas: ["Macon Hub", "Warner Robins", "Forsyth", "McDonough", "Stockbridge"],
-    priority: "high"
+    keyAreas: ["Macon Hub", "Warner Robins", "Forsyth", "McDonough", "Stockbridge"]
   },
   {
     id: 3,
     name: "Savannah Coastal Region",
-    description: "Port traffic, I-16 corridor, and coastal highway surveillance networks",
+    description: "Port traffic, I-16 corridor, and coastal highway camera networks",
     cameraCount: "450+",
-    responseTime: "3-6 Hours",
-    keyAreas: ["Port Authority", "I-16 Corridor", "Highway 17", "Tybee Island Connector"],
-    priority: "standard"
+    keyAreas: ["Port Authority", "I-16 Corridor", "Highway 17", "Tybee Island Connector"]
   },
   {
     id: 4,
-    name: "Columbus Regional Hub",
-    description: "West Georgia coverage including I-185 and major commercial districts",
-    cameraCount: "300+", 
-    responseTime: "4-8 Hours",
-    keyAreas: ["Fort Benning Area", "I-185 Corridor", "Victory Drive", "Veterans Parkway"],
-    priority: "standard"
-  },
-  {
-    id: 5,
     name: "Augusta Metro",
-    description: "Medical district and I-20 corridor surveillance coverage",
+    description: "Medical district and I-20 corridor camera coverage",
     cameraCount: "350+",
-    responseTime: "3-6 Hours",
-    keyAreas: ["Medical District", "I-20 Corridor", "Washington Road", "River Watch Parkway"],
-    priority: "standard"
+    keyAreas: ["Medical District", "I-20 Corridor", "Washington Road", "River Watch Parkway"]
   }
 ];
 
@@ -66,7 +49,7 @@ const sectionContent = {
     },
     {
       title: "Comprehensive Camera Access", 
-      description: "Direct partnerships with GDOT, municipal traffic departments, and private surveillance networks",
+      description: "Direct partnerships with GDOT, municipal traffic departments, and private camera networks",
       stat: "4,000+",
       statLabel: "Active Cameras"
     },
@@ -157,10 +140,7 @@ const Map = () => {
             }}>
               {sectionContent.headline.main}{' '}
               <span style={{
-                background: 'linear-gradient(135deg, #22c55e, #16a34a)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
+                color: '#22c55e'
               }}>
                 {sectionContent.headline.highlight}
               </span>
@@ -173,7 +153,7 @@ const Map = () => {
               lineHeight: '1.7',
               textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
             }}>
-              Our statewide surveillance network provides comprehensive traffic camera coverage across Georgia's major cities and interstate corridors, ensuring rapid evidence collection for personal injury cases.
+              Our statewide camera network provides comprehensive traffic camera coverage across Georgia's major cities and interstate corridors, ensuring rapid evidence collection for personal injury cases.
             </p>
           </div>
 
@@ -245,213 +225,117 @@ const Map = () => {
             ))}
           </div>
 
-          {/* Enhanced Map and Locations Section */}
+          {/* Centered Bigger Map */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1.2fr 1fr',
-            gap: '3rem',
-            alignItems: 'start',
+            textAlign: 'center',
+            marginBottom: '4rem',
             position: 'relative',
             zIndex: 2
           }}>
-            
-            {/* Larger Map Display */}
-            <div style={{
-              background: 'rgba(62, 133, 247, 0.15)',
-              padding: '2.5rem',
-              borderRadius: '24px',
-              border: '1px solid rgba(37, 99, 235, 0.3)',
-              backdropFilter: 'blur(8px)'
+            <h3 style={{
+              fontSize: '1.75rem',
+              fontWeight: '800',
+              color: '#ffffff',
+              marginBottom: '2rem',
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
             }}>
-              <h3 style={{
-                fontSize: '1.75rem',
-                fontWeight: '800',
-                color: '#ffffff',
-                marginBottom: '2rem',
-                textAlign: 'center',
-                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-              }}>
-                Georgia Coverage Network
-              </h3>
-              <div style={{
-                position: 'relative',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)'
-              }}>
-                <img 
-                  src={mapImage}
-                  alt="Georgia traffic camera coverage map showing Atlanta, Savannah, Columbus, Augusta, and major interstate corridors"
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    display: 'block'
-                  }}
-                />
-                
-                {/* Enhanced Map Overlay Info */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: '1.5rem',
-                  left: '1.5rem',
-                  right: '1.5rem',
-                  background: 'rgba(0, 0, 0, 0.85)',
+              Georgia Coverage Network
+            </h3>
+            <div style={{
+              maxWidth: '800px',
+              margin: '0 auto',
+              position: 'relative',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+              background: 'rgba(62, 133, 247, 0.15)',
+              border: '1px solid rgba(37, 99, 235, 0.3)'
+            }}>
+              <img 
+                src={mapImage}
+                alt="Georgia traffic camera coverage map showing Atlanta, Savannah, Columbus, Augusta, and major interstate corridors"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block'
+                }}
+              />
+              
+             
+            </div>
+          </div>
+
+          {/* Small Location Cards Below Map */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+            gap: '1.5rem',
+            position: 'relative',
+            zIndex: 2
+          }}>
+            {georgiaLocations.map((location) => (
+              <div 
+                key={location.id}
+                style={{
+                  background: 'rgba(62, 133, 247, 0.1)',
                   padding: '1.5rem',
-                  borderRadius: '12px',
-                  backdropFilter: 'blur(15px)',
-                  border: '1px solid rgba(34, 197, 94, 0.3)'
+                  borderRadius: '16px',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  transition: 'all 0.3s ease',
+                  backdropFilter: 'blur(8px)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 15px 35px rgba(37, 99, 235, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <h4 style={{
+                  fontSize: '1.1rem',
+                  fontWeight: '700',
+                  color: '#ffffff',
+                  marginBottom: '0.75rem',
+                  textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
                 }}>
-                  <p style={{
-                    color: '#e2e8f0',
-                    fontSize: '1rem',
-                    margin: 0,
-                    textAlign: 'center',
-                    fontWeight: '600'
+                  {location.name}
+                </h4>
+                <p style={{
+                  color: '#cbd5e1',
+                  fontSize: '0.85rem',
+                  marginBottom: '1rem',
+                  lineHeight: '1.5',
+                  textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
+                }}>
+                  {location.description}
+                </p>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}>
+                  <span style={{
+                    color: '#22c55e',
+                    fontSize: '0.9rem',
+                    fontWeight: '700'
                   }}>
-                    <strong style={{ 
-                      color: '#22c55e',
-                      fontSize: '1.1rem'
-                    }}>
-                      4,000+ Active Cameras
-                    </strong>
-                    <br />
-                    <span style={{ 
-                      color: '#94a3b8',
-                      fontSize: '0.9rem'
-                    }}>
-                      Across Georgia's major accident corridors
-                    </span>
-                  </p>
+                    {location.cameraCount} cameras
+                  </span>
                 </div>
               </div>
-            </div>
-
-            {/* Improved Location Details */}
-            <div>
-              <h3 style={{
-                fontSize: '1.75rem',
-                fontWeight: '800',
-                color: '#ffffff',
-                marginBottom: '2rem',
-                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-              }}>
-                Coverage Areas & Response Times
-              </h3>
-              <div style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                gap: '1.5rem'
-              }}>
-                {georgiaLocations.map((location) => (
-                  <div 
-                    key={location.id}
-                    style={{
-                      background: 'rgba(62, 133, 247, 0.1)',
-                      padding: '2rem',
-                      borderRadius: '16px',
-                      border: `2px solid ${
-                        location.priority === 'emergency' 
-                          ? '#dc2626' 
-                          : location.priority === 'high' 
-                            ? '#ea580c' 
-                            : 'rgba(59, 130, 246, 0.3)'
-                      }`,
-                      transition: 'all 0.3s ease',
-                      backdropFilter: 'blur(8px)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateX(8px)';
-                      e.currentTarget.style.boxShadow = '0 15px 35px rgba(37, 99, 235, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateX(0)';
-                      e.currentTarget.style.boxShadow = 'none';
-                    }}
-                  >
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      marginBottom: '1rem'
-                    }}>
-                      <h4 style={{
-                        fontSize: '1.25rem',
-                        fontWeight: '700',
-                        color: '#ffffff',
-                        margin: 0,
-                        textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-                      }}>
-                        {location.name}
-                      </h4>
-                      <div style={{
-                        background: location.priority === 'emergency' 
-                          ? 'linear-gradient(135deg, #dc2626, #991b1b)' 
-                          : location.priority === 'high' 
-                            ? 'linear-gradient(135deg, #ea580c, #c2410c)' 
-                            : 'linear-gradient(135deg, #6b7280, #4b5563)',
-                        color: 'white',
-                        fontSize: '0.8rem',
-                        fontWeight: '700',
-                        padding: '0.5rem 1rem',
-                        borderRadius: '20px',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
-                      }}>
-                        {location.responseTime}
-                      </div>
-                    </div>
-                    <p style={{
-                      color: '#cbd5e1',
-                      fontSize: '0.95rem',
-                      marginBottom: '1rem',
-                      lineHeight: '1.6',
-                      textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
-                    }}>
-                      {location.description}
-                    </p>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      paddingTop: '1rem',
-                      borderTop: '1px solid rgba(59, 130, 246, 0.2)'
-                    }}>
-                      <span style={{
-                        color: '#22c55e',
-                        fontSize: '1rem',
-                        fontWeight: '700'
-                      }}>
-                        {location.cameraCount} cameras
-                      </span>
-                      <div style={{
-                        background: 'rgba(34, 197, 94, 0.2)',
-                        color: '#22c55e',
-                        fontSize: '0.75rem',
-                        fontWeight: '600',
-                        padding: '0.25rem 0.75rem',
-                        borderRadius: '12px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.5px'
-                      }}>
-                        {location.priority}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        @media (max-width: 968px) {
-          div[style*="gridTemplateColumns: '1.2fr 1fr'"] {
-            grid-template-columns: 1fr !important;
-            gap: 2rem !important;
-          }
-        }
-        
         @media (max-width: 768px) {
+          div[style*="gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))'"] {
+            grid-template-columns: 1fr !important;
+          }
+          
           div[style*="gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'"] {
             grid-template-columns: 1fr !important;
           }

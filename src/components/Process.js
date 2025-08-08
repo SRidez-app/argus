@@ -64,7 +64,9 @@ const Process = () => {
   return (
     <section 
       ref={sectionRef}
-      data-section="process"
+      data-component="process"
+      id="process"
+      className="process-section"
       style={{
         padding: '5rem 0',
         position: 'relative',
@@ -150,10 +152,7 @@ const Process = () => {
               fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
               fontWeight: '700',
               marginBottom: '1.5rem',
-              background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
+              color: '#06b6d4',
               textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
             }}>
               AI and Computer Vision in Action

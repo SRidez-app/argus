@@ -32,7 +32,9 @@ const TheFuture = () => {
   return (
     <div 
       ref={sectionRef}
-      data-section="the-future"
+      data-component="the-future"
+      id="the-future"
+      className="future-section"
       style={{
         minHeight: '100vh',
         position: 'relative',
@@ -134,7 +136,7 @@ const TheFuture = () => {
               transition: 'all 0.8s ease-out 0.4s'
             }}>
               From safer Georgia roads to smarter cities, our AI-powered solutions help 
-              <strong style={{ color: '#3b82f6' }}> Atlanta personal injury attorneys</strong> accelerate 
+              <strong style={{ color: '#3b82f6' }}> personal injury attorneys</strong> accelerate 
               auto accident case claims and investigations. Partner with us to revolutionize 
               <strong style={{ color: '#22c55e' }}> Georgia car accident litigation</strong> and shape tomorrow's legal landscape.
             </p>
