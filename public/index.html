@@ -8,16 +8,31 @@
     <title>Traffic Camera Footage & Video Evidence | Argus - Georgia Legal Services</title>
     <meta name="title" content="Traffic Camera Footage & Video Evidence | Argus - Georgia Legal Services">
     <meta name="description" content="Professional traffic camera footage retrieval for Georgia personal injury attorneys. 24/7 access across Atlanta, Augusta, Savannah. Court-ready evidence packages instantly.">
-    <meta name="keywords" content="traffic camera footage, video evidence, personal injury lawyers, Georgia, Atlanta, surveillance footage, accident reconstruction, court evidence">
+    <meta name="keywords" content="traffic camera footage, video evidence, personal injury lawyers, Georgia, Atlanta, traffic camera footage, accident reconstruction, court evidence">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
     <meta name="author" content="Argus">
+    
+    <!-- Service-Specific Landing Page Hints -->
+    <meta name="page-topic" content="Traffic Camera Footage Retrieval Georgia">
+    <meta name="page-type" content="Service Detail">
+    
+    <!-- Legal Industry Specific Meta -->
+    <meta name="industry" content="Legal Services">
+    <meta name="service-area" content="Personal Injury Law Support">
     
     <!-- Geographic Targeting for Georgia -->
     <meta name="geo.region" content="US-GA">
     <meta name="geo.placename" content="Atlanta, Georgia">
     <meta name="geo.position" content="33.7490;-84.3880">
     <meta name="ICBM" content="33.7490, -84.3880">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://argus.live/" />
+    
+    <!-- Hreflang for Regional Targeting -->
+    <link rel="alternate" hreflang="en-us" href="https://argus.live/" />
+    <link rel="alternate" hreflang="x-default" href="https://argus.live/" />
     
     <!-- Open Graph / Facebook - Social Media Sharing -->
     <meta property="og:type" content="website">
@@ -50,23 +65,35 @@
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="msapplication-TileImage" content="%PUBLIC_URL%/mstile-144x144.png">
     
+    <!-- Performance Optimizations - Preconnect for External Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Preload Critical Resources for Performance -->
-    <!-- <link rel="preload" href="%PUBLIC_URL%/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin> -->
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- DNS Prefetch for External Resources -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//www.google-analytics.com">
     
-    <!-- Structured Data for Legal Services (JSON-LD) -->
+    <!-- Critical CSS Inline (for production) -->
+    <style>
+      /* Critical above-the-fold CSS here */
+    </style>
+    
+    <!-- Structured Data for Legal Services with Local Business (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LegalService",
+      "@type": ["LegalService", "LocalBusiness"],
       "name": "Argus",
       "description": "Professional traffic camera footage retrieval and video evidence collection for personal injury attorneys",
       "url": "https://argus.live",
       "logo": "https://argus.live/logo.png",
       "image": "https://argus.live/og-image.png",
+      "paymentAccepted": ["Credit Card", "Wire Transfer"],
+      "currenciesAccepted": "USD",
+      "email": "hello@argus.live",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Atlanta",
@@ -98,9 +125,15 @@
       "serviceType": [
         "Traffic Camera Footage Retrieval",
         "Video Evidence Collection", 
-        "Surveillance Video Analysis",
+        "Traffic Camera Video Analysis",
         "Court Evidence Preparation",
         "Emergency Evidence Response"
+      ],
+      "knowsAbout": [
+        "Traffic Accident Investigation",
+        "Video Evidence Authentication",
+        "Chain of Custody Documentation",
+        "Expert Witness Testimony"
       ],
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
@@ -123,12 +156,8 @@
             }
           }
         ]
-      },
+      }, 
       "openingHours": "Mo,Tu,We,Th,Fr,Sa,Su 00:00-23:59",
-      "sameAs": [
-        "https://www.linkedin.com/company/argus-evidence",
-        "https://twitter.com/argusevidence"
-      ]
     }
     </script>
     
@@ -151,6 +180,35 @@
         "addressLocality": "Atlanta",
         "addressRegion": "GA", 
         "addressCountry": "US"
+      }
+    }
+    </script>
+    
+    <!-- BreadcrumbList Schema for Better SERP Display -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://argus.live"
+      }]
+    }
+    </script>
+    
+    <!-- WebSite Schema with Search Action -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Argus",
+      "url": "https://argus.live",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://argus.live/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
       }
     }
     </script>
