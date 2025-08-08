@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import mapImage from '../assets/images/map.png';
 
 // Georgia coverage areas data optimized for SEO
@@ -63,11 +63,35 @@ const sectionContent = {
 };
 
 const Map = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Determine grid columns based on screen size
+  const getBenefitsGridColumns = () => {
+    if (isMobile) return '1fr';
+    return 'repeat(auto-fit, minmax(300px, 1fr))';
+  };
+
+  const getLocationsGridColumns = () => {
+    if (isMobile) return '1fr';
+    return 'repeat(auto-fit, minmax(250px, 1fr))';
+  };
+
   return (
     <section 
       data-section="map"
       style={{
-        padding: '5rem 0',
+        padding: isMobile ? '3rem 0' : '5rem 0',
         position: 'relative',
         background: 'transparent'
       }}
@@ -86,13 +110,18 @@ const Map = () => {
         pointerEvents: 'none'
       }}></div>
 
-      <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative' }}>
+      <div style={{ 
+        maxWidth: '1400px', 
+        margin: '0 auto', 
+        padding: isMobile ? '0 16px' : '0 24px', 
+        position: 'relative' 
+      }}>
         
         {/* Main Container */}
         <div style={{
           background: 'rgba(30, 41, 59, 0.4)',
-          borderRadius: '32px',
-          padding: '4rem 3rem',
+          borderRadius: isMobile ? '20px' : '32px',
+          padding: isMobile ? '2.5rem 1.5rem' : '4rem 3rem',
           boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 100px rgba(59, 130, 246, 0.05)',
           border: '1px solid rgba(59, 130, 246, 0.2)',
           backdropFilter: 'blur(12px)',
@@ -126,12 +155,12 @@ const Map = () => {
           {/* Header Section */}
           <div style={{ 
             textAlign: 'center', 
-            marginBottom: '4rem',
+            marginBottom: isMobile ? '3rem' : '4rem',
             position: 'relative',
             zIndex: 2
           }}>
             <h2 style={{
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+              fontSize: isMobile ? 'clamp(1.8rem, 8vw, 2.5rem)' : 'clamp(2rem, 5vw, 3.5rem)',
               fontWeight: '800',
               color: '#ffffff',
               marginBottom: '1.5rem',
@@ -146,7 +175,7 @@ const Map = () => {
               </span>
             </h2>
             <p style={{
-              fontSize: '1.25rem',
+              fontSize: isMobile ? '1rem' : '1.25rem',
               color: '#e2e8f0',
               maxWidth: '900px',
               margin: '0 auto',
@@ -160,9 +189,9 @@ const Map = () => {
           {/* Benefits Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem',
-            marginBottom: '4rem',
+            gridTemplateColumns: getBenefitsGridColumns(),
+            gap: isMobile ? '1.5rem' : '2rem',
+            marginBottom: isMobile ? '3rem' : '4rem',
             position: 'relative',
             zIndex: 2
           }}>
@@ -171,8 +200,8 @@ const Map = () => {
                 key={index}
                 style={{
                   background: 'rgba(62, 133, 247, 0.15)',
-                  padding: '2rem',
-                  borderRadius: '20px',
+                  padding: isMobile ? '1.5rem' : '2rem',
+                  borderRadius: isMobile ? '16px' : '20px',
                   border: '1px solid rgba(34, 197, 94, 0.3)',
                   borderLeft: '6px solid #22c55e',
                   textAlign: 'center',
@@ -180,16 +209,20 @@ const Map = () => {
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(34, 197, 94, 0.2)';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(34, 197, 94, 0.2)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
                 }}
               >
                 <div style={{
-                  fontSize: '2.5rem',
+                  fontSize: isMobile ? '2rem' : '2.5rem',
                   fontWeight: '900',
                   color: '#22c55e',
                   marginBottom: '0.5rem'
@@ -197,7 +230,7 @@ const Map = () => {
                   {benefit.stat}
                 </div>
                 <div style={{
-                  fontSize: '0.875rem',
+                  fontSize: isMobile ? '0.8rem' : '0.875rem',
                   color: '#22c55e',
                   fontWeight: '600',
                   marginBottom: '1rem'
@@ -205,7 +238,7 @@ const Map = () => {
                   {benefit.statLabel}
                 </div>
                 <h3 style={{
-                  fontSize: '1.25rem',
+                  fontSize: isMobile ? '1.1rem' : '1.25rem',
                   fontWeight: '700',
                   color: '#ffffff',
                   marginBottom: '1rem',
@@ -216,7 +249,7 @@ const Map = () => {
                 <p style={{
                   color: '#cbd5e1',
                   lineHeight: '1.6',
-                  fontSize: '0.95rem',
+                  fontSize: isMobile ? '0.9rem' : '0.95rem',
                   textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
                 }}>
                   {benefit.description}
@@ -228,24 +261,24 @@ const Map = () => {
           {/* Centered Bigger Map */}
           <div style={{
             textAlign: 'center',
-            marginBottom: '4rem',
+            marginBottom: isMobile ? '3rem' : '4rem',
             position: 'relative',
             zIndex: 2
           }}>
             <h3 style={{
-              fontSize: '1.75rem',
+              fontSize: isMobile ? '1.5rem' : '1.75rem',
               fontWeight: '800',
               color: '#ffffff',
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1.5rem' : '2rem',
               textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
             }}>
               Georgia Coverage Network
             </h3>
             <div style={{
-              maxWidth: '800px',
+              maxWidth: isMobile ? '100%' : '800px',
               margin: '0 auto',
               position: 'relative',
-              borderRadius: '16px',
+              borderRadius: isMobile ? '12px' : '16px',
               overflow: 'hidden',
               boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
               background: 'rgba(62, 133, 247, 0.15)',
@@ -260,16 +293,14 @@ const Map = () => {
                   display: 'block'
                 }}
               />
-              
-             
             </div>
           </div>
 
           {/* Small Location Cards Below Map */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1.5rem',
+            gridTemplateColumns: getLocationsGridColumns(),
+            gap: isMobile ? '1rem' : '1.5rem',
             position: 'relative',
             zIndex: 2
           }}>
@@ -278,23 +309,27 @@ const Map = () => {
                 key={location.id}
                 style={{
                   background: 'rgba(62, 133, 247, 0.1)',
-                  padding: '1.5rem',
-                  borderRadius: '16px',
+                  padding: isMobile ? '1.25rem' : '1.5rem',
+                  borderRadius: isMobile ? '12px' : '16px',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   transition: 'all 0.3s ease',
                   backdropFilter: 'blur(8px)'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 15px 35px rgba(37, 99, 235, 0.2)';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.boxShadow = '0 15px 35px rgba(37, 99, 235, 0.2)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
+                  if (!isMobile) {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }
                 }}
               >
                 <h4 style={{
-                  fontSize: '1.1rem',
+                  fontSize: isMobile ? '1rem' : '1.1rem',
                   fontWeight: '700',
                   color: '#ffffff',
                   marginBottom: '0.75rem',
@@ -304,7 +339,7 @@ const Map = () => {
                 </h4>
                 <p style={{
                   color: '#cbd5e1',
-                  fontSize: '0.85rem',
+                  fontSize: isMobile ? '0.8rem' : '0.85rem',
                   marginBottom: '1rem',
                   lineHeight: '1.5',
                   textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
@@ -318,7 +353,7 @@ const Map = () => {
                 }}>
                   <span style={{
                     color: '#22c55e',
-                    fontSize: '0.9rem',
+                    fontSize: isMobile ? '0.85rem' : '0.9rem',
                     fontWeight: '700'
                   }}>
                     {location.cameraCount} cameras
@@ -329,18 +364,6 @@ const Map = () => {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @media (max-width: 768px) {
-          div[style*="gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))'"] {
-            grid-template-columns: 1fr !important;
-          }
-          
-          div[style*="gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

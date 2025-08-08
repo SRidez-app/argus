@@ -5,6 +5,7 @@ const CookieSettings = () => {
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [preferences, setPreferences] = useState({
     essential: true,
     analytics: false,
@@ -15,8 +16,19 @@ const CookieSettings = () => {
   const bannerRef = useRef(null);
   const settingsRef = useRef(null);
 
-  
   const GA4_MEASUREMENT_ID = 'G-METTS4SGRH';
+
+  // Mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Cookie utility functions
   const setCookie = (name, value, days) => {
@@ -257,7 +269,7 @@ const CookieSettings = () => {
             backdropFilter: 'blur(16px)',
             border: '1px solid rgba(59, 130, 246, 0.2)',
             borderBottom: 'none',
-            padding: '1.5rem',
+            padding: isMobile ? '1rem' : '1.5rem',
             zIndex: 9999,
             boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.4)',
             opacity: isVisible ? 1 : 0,
@@ -272,15 +284,17 @@ const CookieSettings = () => {
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '1rem'
+            gap: '1rem',
+            flexDirection: isMobile ? 'column' : 'row'
           }}>
             <div style={{
-              flex: '1',
-              minWidth: '300px',
-              color: '#e2e8f0'
+              flex: isMobile ? 'none' : '1',
+              minWidth: isMobile ? 'auto' : '300px',
+              color: '#e2e8f0',
+              textAlign: isMobile ? 'center' : 'left'
             }}>
               <h3 style={{
-                fontSize: '1.1rem',
+                fontSize: isMobile ? '1rem' : '1.1rem',
                 fontWeight: '700',
                 color: '#ffffff',
                 margin: '0 0 0.5rem 0'
@@ -288,7 +302,7 @@ const CookieSettings = () => {
                 We use cookies
               </h3>
               <p style={{
-                fontSize: '0.9rem',
+                fontSize: isMobile ? '0.85rem' : '0.9rem',
                 lineHeight: '1.5',
                 margin: 0,
                 opacity: 0.9
@@ -300,33 +314,41 @@ const CookieSettings = () => {
             
             <div style={{
               display: 'flex',
-              gap: '0.75rem',
+              gap: isMobile ? '0.5rem' : '0.75rem',
               flexWrap: 'wrap',
-              alignItems: 'center'
+              alignItems: 'center',
+              justifyContent: isMobile ? 'center' : 'flex-end',
+              width: isMobile ? '100%' : 'auto'
             }}>
               <button
                 onClick={handleDecline}
                 style={{
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '12px',
+                  padding: isMobile ? '0.625rem 1rem' : '0.75rem 1.5rem',
+                  borderRadius: isMobile ? '10px' : '12px',
                   border: '1px solid rgba(239, 68, 68, 0.3)',
                   background: 'rgba(239, 68, 68, 0.1)',
                   color: '#fca5a5',
-                  fontSize: '0.9rem',
+                  fontSize: isMobile ? '0.8rem' : '0.9rem',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  flex: isMobile ? '1' : 'none',
+                  minWidth: isMobile ? '80px' : 'auto'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(239, 68, 68, 0.2)';
-                  e.target.style.borderColor = 'rgba(239, 68, 68, 0.5)';
-                  e.target.style.color = '#ffffff';
+                  if (!isMobile) {
+                    e.target.style.background = 'rgba(239, 68, 68, 0.2)';
+                    e.target.style.borderColor = 'rgba(239, 68, 68, 0.5)';
+                    e.target.style.color = '#ffffff';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(239, 68, 68, 0.1)';
-                  e.target.style.borderColor = 'rgba(239, 68, 68, 0.3)';
-                  e.target.style.color = '#fca5a5';
+                  if (!isMobile) {
+                    e.target.style.background = 'rgba(239, 68, 68, 0.1)';
+                    e.target.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                    e.target.style.color = '#fca5a5';
+                  }
                 }}
               >
                 Decline
@@ -335,26 +357,32 @@ const CookieSettings = () => {
               <button
                 onClick={handleOpenSettings}
                 style={{
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '12px',
+                  padding: isMobile ? '0.625rem 1rem' : '0.75rem 1.5rem',
+                  borderRadius: isMobile ? '10px' : '12px',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   background: 'transparent',
                   color: '#93c5fd',
-                  fontSize: '0.9rem',
+                  fontSize: isMobile ? '0.8rem' : '0.9rem',
                   fontWeight: '600',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  flex: isMobile ? '1' : 'none',
+                  minWidth: isMobile ? '80px' : 'auto'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(59, 130, 246, 0.1)';
-                  e.target.style.borderColor = 'rgba(59, 130, 246, 0.5)';
-                  e.target.style.color = '#ffffff';
+                  if (!isMobile) {
+                    e.target.style.background = 'rgba(59, 130, 246, 0.1)';
+                    e.target.style.borderColor = 'rgba(59, 130, 246, 0.5)';
+                    e.target.style.color = '#ffffff';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.borderColor = 'rgba(59, 130, 246, 0.3)';
-                  e.target.style.color = '#93c5fd';
+                  if (!isMobile) {
+                    e.target.style.background = 'transparent';
+                    e.target.style.borderColor = 'rgba(59, 130, 246, 0.3)';
+                    e.target.style.color = '#93c5fd';
+                  }
                 }}
               >
                 Settings
@@ -363,25 +391,31 @@ const CookieSettings = () => {
               <button
                 onClick={handleAcceptAll}
                 style={{
-                  padding: '0.75rem 2rem',
-                  borderRadius: '12px',
+                  padding: isMobile ? '0.625rem 1.25rem' : '0.75rem 2rem',
+                  borderRadius: isMobile ? '10px' : '12px',
                   border: 'none',
                   background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
                   color: '#ffffff',
-                  fontSize: '0.9rem',
+                  fontSize: isMobile ? '0.8rem' : '0.9rem',
                   fontWeight: '700',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                   boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
-                  whiteSpace: 'nowrap'
+                  whiteSpace: 'nowrap',
+                  flex: isMobile ? '2' : 'none',
+                  minWidth: isMobile ? '100px' : 'auto'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
+                  if (!isMobile) {
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  if (!isMobile) {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  }
                 }}
               >
                 Accept All
@@ -419,11 +453,11 @@ const CookieSettings = () => {
               background: 'rgba(15, 23, 42, 0.98)',
               backdropFilter: 'blur(20px)',
               border: '1px solid rgba(59, 130, 246, 0.3)',
-              borderRadius: '24px',
-              padding: '2rem',
-              maxWidth: '600px',
-              width: '90%',
-              maxHeight: '80vh',
+              borderRadius: isMobile ? '16px' : '24px',
+              padding: isMobile ? '1.5rem' : '2rem',
+              maxWidth: isMobile ? '95%' : '600px',
+              width: isMobile ? '95%' : '90%',
+              maxHeight: isMobile ? '90vh' : '80vh',
               overflowY: 'auto',
               zIndex: 10001,
               boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
@@ -437,12 +471,12 @@ const CookieSettings = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1.5rem' : '2rem',
               paddingBottom: '1rem',
               borderBottom: '1px solid rgba(59, 130, 246, 0.2)'
             }}>
               <h2 style={{
-                fontSize: '1.5rem',
+                fontSize: isMobile ? '1.25rem' : '1.5rem',
                 fontWeight: '800',
                 color: '#ffffff',
                 margin: 0
@@ -456,19 +490,23 @@ const CookieSettings = () => {
                   background: 'none',
                   border: 'none',
                   color: '#94a3b8',
-                  fontSize: '1.5rem',
+                  fontSize: isMobile ? '1.25rem' : '1.5rem',
                   cursor: 'pointer',
                   padding: '0.5rem',
                   borderRadius: '8px',
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(59, 130, 246, 0.1)';
-                  e.target.style.color = '#ffffff';
+                  if (!isMobile) {
+                    e.target.style.background = 'rgba(59, 130, 246, 0.1)';
+                    e.target.style.color = '#ffffff';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'none';
-                  e.target.style.color = '#94a3b8';
+                  if (!isMobile) {
+                    e.target.style.background = 'none';
+                    e.target.style.color = '#94a3b8';
+                  }
                 }}
               >
                 ×
@@ -477,9 +515,9 @@ const CookieSettings = () => {
 
             <p style={{
               color: '#cbd5e1',
-              fontSize: '0.95rem',
+              fontSize: isMobile ? '0.9rem' : '0.95rem',
               lineHeight: '1.6',
-              marginBottom: '2rem',
+              marginBottom: isMobile ? '1.5rem' : '2rem',
               opacity: 0.9
             }}>
               We use different types of cookies to optimize your experience on our website. 
@@ -487,15 +525,15 @@ const CookieSettings = () => {
             </p>
 
             {/* Cookie Categories */}
-            <div style={{ marginBottom: '2rem' }}>
+            <div style={{ marginBottom: isMobile ? '1.5rem' : '2rem' }}>
               {cookieCategories.map((category) => (
                 <div
                   key={category.id}
                   style={{
                     background: 'rgba(30, 41, 59, 0.4)',
                     border: '1px solid rgba(59, 130, 246, 0.2)',
-                    borderRadius: '16px',
-                    padding: '1.5rem',
+                    borderRadius: isMobile ? '12px' : '16px',
+                    padding: isMobile ? '1.25rem' : '1.5rem',
                     marginBottom: '1rem',
                     transition: 'all 0.3s ease'
                   }}
@@ -507,10 +545,12 @@ const CookieSettings = () => {
                     marginBottom: '0.75rem'
                   }}>
                     <h4 style={{
-                      fontSize: '1.1rem',
+                      fontSize: isMobile ? '1rem' : '1.1rem',
                       fontWeight: '700',
                       color: '#ffffff',
-                      margin: 0
+                      margin: 0,
+                      flex: 1,
+                      marginRight: '1rem'
                     }}>
                       {category.title}
                     </h4>
@@ -519,9 +559,9 @@ const CookieSettings = () => {
                     <label style={{
                       position: 'relative',
                       display: 'inline-block',
-                      width: '50px',
-                      height: '26px',
-                      marginLeft: '1rem'
+                      width: isMobile ? '44px' : '50px',
+                      height: isMobile ? '22px' : '26px',
+                      flexShrink: 0
                     }}>
                       <input
                         type="checkbox"
@@ -545,25 +585,14 @@ const CookieSettings = () => {
                           ? (category.required ? '#22c55e' : '#3b82f6')
                           : '#64748b',
                         transition: '0.3s',
-                        borderRadius: '26px',
-                        opacity: category.required ? 0.7 : 1,
-                        '::before': {
-                          content: '""',
-                          position: 'absolute',
-                          height: '20px',
-                          width: '20px',
-                          left: preferences[category.id] ? '27px' : '3px',
-                          bottom: '3px',
-                          background: '#ffffff',
-                          transition: '0.3s',
-                          borderRadius: '50%'
-                        }
+                        borderRadius: isMobile ? '22px' : '26px',
+                        opacity: category.required ? 0.7 : 1
                       }}>
                         <div style={{
                           position: 'absolute',
-                          height: '20px',
-                          width: '20px',
-                          left: preferences[category.id] ? '27px' : '3px',
+                          height: isMobile ? '16px' : '20px',
+                          width: isMobile ? '16px' : '20px',
+                          left: preferences[category.id] ? (isMobile ? '25px' : '27px') : '3px',
                           bottom: '3px',
                           background: '#ffffff',
                           transition: '0.3s',
@@ -575,7 +604,7 @@ const CookieSettings = () => {
                   
                   <p style={{
                     color: '#cbd5e1',
-                    fontSize: '0.9rem',
+                    fontSize: isMobile ? '0.85rem' : '0.9rem',
                     lineHeight: '1.5',
                     margin: 0,
                     opacity: 0.8
@@ -589,31 +618,37 @@ const CookieSettings = () => {
             {/* Action Buttons */}
             <div style={{
               display: 'flex',
-              gap: '1rem',
+              gap: isMobile ? '0.75rem' : '1rem',
               justifyContent: 'flex-end',
               paddingTop: '1rem',
-              borderTop: '1px solid rgba(59, 130, 246, 0.2)'
+              borderTop: '1px solid rgba(59, 130, 246, 0.2)',
+              flexDirection: isMobile ? 'column' : 'row'
             }}>
               <button
                 onClick={() => setShowSettings(false)}
                 style={{
-                  padding: '0.75rem 1.5rem',
-                  borderRadius: '12px',
+                  padding: isMobile ? '0.75rem' : '0.75rem 1.5rem',
+                  borderRadius: isMobile ? '10px' : '12px',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   background: 'transparent',
                   color: '#93c5fd',
-                  fontSize: '0.9rem',
+                  fontSize: isMobile ? '0.85rem' : '0.9rem',
                   fontWeight: '600',
                   cursor: 'pointer',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s ease',
+                  order: isMobile ? 2 : 1
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(59, 130, 246, 0.1)';
-                  e.target.style.color = '#ffffff';
+                  if (!isMobile) {
+                    e.target.style.background = 'rgba(59, 130, 246, 0.1)';
+                    e.target.style.color = '#ffffff';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'transparent';
-                  e.target.style.color = '#93c5fd';
+                  if (!isMobile) {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = '#93c5fd';
+                  }
                 }}
               >
                 Cancel
@@ -622,24 +657,29 @@ const CookieSettings = () => {
               <button
                 onClick={handleSavePreferences}
                 style={{
-                  padding: '0.75rem 2rem',
-                  borderRadius: '12px',
+                  padding: isMobile ? '0.75rem' : '0.75rem 2rem',
+                  borderRadius: isMobile ? '10px' : '12px',
                   border: 'none',
                   background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
                   color: '#ffffff',
-                  fontSize: '0.9rem',
+                  fontSize: isMobile ? '0.85rem' : '0.9rem',
                   fontWeight: '700',
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+                  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
+                  order: isMobile ? 1 : 2
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-1px)';
-                  e.target.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                  if (!isMobile) {
+                    e.target.style.transform = 'translateY(-1px)';
+                    e.target.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  if (!isMobile) {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  }
                 }}
               >
                 Save Preferences
