@@ -85,13 +85,13 @@ const CTA = () => {
               width: '120%',
               height: '120%',
               objectFit: 'contain',
-              // Position it to the right so text stays super readable
+          
               objectPosition: isMobile ? '60% center' : '85% center',
-              opacity: isMobile ? 0.10 : 0.12, // subtle on mobile
-              // A hint of blur on desktop so it feels soft under the glass
+              opacity: isMobile ? 0.35 : 0.45,   
+            
               filter: isMobile ? 'none' : 'blur(1.5px) drop-shadow(0 10px 30px rgba(0,0,0,0.45))',
               transform: isMobile ? 'translate(8%, -4%) rotate(-4deg)' : 'translate(14%, -6%) rotate(-6deg)',
-              mixBlendMode: 'soft-light', // gentle blend into the glass
+              mixBlendMode: 'soft-light',
               pointerEvents: 'none',
               zIndex: 1
             }}

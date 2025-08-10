@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import ArgusHeader from './components/Header.js'; 
@@ -273,17 +273,57 @@ function AppContent() {
       {/* Routes */}
       <div style={{ position: 'relative', zIndex: 10 }}>
         <Routes>
+          {/* Main Routes */}
           <Route path="/" element={<HomePage onNavigate={handleNavigation} />} />
+          
+          {/* City Pages */}
           <Route path="/atlanta" element={<Atlanta onNavigate={handleNavigation} />} />
           <Route path="/savannah" element={<Savannah onNavigate={handleNavigation} />} />
           <Route path="/augusta" element={<Augusta onNavigate={handleNavigation} />} />
           <Route path="/athens" element={<Athens onNavigate={handleNavigation} />} />
           <Route path="/marietta" element={<Marietta onNavigate={handleNavigation} />} />
-          <Route path="/faq" element={<FAQ onNavigate={handleNavigation} />} />
+          
+          {/* Info Pages - Canonical URLs */}
           <Route path="/about-us" element={<AboutUs onNavigate={handleNavigation} />} />
+          <Route path="/faq" element={<FAQ onNavigate={handleNavigation} />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy onNavigate={handleNavigation} />} />
           <Route path="/terms-of-service" element={<TermsOfService onNavigate={handleNavigation} />} />
           <Route path="/the-future" element={<TheFuture onNavigate={handleNavigation} />} />
+          
+          {/* SEO-Friendly Redirects - About Us Variations */}
+          <Route path="/about" element={<Navigate to="/about-us" replace />} />
+          <Route path="/aboutus" element={<Navigate to="/about-us" replace />} />
+          <Route path="/About" element={<Navigate to="/about-us" replace />} />
+          <Route path="/AboutUs" element={<Navigate to="/about-us" replace />} />
+          <Route path="/about_us" element={<Navigate to="/about-us" replace />} />
+          
+          {/* FAQ Variations */}
+          <Route path="/FAQ" element={<Navigate to="/faq" replace />} />
+          <Route path="/faqs" element={<Navigate to="/faq" replace />} />
+          <Route path="/questions" element={<Navigate to="/faq" replace />} />
+          
+          {/* Privacy Policy Variations */}
+          <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+          <Route path="/Privacy" element={<Navigate to="/privacy-policy" replace />} />
+          <Route path="/privacy_policy" element={<Navigate to="/privacy-policy" replace />} />
+          <Route path="/privacypolicy" element={<Navigate to="/privacy-policy" replace />} />
+          
+          {/* Terms Variations */}
+          <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
+          <Route path="/Terms" element={<Navigate to="/terms-of-service" replace />} />
+          <Route path="/terms_of_service" element={<Navigate to="/terms-of-service" replace />} />
+          <Route path="/termsofservice" element={<Navigate to="/terms-of-service" replace />} />
+          <Route path="/tos" element={<Navigate to="/terms-of-service" replace />} />
+          
+          {/* City Variations (if needed) */}
+          <Route path="/Atlanta" element={<Navigate to="/atlanta" replace />} />
+          <Route path="/Savannah" element={<Navigate to="/savannah" replace />} />
+          <Route path="/Augusta" element={<Navigate to="/augusta" replace />} />
+          <Route path="/Athens" element={<Navigate to="/athens" replace />} />
+          <Route path="/Marietta" element={<Navigate to="/marietta" replace />} />
+          
+          {/* 404 Catch-all */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
       
