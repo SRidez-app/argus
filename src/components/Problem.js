@@ -369,7 +369,7 @@ const ProblemSection = () => {
             lineHeight: '1.6',
             textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
           }}>
-            Atlanta • Savannah • Augusta • Alpharetta  • Macon • Warner Robins   
+            Atlanta • Savannah • Augusta • Athens  • Marietta   
           </p>
         </div>
         

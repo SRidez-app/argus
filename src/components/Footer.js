@@ -1,32 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import argusLogo from '../assets/images/argusLogo.png';
 import CookieSettings from './CookieSettings.js';
 
 const Footer = ({ onNavigate, currentPage = 'home' }) => {
   const [email, setEmail] = useState('');
   const [showCookieSettings, setShowCookieSettings] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState({});
+
+  // Check if mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle subscription logic here
     console.log('Subscription email:', email);
     setEmail('');
+  };
+
+  const toggleDropdown = (title) => {
+    setOpenDropdowns(prev => ({
+      ...prev,
+      [title]: !prev[title]
+    }));
   };
 
   const handleNavigation = (link) => {
     switch(link) {
       case 'Home':
         if (currentPage === 'home') {
-          // Only scroll to top if we're on the home page
           window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-          // Navigate to home page from other pages
           onNavigate && onNavigate('home');
         }
         break;
       case 'How It Works':
         if (currentPage === 'home') {
-          // Scroll to Process component only if on home page
           const processElement = document.querySelector('[data-component="process"]') || 
                                 document.querySelector('.process-section') ||
                                 document.getElementById('process');
@@ -34,9 +51,7 @@ const Footer = ({ onNavigate, currentPage = 'home' }) => {
             processElement.scrollIntoView({ behavior: 'smooth' });
           }
         } else {
-          // Navigate to home page and then scroll to section
           onNavigate && onNavigate('home');
-          // Add a small delay to ensure page navigation completes before scrolling
           setTimeout(() => {
             const processElement = document.querySelector('[data-component="process"]') || 
                                   document.querySelector('.process-section') ||
@@ -47,44 +62,24 @@ const Footer = ({ onNavigate, currentPage = 'home' }) => {
           }, 100);
         }
         break;
-    
       case 'FAQ':
-        // Navigate to FAQ page
         onNavigate && onNavigate('faq');
         break;
       case 'About Us':
-        // Navigate to About Us page
         onNavigate && onNavigate('about-us');
         break;
       case 'Terms & Conditions':
-        // Navigate to Terms of Service page
         onNavigate && onNavigate('terms-of-service');
         break;
       case 'Privacy Policy':
-        // Navigate to Privacy Policy page
         onNavigate && onNavigate('privacy-policy');
         break;
       case 'Contact Us':
-        // Open Calendly link in new tab
         window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank');
         break;
       default:
         break;
     }
-  };
-
-  // Handle bookmark navigation to specific sections
-  const handleBookmarkNavigation = (page, section) => {
-    // Navigate to the page first
-    onNavigate && onNavigate(page);
-    
-    // Add a delay to ensure page loads, then scroll to section
-    setTimeout(() => {
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 300);
   };
 
   const handleLegalClick = (action) => {
@@ -130,8 +125,7 @@ const navigationItems = [
       { label: 'Technology Platform', id: 'technology-platform' },
       { label: 'Coverage Network', id: 'coverage-network' },
       { label: 'Professional Standards', id: 'professional-standards' },
-      { label: 'Industry Leadership', id: 'industry-leadership' },
-   
+      { label: 'Industry Leadership', id: 'industry-leadership' }
     ]
   },
   {
@@ -141,7 +135,7 @@ const navigationItems = [
       { label: 'Service Terms', id: 'authorized-use' },
       { label: 'Payment Terms', id: 'subscription-fees' },
       { label: 'Redistribution', id: 'redistribution' },
-      { label: 'Liability', id: 'disclaimer-warranty' },
+      { label: 'Liability', id: 'disclaimer-warranty' }
     ]
   },
   {
@@ -151,8 +145,7 @@ const navigationItems = [
       { label: 'Data Usage', id: 'how-we-use' },
       { label: 'Data Sharing', id: 'data-sharing' },
       { label: 'Cookies & Tracking', id: 'cookies-tracking' },
-      { label: 'Your Rights', id: 'your-rights' },
-     
+      { label: 'Your Rights', id: 'your-rights' }
     ]
   },
   {
@@ -165,6 +158,98 @@ const navigationItems = [
   }
 ];
 
+  // Handle bookmark navigation
+  const handleBookmarkClick = (item, bookmark) => {
+    if (item.title === 'How It Works') {
+      if (currentPage === 'home') {
+        const processElement = document.querySelector('[data-component="process"]') || 
+                              document.querySelector('.process-section') ||
+                              document.getElementById('process');
+        if (processElement) {
+          processElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        onNavigate && onNavigate('home');
+        setTimeout(() => {
+          const processElement = document.querySelector('[data-component="process"]') || 
+                                document.querySelector('.process-section') ||
+                                document.getElementById('process');
+          if (processElement) {
+            processElement.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    } else if (item.title === 'FAQ') {
+      if (currentPage === 'faq') {
+        const element = document.getElementById(bookmark.id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        onNavigate && onNavigate('faq');
+        setTimeout(() => {
+          const element = document.getElementById(bookmark.id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
+      }
+    } else if (item.title === 'About Us') {
+      if (currentPage === 'about-us') {
+        const element = document.getElementById(bookmark.id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        onNavigate && onNavigate('about-us');
+        setTimeout(() => {
+          const element = document.getElementById(bookmark.id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
+      }
+    } else if (item.title === 'Terms & Conditions') {
+      if (currentPage === 'terms-of-service') {
+        const element = document.getElementById(bookmark.id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        onNavigate && onNavigate('terms-of-service');
+        setTimeout(() => {
+          const element = document.getElementById(bookmark.id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
+      }
+    } else if (item.title === 'Privacy Policy') {
+      if (currentPage === 'privacy-policy') {
+        const element = document.getElementById(bookmark.id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        onNavigate && onNavigate('privacy-policy');
+        setTimeout(() => {
+          const element = document.getElementById(bookmark.id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
+      }
+    } else if (item.title === 'Contact Us') {
+      if (bookmark.type === 'email') {
+        window.open('mailto:hello@argusai.live', '_self');
+      } else if (bookmark.type === 'phone') {
+        window.open('tel:+14024806092', '_self');
+      } else if (bookmark.type === 'button') {
+        window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank');
+      }
+    }
+  };
+
   return (
     <>
       <footer style={{
@@ -173,7 +258,7 @@ const navigationItems = [
         backdropFilter: 'blur(12px)',
         position: 'relative',
         overflow: 'hidden',
-        marginTop: '0' // Remove any top margin that might be causing gaps
+        marginTop: '0'
       }}>
         {/* Background Pattern */}
         <div style={{
@@ -192,42 +277,38 @@ const navigationItems = [
         <div style={{
           maxWidth: '1400px',
           margin: '0 auto',
-          padding: '2rem 1.5rem 1.5rem',
+          padding: isMobile ? '1.5rem 1rem' : '2rem 1.5rem 1.5rem',
           position: 'relative',
           zIndex: 2
         }}>
           
-          {/* Main Footer Content */}
+          {/* Logo Section */}
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'auto 1fr',
-            gap: '2rem',
-            alignItems: 'start',
-            marginBottom: '2rem'
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginBottom: isMobile ? '1.5rem' : '2rem'
           }}>
-            
-            {/* Left Side - Logo */}
-            <div style={{ 
-              display: 'flex',
-              alignItems: 'flex-start'
-            }}>
-              <img 
-                src={argusLogo} 
-                alt="ARGUS Logo"
-                style={{
-                  height: '70px',
-                  width: 'auto',
-                  filter: 'brightness(1.1)'
-                }}
-              />
-            </div>
+            <img 
+              src={argusLogo} 
+              alt="ARGUS Logo"
+              style={{
+                height: isMobile ? '60px' : '70px',
+                width: 'auto',
+                filter: 'brightness(1.1)'
+              }}
+            />
+          </div>
 
-            {/* Right Side - Navigation Grid */}
+          {/* Navigation Section */}
+          {!isMobile ? (
+            // Desktop Layout - Grid
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(6, 1fr)',
               gap: '1rem',
-              alignItems: 'start'
+              alignItems: 'start',
+              marginBottom: '2rem'
             }}>
               {navigationItems.map((item) => (
                 <div key={item.title} style={{
@@ -236,26 +317,22 @@ const navigationItems = [
                   alignItems: 'flex-start',
                   minHeight: '140px'
                 }}>
-                  {/* Main Navigation Item */}
                   <button
                     onClick={() => handleNavigation(item.title)}
                     style={{
                       background: 'none',
                       border: 'none',
                       color: '#e2e8f0',
-                      textDecoration: 'none',
                       fontSize: '0.85rem',
                       fontWeight: '600',
                       transition: 'all 0.3s ease',
                       textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
                       cursor: 'pointer',
                       padding: '0.5rem 0',
-                      display: 'flex',
-                      alignItems: 'center',
-                      whiteSpace: 'nowrap',
                       marginBottom: '0.75rem',
                       textAlign: 'left',
-                      width: '100%'
+                      width: '100%',
+                      whiteSpace: 'nowrap'
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.color = '#3b82f6';
@@ -269,158 +346,165 @@ const navigationItems = [
                     {item.title}
                   </button>
 
-                  {/* Bookmark Links */}
-                  {item.bookmarks.length > 0 && (
-                    <div style={{
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.3rem',
+                    width: '100%'
+                  }}>
+                    {item.bookmarks.map((bookmark) => (
+                      <button
+                        key={bookmark.id}
+                        onClick={() => handleBookmarkClick(item, bookmark)}
+                        style={{
+                          background: bookmark.type === 'button' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'none',
+                          border: 'none',
+                          color: bookmark.type === 'button' ? 'white' : '#94a3b8',
+                          fontSize: bookmark.type === 'button' ? '0.65rem' : '0.7rem',
+                          fontWeight: bookmark.type === 'button' ? '600' : '400',
+                          cursor: 'pointer',
+                          textAlign: 'left',
+                          padding: bookmark.type === 'button' ? '5px 10px' : '0.2rem 0',
+                          borderRadius: bookmark.type === 'button' ? '4px' : '0',
+                          transition: 'all 0.2s ease',
+                          textShadow: bookmark.type === 'button' ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.4)',
+                          whiteSpace: 'nowrap',
+                          width: '100%',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (bookmark.type === 'button') {
+                            e.target.style.transform = 'translateY(-1px)';
+                            e.target.style.boxShadow = '0 3px 8px rgba(34, 197, 94, 0.3)';
+                          } else {
+                            e.target.style.color = '#3b82f6';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (bookmark.type === 'button') {
+                            e.target.style.transform = 'translateY(0)';
+                            e.target.style.boxShadow = 'none';
+                          } else {
+                            e.target.style.color = '#94a3b8';
+                          }
+                        }}
+                      >
+                        {bookmark.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            // Mobile Layout - Dropdown Menus
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+              marginBottom: '1.5rem'
+            }}>
+              {navigationItems.map((item) => (
+                <div key={item.title} style={{
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  {/* Main Navigation Button */}
+                  <button
+                    onClick={() => {
+                      // For Contact Us, don't toggle dropdown, just execute action
+                      if (item.title === 'Contact Us') {
+                        handleNavigation(item.title);
+                      } else {
+                        toggleDropdown(item.title);
+                      }
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#e2e8f0',
+                      fontSize: '1rem',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      padding: '1rem 0',
+                      width: '100%',
+                      textAlign: 'left',
                       display: 'flex',
-                      flexDirection: 'column',
-                      gap: '0.3rem',
-                      width: '100%'
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      transition: 'color 0.2s ease'
+                    }}
+                  >
+                    <span>{item.title}</span>
+                    {item.title !== 'Contact Us' && (
+                      <span style={{
+                        transition: 'transform 0.2s ease',
+                        transform: openDropdowns[item.title] ? 'rotate(180deg)' : 'rotate(0deg)'
+                      }}>
+                        ▼
+                      </span>
+                    )}
+                  </button>
+
+                  {/* Dropdown Content */}
+                  {item.title !== 'Contact Us' && (
+                    <div style={{
+                      maxHeight: openDropdowns[item.title] ? '500px' : '0',
+                      overflow: 'hidden',
+                      transition: 'max-height 0.3s ease',
+                      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                      borderRadius: '8px',
+                      marginBottom: openDropdowns[item.title] ? '0.5rem' : '0'
                     }}>
-                      {item.bookmarks.map((bookmark) => (
-                        <button
-                          key={bookmark.id}
-                          onClick={() => {
-                            if (item.title === 'How It Works') {
-                              if (currentPage === 'home') {
-                                const processElement = document.querySelector('[data-component="process"]') || 
-                                                      document.querySelector('.process-section') ||
-                                                      document.getElementById('process');
-                                if (processElement) {
-                                  processElement.scrollIntoView({ behavior: 'smooth' });
-                                }
-                              } else {
-                                onNavigate && onNavigate('home');
-                                setTimeout(() => {
-                                  const processElement = document.querySelector('[data-component="process"]') || 
-                                                        document.querySelector('.process-section') ||
-                                                        document.getElementById('process');
-                                  if (processElement) {
-                                    processElement.scrollIntoView({ behavior: 'smooth' });
-                                  }
-                                }, 100);
-                              }
-                            } else if (item.title === 'FAQ') {
-                              if (currentPage === 'faq') {
-                                const element = document.getElementById(bookmark.id);
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
-                              } else {
-                                onNavigate && onNavigate('faq');
-                                setTimeout(() => {
-                                  const element = document.getElementById(bookmark.id);
-                                  if (element) {
-                                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                  }
-                                }, 300);
-                              }
-                            } else if (item.title === 'About Us') {
-                              if (currentPage === 'about-us') {
-                                const element = document.getElementById(bookmark.id);
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
-                              } else {
-                                onNavigate && onNavigate('about-us');
-                                setTimeout(() => {
-                                  const element = document.getElementById(bookmark.id);
-                                  if (element) {
-                                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                  }
-                                }, 300);
-                              }
-                            } else if (item.title === 'Terms & Conditions') {
-                              if (currentPage === 'terms-of-service') {
-                                const element = document.getElementById(bookmark.id);
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
-                              } else {
-                                onNavigate && onNavigate('terms-of-service');
-                                setTimeout(() => {
-                                  const element = document.getElementById(bookmark.id);
-                                  if (element) {
-                                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                  }
-                                }, 300);
-                              }
-                            } else if (item.title === 'Privacy Policy') {
-                              if (currentPage === 'privacy-policy') {
-                                const element = document.getElementById(bookmark.id);
-                                if (element) {
-                                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
-                              } else {
-                                onNavigate && onNavigate('privacy-policy');
-                                setTimeout(() => {
-                                  const element = document.getElementById(bookmark.id);
-                                  if (element) {
-                                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                  }
-                                }, 300);
-                              }
-                            } else if (item.title === 'Contact Us') {
-                              if (bookmark.type === 'email') {
-                                window.open('mailto:hello@argusai.live', '_self');
-                              } else if (bookmark.type === 'phone') {
-                                window.open('tel:+14024806092', '_self');
-                              } else if (bookmark.type === 'button') {
-                                window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank');
-                              }
-                            }
-                          }}
-                          style={{
-                            background: bookmark.type === 'button' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'none',
-                            border: 'none',
-                            color: bookmark.type === 'button' ? 'white' : '#94a3b8',
-                            fontSize: bookmark.type === 'button' ? '0.65rem' : '0.7rem',
-                            fontWeight: bookmark.type === 'button' ? '600' : '400',
-                            cursor: 'pointer',
-                            textAlign: 'left',
-                            padding: bookmark.type === 'button' ? '5px 10px' : '0.2rem 0',
-                            borderRadius: bookmark.type === 'button' ? '4px' : '0',
-                            transition: 'all 0.2s ease',
-                            textShadow: bookmark.type === 'button' ? 'none' : '0 1px 2px rgba(0, 0, 0, 0.4)',
-                            whiteSpace: 'nowrap',
-                            width: '100%',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis'
-                          }}
-                          onMouseEnter={(e) => {
-                            if (bookmark.type === 'button') {
-                              e.target.style.transform = 'translateY(-1px)';
-                              e.target.style.boxShadow = '0 3px 8px rgba(34, 197, 94, 0.3)';
-                            } else if (item.title === 'FAQ' || item.title === 'Terms & Conditions') {
-                              e.target.style.color = '#3b82f6';
-                            } else if (item.title === 'About Us' || item.title === 'Privacy Policy') {
-                              e.target.style.color = '#22c55e';
-                            } else if (item.title === 'Contact Us') {
-                              if (bookmark.type === 'email') {
-                                e.target.style.color = '#22c55e';
-                              } else if (bookmark.type === 'phone') {
+                      <div style={{
+                        padding: openDropdowns[item.title] ? '1rem' : '0',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.75rem'
+                      }}>
+                        {item.bookmarks.map((bookmark) => (
+                          <button
+                            key={bookmark.id}
+                            onClick={() => handleBookmarkClick(item, bookmark)}
+                            style={{
+                              background: bookmark.type === 'button' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'none',
+                              border: 'none',
+                              color: bookmark.type === 'button' ? 'white' : '#94a3b8',
+                              fontSize: bookmark.type === 'button' ? '0.9rem' : '0.95rem',
+                              fontWeight: bookmark.type === 'button' ? '600' : '400',
+                              cursor: 'pointer',
+                              textAlign: 'left',
+                              padding: bookmark.type === 'button' ? '8px 16px' : '0.5rem 0',
+                              borderRadius: bookmark.type === 'button' ? '6px' : '0',
+                              transition: 'all 0.2s ease',
+                              width: '100%',
+                              minHeight: '44px',
+                              display: 'flex',
+                              alignItems: 'center'
+                            }}
+                            onTouchStart={(e) => {
+                              if (bookmark.type !== 'button') {
                                 e.target.style.color = '#3b82f6';
                               }
-                            }
-                          }}
-                          onMouseLeave={(e) => {
-                            if (bookmark.type === 'button') {
-                              e.target.style.transform = 'translateY(0)';
-                              e.target.style.boxShadow = 'none';
-                            } else {
-                              e.target.style.color = '#94a3b8';
-                            }
-                          }}
-                        >
-                          {bookmark.label}
-                        </button>
-                      ))}
+                            }}
+                            onTouchEnd={(e) => {
+                              if (bookmark.type !== 'button') {
+                                setTimeout(() => {
+                                  e.target.style.color = '#94a3b8';
+                                }, 150);
+                              }
+                            }}
+                          >
+                            {bookmark.label}
+                          </button>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
               ))}
             </div>
-          </div>
+          )}
 
           {/* Divider Line */}
           <div style={{
@@ -436,7 +520,7 @@ const navigationItems = [
             alignItems: 'center'
           }}>
             <p style={{
-              fontSize: '0.8rem',
+              fontSize: isMobile ? '0.75rem' : '0.8rem',
               color: '#94a3b8',
               fontWeight: '500',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
@@ -447,139 +531,6 @@ const navigationItems = [
             </p>
           </div>
         </div>
-
-        <style jsx>{`
-          /* Desktop optimizations */
-          @media (min-width: 1200px) {
-            div[style*="gridTemplateColumns: 'repeat(auto-fit, minWidth(140px, 1fr))'"] {
-              grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
-              gap: 2rem !important;
-            }
-            
-            button[style*="fontSize: '0.85rem'"] {
-              font-size: 0.9rem !important;
-            }
-            
-            button[style*="fontSize: '0.7rem'"] {
-              font-size: 0.75rem !important;
-            }
-          }
-          
-          /* Tablet adjustments */
-          @media (max-width: 1024px) {
-            div[style*="gridTemplateColumns: 'auto 1fr'"] {
-              grid-template-columns: 1fr !important;
-              gap: 1.5rem !important;
-              text-align: center !important;
-            }
-            
-            div[style*="gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))'"] {
-              grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
-              justify-items: center !important;
-            }
-            
-            div[style*="alignItems: 'flex-start'"][style*="flexDirection: 'column'"] {
-              align-items: center !important;
-              text-align: center !important;
-            }
-            
-            button[style*="textAlign: 'left'"] {
-              text-align: center !important;
-            }
-            
-            img[alt="ARGUS Logo"] {
-              margin: 0 auto !important;
-            }
-          }
-          
-          /* Mobile optimizations */
-          @media (max-width: 768px) {
-            div[style*="padding: '2rem 1.5rem 1.5rem'"] {
-              padding: 1.5rem 1rem 1rem !important;
-            }
-            
-            div[style*="gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))'"] {
-              grid-template-columns: repeat(2, 1fr) !important;
-              gap: 1rem !important;
-            }
-            
-            div[style*="minHeight: '160px'"] {
-              min-height: auto !important;
-              margin-bottom: 1rem !important;
-            }
-            
-            img[alt="ARGUS Logo"] {
-              height: 60px !important;
-            }
-            
-            button[style*="fontSize: '0.85rem'"] {
-              font-size: 0.8rem !important;
-            }
-            
-            button[style*="fontSize: '0.7rem'"] {
-              font-size: 0.65rem !important;
-            }
-            
-            button[style*="fontSize: '0.65rem'"] {
-              font-size: 0.6rem !important;
-              padding: 4px 8px !important;
-            }
-          }
-          
-          /* Small mobile screens */
-          @media (max-width: 640px) {
-            div[style*="gridTemplateColumns: 'repeat(2, 1fr)'"] {
-              grid-template-columns: repeat(2, 1fr) !important;
-              gap: 0.75rem !important;
-            }
-            
-            button[style*="fontSize: '0.8rem'"] {
-              font-size: 0.75rem !important;
-            }
-            
-            button[style*="fontSize: '0.65rem'"] {
-              font-size: 0.6rem !important;
-            }
-            
-            button[style*="fontSize: '0.6rem'"] {
-              font-size: 0.55rem !important;
-              padding: 3px 6px !important;
-            }
-          }
-          
-          /* Extra small screens */
-          @media (max-width: 480px) {
-            div[style*="padding: '1.5rem 1rem 1rem'"] {
-              padding: 1rem 0.75rem 0.75rem !important;
-            }
-            
-            div[style*="gridTemplateColumns: 'repeat(2, 1fr)'"] {
-              grid-template-columns: 1fr 1fr !important;
-              gap: 0.5rem !important;
-            }
-            
-            img[alt="ARGUS Logo"] {
-              height: 50px !important;
-            }
-            
-            button[style*="fontSize: '0.75rem'"] {
-              font-size: 0.7rem !important;
-            }
-            
-            button[style*="fontSize: '0.6rem'"] {
-              font-size: 0.55rem !important;
-            }
-            
-            button[style*="fontSize: '0.55rem'"] {
-              font-size: 0.5rem !important;
-              padding: 2px 4px !important;
-            }
-            
-            p[style*="fontSize: '0.8rem'"] {
-              font-size: 0.7rem !important;
-            }
-          }
-        `}</style>
       </footer>
     </>
   );
