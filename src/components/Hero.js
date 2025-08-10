@@ -24,7 +24,7 @@ const Hero = () => {
         
         {/* Main Headline - SEO Optimized */}
         <h1 style={{
-     fontSize: 'clamp(3rem, 3vw, 4rem)',  // Responsive: 40px to 96px
+          fontSize: 'clamp(3rem, 3vw, 4rem)',  // Responsive: 40px to 96px
           fontWeight: '900',
           lineHeight: '1.5',
           marginBottom: '2rem',
@@ -34,8 +34,7 @@ const Hero = () => {
           backgroundClip: 'text',
           letterSpacing: '-0.02em'
         }}>
-          Traffic Camera Footage 
-          Video Evidence
+          Traffic Camera Footage & Video Evidence
         </h1>
 
         {/* Spacer for breathing room */}
@@ -43,15 +42,14 @@ const Hero = () => {
 
         {/* Description - SEO Keywords */}
         <p style={{
-         fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)', // Responsive: 20px to 28px
+          fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)', // Responsive: 20px to 28px
           lineHeight: '1.6',
           color: '#cbd5e1',
           maxWidth: '800px',
           margin: '0 auto 3rem auto',
           fontWeight: '400'
         }}>
-          Professional traffic camera footage retrieval for Georgia personal injury attorneys. 
-          
+          Professional traffic camera footage retrieval for Georgia personal injury attorneys. We provide 24/7 access to traffic camera networks across Atlanta, Savannah, Augusta, Athens, and Marietta with court-ready evidence packages and full chain of custody documentation.
         </p>
 
         {/* CTA Buttons */}
@@ -66,34 +64,30 @@ const Hero = () => {
           <button 
             onClick={handleGetEvidenceClick}
             style={{
-           padding: '1.5rem 1.5rem',
-            background: 'linear-gradient(135deg, #2563eb, #0891b2)',
-            color: 'white',
-            fontWeight: '600',
-            fontSize: '1.325rem',
-            borderRadius: '12px',
-            border: 'none',
-            cursor: 'pointer',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 8px 25px rgba(37, 99, 235, 0.3)',
-            minWidth: '180px'
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.transform = 'translateY(-2px)';
-            e.target.style.boxShadow = '0 12px 35px rgba(37, 99, 235, 0.4)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.transform = 'translateY(0)';
-            e.target.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.3)';
-          }}
+              padding: '1.5rem 1.5rem',
+              background: 'linear-gradient(135deg, #2563eb, #0891b2)',
+              color: 'white',
+              fontWeight: '600',
+              fontSize: '1.325rem',
+              borderRadius: '12px',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 8px 25px rgba(37, 99, 235, 0.3)',
+              minWidth: '180px'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 12px 35px rgba(37, 99, 235, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 25px rgba(37, 99, 235, 0.3)';
+            }}
           >
             Get Evidence Now
           </button>
-          
-   
         </div>
-
-    
       </div>
 
       <style jsx>{`

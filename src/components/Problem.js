@@ -361,16 +361,49 @@ const ProblemSection = () => {
             </span>
           </h2>
           
+          {/* Enhanced description with additional content */}
           <p style={{
-            fontSize: isMobile ? '1rem' : '1.25rem',
-            color: '#cbd5e1',
-            maxWidth: '600px',
+            fontSize: isMobile ? '1rem' : '1.2rem',
+            color: '#e2e8f0',
+            maxWidth: '800px',
             margin: '0 auto 2rem',
-            lineHeight: '1.6',
-            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+            lineHeight: '1.7',
+            textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)',
+            marginBottom: '2rem'
           }}>
-            Atlanta • Savannah • Augusta • Athens  • Marietta   
+            Our specialized team works directly with municipal traffic departments and private businesses to secure critical video evidence before it's automatically deleted. We handle all legal documentation, timestamps verification, and provide expert testimony when needed for your personal injury cases.
           </p>
+          
+          {/* Location coverage */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '1rem'
+          }}>
+            <div style={{
+              fontSize: isMobile ? '0.875rem' : '1rem',
+              color: '#94a3b8',
+              fontWeight: '600',
+              letterSpacing: '0.5px',
+              textTransform: 'uppercase',
+              textShadow: '0 1px 3px rgba(0, 0, 0, 0.6)'
+            }}>
+              Coverage Areas
+            </div>
+            
+            <p style={{
+              fontSize: isMobile ? '1rem' : '1.25rem',
+              color: '#cbd5e1',
+              maxWidth: '600px',
+              margin: '0 auto',
+              lineHeight: '1.6',
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)',
+              fontWeight: '500'
+            }}>
+              Atlanta • Savannah • Augusta • Athens • Marietta   
+            </p>
+          </div>
         </div>
         
         </div> {/* End of main container */}
