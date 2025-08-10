@@ -5,7 +5,7 @@ import Process from './Process.js';
 import Footer from './Footer.js';
 import TheFuture from './TheFuture.js';
 import Map from './Map.js';
-
+import CTA from './CTA';
 
 const Home = ({ onNavigate }) => {
   return (
@@ -19,7 +19,8 @@ const Home = ({ onNavigate }) => {
       <Process />
       <TheFuture />
       <Map />
-      <Footer onNavigate={onNavigate} />
+      <CTA />
+      <Footer onNavigate={onNavigate} currentPage="home" />
     </div>
   );
 };

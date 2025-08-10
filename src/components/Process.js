@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+
 // Import the images
 import camImg from '../assets/images/Cam.png';
 import archiveImg from '../assets/images/archive.png';

@@ -10,6 +10,16 @@ import TermsOfService from './components/TermsOfService.js';
 import TheFuture from './components/TheFuture.js';
 import CookieSettings from './components/CookieSettings.js';
 import Map from './components/Map.js';
+import FAQ from './components/FAQ.js';
+import AboutUs from './components/AboutUs.js';
+import CTA from './components/CTA.js';
+
+// Import your new city components
+import Atlanta from './pages/Atlanta.js';
+import Savannah from './pages/Savannah.js';
+import Augusta from './pages/Augusta.js';
+import Athens from './pages/Athens.js';
+import Marietta from './pages/Marietta.js';
 
 function App() {
   const canvasRef = useRef(null);
@@ -20,7 +30,15 @@ function App() {
     const hash = window.location.hash.substring(1); // Remove the #
     if (hash === 'privacy-policy') return 'privacy-policy';
     if (hash === 'terms-of-service') return 'terms-of-service';
+    if (hash === 'faq') return 'faq';
     if (hash === 'the-future') return 'the-future';
+    if (hash === 'about-us') return 'about-us';
+    // Add your new city hash routes
+    if (hash === 'atlanta') return 'atlanta';
+    if (hash === 'savannah') return 'savannah';
+    if (hash === 'augusta') return 'augusta';
+    if (hash === 'athens') return 'athens';
+    if (hash === 'marietta') return 'marietta';
     return 'home'; // Default to home for any other hash or no hash
   });
 
@@ -40,6 +58,21 @@ function App() {
         setCurrentView('terms-of-service');
       } else if (hash === 'the-future') {
         setCurrentView('the-future');
+      } else if (hash === 'faq') {
+        setCurrentView('faq');
+      } else if (hash === 'about-us') {
+        setCurrentView('about-us');
+      // Add your new city navigation
+      } else if (hash === 'atlanta') {
+        setCurrentView('atlanta');
+      } else if (hash === 'savannah') {
+        setCurrentView('savannah');
+      } else if (hash === 'augusta') {
+        setCurrentView('augusta');
+      } else if (hash === 'athens') {
+        setCurrentView('athens');
+      } else if (hash === 'marietta') {
+        setCurrentView('marietta');
       } else {
         setCurrentView('home');
       }
@@ -257,6 +290,49 @@ function App() {
             <TheFuture onNavigate={handleNavigation} />
           </div>
         );
+      case 'faq':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <FAQ onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'about-us':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <AboutUs onNavigate={handleNavigation} />
+          </div>
+        );
+      // Add your new city cases
+      case 'atlanta':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <Atlanta onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'savannah':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <Savannah onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'augusta':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <Augusta onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'athens':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <Athens onNavigate={handleNavigation} />
+          </div>
+        );
+      case 'marietta':
+        return (
+          <div style={{ position: 'relative', zIndex: 10 }}>
+            <Marietta onNavigate={handleNavigation} />
+          </div>
+        );
       case 'home':
       default:
         return (
@@ -270,6 +346,7 @@ function App() {
             <Process />
             <TheFuture />
             <Map />
+            <CTA />
             <Footer onNavigate={handleNavigation} />
           </div>
         );

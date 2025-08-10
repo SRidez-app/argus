@@ -1,4 +1,6 @@
 import React from 'react';
+import Footer from '../components/Footer';
+
 
 const TermsOfService = ({ onNavigate }) => {
   return (
@@ -140,14 +142,17 @@ const TermsOfService = ({ onNavigate }) => {
               ARGUS AI provides real-time and historical traffic data, video feeds, analytics, and related services to businesses, government agencies, and individuals. Use of these services is subject to compliance with these Terms and applicable laws.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="authorized-use"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               3. Authorized Use
             </h2>
             <p style={{
@@ -173,14 +178,17 @@ const TermsOfService = ({ onNavigate }) => {
               TDG reserves the right to suspend or terminate accounts found in violation of these Terms.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="data-ownership"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               4. Data Ownership & Intellectual Property
             </h2>
             <p style={{
@@ -199,14 +207,17 @@ const TermsOfService = ({ onNavigate }) => {
               <li style={{ marginBottom: '0.5rem' }}>Unauthorized use of TDG's intellectual property, trademarks, or copyrighted materials is strictly prohibited.</li>
             </ul>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="subscription-fees"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               5. Subscription, Fees, and Payments
             </h2>
             <p style={{
@@ -269,14 +280,17 @@ const TermsOfService = ({ onNavigate }) => {
               If unauthorized account activity is suspected, notify TDG immediately.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="redistribution"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               7. Redistribution
             </h2>
             <p style={{
@@ -325,14 +339,17 @@ const TermsOfService = ({ onNavigate }) => {
               TDG may include links to third-party websites or integrate third-party content. We do not endorse, control, or assume responsibility for external content, services, or practices. Users access third-party sites at their own risk.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="disclaimer-warranty"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               9. Disclaimer of Warranty; Limitation of Liability
             </h2>
             <p style={{
@@ -489,14 +506,17 @@ const TermsOfService = ({ onNavigate }) => {
               TDG reserves the right to modify these Terms at any time. Significant changes will be communicated via email or posted on ARGUSAI.live. Continued use of the Services after modifications constitutes acceptance of the revised Terms.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="contact-information"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               14. Contact Information
             </h2>
             <p style={{
@@ -539,7 +559,12 @@ const TermsOfService = ({ onNavigate }) => {
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+            boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
+            minHeight: '48px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -552,8 +577,300 @@ const TermsOfService = ({ onNavigate }) => {
         >
           ← Back to Home
         </button>
+  
       </div>
+      <Footer onNavigate={onNavigate} currentPage="terms-of-service" />
+      {/* Mobile-specific CSS */}
+      <style jsx>{`
+        /* Base responsive adjustments */
+        @media (max-width: 768px) {
+          div[style*="maxWidth: '1000px'"] {
+            padding: 2rem 1.5rem !important;
+          }
+          
+          div[style*="padding: '4rem 3rem'"] {
+            padding: 2.5rem 2rem !important;
+            border-radius: 24px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(2rem, 8vw, 3rem) !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          p[style*="fontSize: '1.125rem'"] {
+            font-size: 1rem !important;
+          }
+          
+          h2[style*="fontSize: '1.75rem'"] {
+            font-size: 1.5rem !important;
+            margin-top: 2rem !important;
+            margin-bottom: 1rem !important;
+          }
+          
+          h3[style*="fontSize: '1.5rem'"] {
+            font-size: 1.3rem !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          div[style*="lineHeight: '1.7'"] {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+          }
+          
+          ul[style*="marginLeft: '1.5rem'"] {
+            margin-left: 1rem !important;
+            padding-left: 0.5rem !important;
+          }
+          
+          li[style*="marginBottom: '0.5rem'"] {
+            margin-bottom: 0.75rem !important;
+            line-height: 1.5 !important;
+          }
+          
+          div[style*="marginLeft: '1.5rem'"] {
+            margin-left: 1rem !important;
+          }
+          
+          button[style*="padding: '1rem 2rem'"] {
+            padding: 0.875rem 1.5rem !important;
+            font-size: 0.95rem !important;
+            width: auto !important;
+            max-width: 200px !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          div[style*="maxWidth: '1000px'"] {
+            padding: 1.5rem 1rem !important;
+          }
+          
+          div[style*="padding: '2.5rem 2rem'"] {
+            padding: 2rem 1.5rem !important;
+            border-radius: 20px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.75rem, 10vw, 2.5rem) !important;
+            line-height: 1.2 !important;
+          }
+          
+          div[style*="marginBottom: '3rem'"] {
+            margin-bottom: 2rem !important;
+          }
+          
+          h2[style*="fontSize: '1.5rem'"] {
+            font-size: 1.3rem !important;
+            margin-top: 1.75rem !important;
+            margin-bottom: 0.875rem !important;
+          }
+          
+          h3[style*="fontSize: '1.3rem'"] {
+            font-size: 1.2rem !important;
+            margin-top: 1.25rem !important;
+            margin-bottom: 0.625rem !important;
+          }
+          
+          div[style*="lineHeight: '1.6'"] {
+            font-size: 0.9rem !important;
+            line-height: 1.55 !important;
+          }
+          
+          p[style*="marginBottom: '2rem'"] {
+            margin-bottom: 1.5rem !important;
+          }
+          
+          p[style*="marginBottom: '1rem'"] {
+            margin-bottom: 0.875rem !important;
+          }
+          
+          ul[style*="marginBottom: '1.5rem'"] {
+            margin-bottom: 1.25rem !important;
+          }
+          
+          ul[style*="marginBottom: '2rem'"] {
+            margin-bottom: 1.5rem !important;
+          }
+          
+          li[style*="marginBottom: '0.75rem'"] {
+            margin-bottom: 0.625rem !important;
+            font-size: 0.9rem !important;
+          }
+          
+          button[style*="padding: '0.875rem 1.5rem'"] {
+            padding: 0.75rem 1.25rem !important;
+            font-size: 0.9rem !important;
+            min-width: 160px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          div[style*="maxWidth: '1000px'"] {
+            padding: 1rem 0.75rem !important;
+          }
+          
+          div[style*="padding: '2rem 1.5rem'"] {
+            padding: 1.5rem 1rem !important;
+            border-radius: 16px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.5rem, 12vw, 2rem) !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          div[style*="marginBottom: '2rem'"] {
+            margin-bottom: 1.5rem !important;
+          }
+          
+          h2[style*="fontSize: '1.3rem'"] {
+            font-size: 1.2rem !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          h3[style*="fontSize: '1.2rem'"] {
+            font-size: 1.1rem !important;
+            margin-top: 1rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          div[style*="lineHeight: '1.55'"] {
+            font-size: 0.875rem !important;
+            line-height: 1.5 !important;
+          }
+          
+          ul[style*="margin-left: 1rem"] {
+            margin-left: 0.75rem !important;
+            padding-left: 0.25rem !important;
+          }
+          
+          li[style*="font-size: 0.9rem"] {
+            font-size: 0.85rem !important;
+            margin-bottom: 0.5rem !important;
+            line-height: 1.4 !important;
+          }
+          
+          div[style*="margin-left: 1rem"] {
+            margin-left: 0.75rem !important;
+          }
+          
+          p[style*="marginBottom: '1.5rem'"] {
+            margin-bottom: 1.25rem !important;
+          }
+          
+          p[style*="marginBottom: '0.875rem'"] {
+            margin-bottom: 0.75rem !important;
+          }
+          
+          button[style*="min-width: 160px"] {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.875rem !important;
+            min-width: 140px !important;
+            max-width: 180px !important;
+          }
+          
+          div[style*="padding: '2rem'"] {
+            padding: 1.5rem 0.75rem !important;
+          }
+        }
+        
+        /* Very small screens */
+        @media (max-width: 360px) {
+          div[style*="padding: '1rem 0.75rem'"] {
+            padding: 0.75rem 0.5rem !important;
+          }
+          
+          div[style*="padding: '1.5rem 1rem'"] {
+            padding: 1.25rem 0.75rem !important;
+            border-radius: 12px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.25rem, 15vw, 1.75rem) !important;
+          }
+          
+          h2[style*="fontSize: '1.2rem'"] {
+            font-size: 1.1rem !important;
+          }
+          
+          div[style*="lineHeight: '1.5'"] {
+            font-size: 0.8rem !important;
+          }
+          
+          li[style*="font-size: 0.85rem"] {
+            font-size: 0.8rem !important;
+          }
+          
+          button[style*="max-width: 180px"] {
+            min-width: 120px !important;
+            max-width: 160px !important;
+            font-size: 0.8rem !important;
+          }
+        }
+        
+        /* Landscape mobile adjustments */
+        @media (max-height: 500px) and (orientation: landscape) {
+          div[style*="padding: '1.5rem 1rem'"] {
+            padding: 1rem 1.5rem !important;
+          }
+          
+          div[style*="marginBottom: '1.5rem'"] {
+            margin-bottom: 1rem !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.5rem, 8vw, 2rem) !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          h2[style*="marginTop"] {
+            margin-top: 1.25rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          div[style*="padding: '1.5rem 0.75rem'"] {
+            padding: 1rem 0.75rem !important;
+          }
+        }
+        
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          div[style*="textShadow"] {
+            text-rendering: optimizeLegibility !important;
+          }
+        }
+        
+        /* Improve readability on all mobile devices */
+        @media (max-width: 768px) {
+          * {
+            -webkit-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+          }
+          
+          p, li, div {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            hyphens: auto !important;
+          }
+          
+          /* Ensure proper touch targets */
+          button {
+            min-height: 44px !important;
+            min-width: 44px !important;
+            touch-action: manipulation !important;
+          }
+          
+          /* Improve focus visibility on mobile */
+          button:focus {
+            outline: 2px solid #3b82f6 !important;
+            outline-offset: 2px !important;
+          }
+        }
+      `}</style>
     </div>
+
   );
 };
 

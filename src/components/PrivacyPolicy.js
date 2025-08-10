@@ -1,10 +1,11 @@
 import React from 'react';
+import Footer from './Footer';
+
 
 const PrivacyPolicy = ({ onNavigate }) => {
   return (
     <div style={{
       minHeight: '100vh',
-
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -114,14 +115,17 @@ const PrivacyPolicy = ({ onNavigate }) => {
               By using ARGUSAI.live or any associated services, you consent to the practices outlined in this Privacy Policy.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="information-we-collect"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               1. Information We Collect
             </h2>
             <p style={{
@@ -183,14 +187,17 @@ const PrivacyPolicy = ({ onNavigate }) => {
               <li style={{ marginBottom: '0.5rem' }}>Communication Records: If you contact us, we may store emails or messages for service improvements.</li>
             </ul>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="how-we-use"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               2. How We Use Your Information
             </h2>
             <p style={{
@@ -218,14 +225,17 @@ const PrivacyPolicy = ({ onNavigate }) => {
               We do not sell or rent personal information to third parties.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="data-sharing"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               3. Data Sharing & Disclosure
             </h2>
             <p style={{
@@ -250,14 +260,17 @@ const PrivacyPolicy = ({ onNavigate }) => {
               We ensure all data shared with third parties is handled securely and in compliance with applicable privacy laws.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="cookies-tracking"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               4. Cookies & Tracking Technologies
             </h2>
             <p style={{
@@ -401,14 +414,17 @@ const PrivacyPolicy = ({ onNavigate }) => {
               We encourage users to review the privacy policies of any third-party services they engage with.
             </p>
 
-            <h2 style={{
-              fontSize: '1.75rem',
-              fontWeight: '700',
-              color: '#ffffff',
-              marginTop: '2.5rem',
-              marginBottom: '1.5rem',
-              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
-            }}>
+            <h2 
+              id="your-rights"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: '700',
+                color: '#ffffff',
+                marginTop: '2.5rem',
+                marginBottom: '1.5rem',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+              }}
+            >
               9. Your Rights & Choices
             </h2>
             <p style={{
@@ -507,7 +523,12 @@ const PrivacyPolicy = ({ onNavigate }) => {
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
-            boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+            boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
+            minHeight: '48px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -521,6 +542,347 @@ const PrivacyPolicy = ({ onNavigate }) => {
           ← Back to Home
         </button>
       </div>
+      <Footer onNavigate={onNavigate} currentPage="privacy-policy" />
+      {/* Mobile-specific CSS */}
+      <style jsx>{`
+        /* Base responsive adjustments */
+        @media (max-width: 768px) {
+          div[style*="maxWidth: '1000px'"] {
+            padding: 2rem 1.5rem !important;
+          }
+          
+          div[style*="padding: '4rem 3rem'"] {
+            padding: 2.5rem 2rem !important;
+            border-radius: 24px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(2rem, 8vw, 3rem) !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          p[style*="fontSize: '1.125rem'"] {
+            font-size: 1rem !important;
+          }
+          
+          h2[style*="fontSize: '1.75rem'"] {
+            font-size: 1.5rem !important;
+            margin-top: 2rem !important;
+            margin-bottom: 1rem !important;
+          }
+          
+          h3[style*="fontSize: '1.5rem'"] {
+            font-size: 1.3rem !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          div[style*="lineHeight: '1.7'"] {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+          }
+          
+          ul[style*="marginLeft: '1.5rem'"] {
+            margin-left: 1rem !important;
+            padding-left: 0.5rem !important;
+          }
+          
+          li[style*="marginBottom: '0.5rem'"] {
+            margin-bottom: 0.75rem !important;
+            line-height: 1.5 !important;
+          }
+          
+          div[style*="marginLeft: '1.5rem'"] {
+            margin-left: 1rem !important;
+          }
+          
+          button[style*="padding: '1rem 2rem'"] {
+            padding: 0.875rem 1.5rem !important;
+            font-size: 0.95rem !important;
+            width: auto !important;
+            max-width: 200px !important;
+          }
+        }
+        
+        @media (max-width: 640px) {
+          div[style*="maxWidth: '1000px'"] {
+            padding: 1.5rem 1rem !important;
+          }
+          
+          div[style*="padding: '2.5rem 2rem'"] {
+            padding: 2rem 1.5rem !important;
+            border-radius: 20px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.75rem, 10vw, 2.5rem) !important;
+            line-height: 1.2 !important;
+          }
+          
+          div[style*="marginBottom: '3rem'"] {
+            margin-bottom: 2rem !important;
+          }
+          
+          h2[style*="fontSize: '1.5rem'"] {
+            font-size: 1.3rem !important;
+            margin-top: 1.75rem !important;
+            margin-bottom: 0.875rem !important;
+          }
+          
+          h3[style*="fontSize: '1.3rem'"] {
+            font-size: 1.2rem !important;
+            margin-top: 1.25rem !important;
+            margin-bottom: 0.625rem !important;
+          }
+          
+          div[style*="lineHeight: '1.6'"] {
+            font-size: 0.9rem !important;
+            line-height: 1.55 !important;
+          }
+          
+          p[style*="marginBottom: '2rem'"] {
+            margin-bottom: 1.5rem !important;
+          }
+          
+          p[style*="marginBottom: '1rem'"] {
+            margin-bottom: 0.875rem !important;
+          }
+          
+          ul[style*="marginBottom: '1.5rem'"] {
+            margin-bottom: 1.25rem !important;
+          }
+          
+          li[style*="marginBottom: '0.75rem'"] {
+            margin-bottom: 0.625rem !important;
+            font-size: 0.9rem !important;
+          }
+          
+          button[style*="padding: '0.875rem 1.5rem'"] {
+            padding: 0.75rem 1.25rem !important;
+            font-size: 0.9rem !important;
+            min-width: 160px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          div[style*="maxWidth: '1000px'"] {
+            padding: 1rem 0.75rem !important;
+          }
+          
+          div[style*="padding: '2rem 1.5rem'"] {
+            padding: 1.5rem 1rem !important;
+            border-radius: 16px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.5rem, 12vw, 2rem) !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          div[style*="marginBottom: '2rem'"] {
+            margin-bottom: 1.5rem !important;
+          }
+          
+          h2[style*="fontSize: '1.3rem'"] {
+            font-size: 1.2rem !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          h3[style*="fontSize: '1.2rem'"] {
+            font-size: 1.1rem !important;
+            margin-top: 1rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          div[style*="lineHeight: '1.55'"] {
+            font-size: 0.875rem !important;
+            line-height: 1.5 !important;
+          }
+          
+          ul[style*="margin-left: 1rem"] {
+            margin-left: 0.75rem !important;
+            padding-left: 0.25rem !important;
+          }
+          
+          li[style*="font-size: 0.9rem"] {
+            font-size: 0.85rem !important;
+            margin-bottom: 0.5rem !important;
+            line-height: 1.4 !important;
+          }
+          
+          div[style*="margin-left: 1rem"] {
+            margin-left: 0.75rem !important;
+          }
+          
+          p[style*="marginBottom: '1.5rem'"] {
+            margin-bottom: 1.25rem !important;
+          }
+          
+          p[style*="marginBottom: '0.875rem'"] {
+            margin-bottom: 0.75rem !important;
+          }
+          
+          p[style*="marginBottom: '1.25rem'"] {
+            margin-bottom: 1rem !important;
+          }
+          
+          ul[style*="marginBottom: '1.25rem'"] {
+            margin-bottom: 1rem !important;
+          }
+          
+          button[style*="min-width: 160px"] {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.875rem !important;
+            min-width: 140px !important;
+            max-width: 180px !important;
+          }
+          
+          div[style*="padding: '2rem'"] {
+            padding: 1.5rem 0.75rem !important;
+          }
+        }
+        
+        /* Very small screens */
+        @media (max-width: 360px) {
+          div[style*="padding: '1rem 0.75rem'"] {
+            padding: 0.75rem 0.5rem !important;
+          }
+          
+          div[style*="padding: '1.5rem 1rem'"] {
+            padding: 1.25rem 0.75rem !important;
+            border-radius: 12px !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.25rem, 15vw, 1.75rem) !important;
+          }
+          
+          h2[style*="fontSize: '1.2rem'"] {
+            font-size: 1.1rem !important;
+          }
+          
+          h3[style*="fontSize: '1.1rem'"] {
+            font-size: 1rem !important;
+          }
+          
+          div[style*="lineHeight: '1.5'"] {
+            font-size: 0.8rem !important;
+          }
+          
+          li[style*="font-size: 0.85rem"] {
+            font-size: 0.8rem !important;
+          }
+          
+          button[style*="max-width: 180px"] {
+            min-width: 120px !important;
+            max-width: 160px !important;
+            font-size: 0.8rem !important;
+          }
+        }
+        
+        /* Landscape mobile adjustments */
+        @media (max-height: 500px) and (orientation: landscape) {
+          div[style*="padding: '1.5rem 1rem'"] {
+            padding: 1rem 1.5rem !important;
+          }
+          
+          div[style*="marginBottom: '1.5rem'"] {
+            margin-bottom: 1rem !important;
+          }
+          
+          h1[style*="fontSize: 'clamp"] {
+            font-size: clamp(1.5rem, 8vw, 2rem) !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          h2[style*="marginTop"] {
+            margin-top: 1.25rem !important;
+            margin-bottom: 0.75rem !important;
+          }
+          
+          h3[style*="marginTop"] {
+            margin-top: 1rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+          
+          div[style*="padding: '1.5rem 0.75rem'"] {
+            padding: 1rem 0.75rem !important;
+          }
+        }
+        
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          div[style*="textShadow"] {
+            text-rendering: optimizeLegibility !important;
+          }
+        }
+        
+        /* Improve readability on all mobile devices */
+        @media (max-width: 768px) {
+          * {
+            -webkit-text-size-adjust: 100% !important;
+            text-size-adjust: 100% !important;
+          }
+          
+          p, li, div {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            hyphens: auto !important;
+          }
+          
+          /* Ensure proper touch targets */
+          button {
+            min-height: 44px !important;
+            min-width: 44px !important;
+            touch-action: manipulation !important;
+          }
+          
+          /* Improve focus visibility on mobile */
+          button:focus {
+            outline: 2px solid #3b82f6 !important;
+            outline-offset: 2px !important;
+          }
+          
+          /* Better list formatting on mobile */
+          li {
+            padding-left: 0.25rem !important;
+          }
+          
+          strong {
+            font-weight: 700 !important;
+          }
+        }
+        
+        /* Extra mobile optimizations */
+        @media (max-width: 640px) {
+          /* Improve spacing between sections */
+          h2 + p {
+            margin-top: 0.5rem !important;
+          }
+          
+          h3 + p {
+            margin-top: 0.25rem !important;
+          }
+          
+          /* Better visual hierarchy on small screens */
+          h2 {
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2) !important;
+            padding-bottom: 0.5rem !important;
+          }
+          
+          h3 {
+            color: #60a5fa !important;
+          }
+        }
+        
+        /* Ultra-wide mobile screens */
+        @media (max-width: 768px) and (min-aspect-ratio: 3/2) {
+          div[style*="maxWidth: '1000px'"] {
+            max-width: 90% !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
