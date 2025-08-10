@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <!-- Main Home Page -->
   <url>
@@ -12,46 +11,26 @@
   <url>
     <loc>https://argusai.live/atlanta</loc>
     <lastmod>2025-01-10</lastmod>
-    <image:image>
-      <image:loc>https://argusai.live/images/atlanta-traffic-cameras.jpg</image:loc>
-      <image:title>Atlanta Traffic Camera Network Coverage</image:title>
-    </image:image>
   </url>
   
   <url>
     <loc>https://argusai.live/savannah</loc>
     <lastmod>2025-01-10</lastmod>
-    <image:image>
-      <image:loc>https://argusai.live/images/savannah-traffic-cameras.jpg</image:loc>
-      <image:title>Savannah Traffic Camera Network Coverage</image:title>
-    </image:image>
   </url>
   
   <url>
     <loc>https://argusai.live/augusta</loc>
     <lastmod>2025-01-10</lastmod>
-    <image:image>
-      <image:loc>https://argusai.live/images/augusta-traffic-cameras.jpg</image:loc>
-      <image:title>Augusta Traffic Camera Network Coverage</image:title>
-    </image:image>
   </url>
   
   <url>
     <loc>https://argusai.live/athens</loc>
     <lastmod>2025-01-10</lastmod>
-    <image:image>
-      <image:loc>https://argusai.live/images/athens-traffic-cameras.jpg</image:loc>
-      <image:title>Athens Traffic Camera Network Coverage</image:title>
-    </image:image>
   </url>
   
   <url>
     <loc>https://argusai.live/marietta</loc>
     <lastmod>2025-01-10</lastmod>
-    <image:image>
-      <image:loc>https://argusai.live/images/marietta-traffic-cameras.jpg</image:loc>
-      <image:title>Marietta Traffic Camera Network Coverage</image:title>
-    </image:image>
   </url>
   
   <!-- Service Information Pages -->
