@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState, Component } from 'react';
+import { HelmetProvider } from 'react-helmet-async'; // ✅ ADD THIS IMPORT
 import './App.css';
 import ArgusHeader from './components/Header.js'; 
 import Hero from './components/Hero.js';
@@ -21,6 +22,21 @@ import Augusta from './pages/Augusta.js';
 import Athens from './pages/Athens.js';
 import Marietta from './pages/Marietta.js';
 
+// Define page titles for each view
+const PAGE_TITLES = {
+  'home': 'Home - ArgusAI',
+  'privacy-policy': 'Privacy Policy - ArgusAI',
+  'terms-of-service': 'Terms of Service - ArgusAI',
+  'faq': 'FAQ - ArgusAI',
+  'the-future': 'The Future - ArgusAI',
+  'about-us': 'About Us - ArgusAI',
+  'atlanta': 'Atlanta - ArgusAI',
+  'savannah': 'Savannah - ArgusAI',
+  'augusta': 'Augusta - ArgusAI',
+  'athens': 'Athens - ArgusAI',
+  'marietta': 'Marietta - ArgusAI'
+};
+
 function App() {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
@@ -42,40 +58,53 @@ function App() {
     return 'home'; // Default to home for any other hash or no hash
   });
 
+  // Function to update document title
+  const updateDocumentTitle = (view) => {
+    const title = PAGE_TITLES[view] || 'ArgusAI';
+    document.title = title;
+  };
+
   // Network configuration
   const nodeCount = 120;
   const connectionDistance = 140;
   const pulseSpeed = 0.010;
   const rotationSpeed = 0.0005; 
 
+  // Update document title when currentView changes
+  useEffect(() => {
+    updateDocumentTitle(currentView);
+  }, [currentView]);
+
   useEffect(() => {
     // Listen for hash changes (back/forward button)
     const handleHashChange = () => {
       const hash = window.location.hash.substring(1);
+      let newView = 'home'; // default
+      
       if (hash === 'privacy-policy') {
-        setCurrentView('privacy-policy');
+        newView = 'privacy-policy';
       } else if (hash === 'terms-of-service') {
-        setCurrentView('terms-of-service');
+        newView = 'terms-of-service';
       } else if (hash === 'the-future') {
-        setCurrentView('the-future');
+        newView = 'the-future';
       } else if (hash === 'faq') {
-        setCurrentView('faq');
+        newView = 'faq';
       } else if (hash === 'about-us') {
-        setCurrentView('about-us');
+        newView = 'about-us';
       // Add your new city navigation
       } else if (hash === 'atlanta') {
-        setCurrentView('atlanta');
+        newView = 'atlanta';
       } else if (hash === 'savannah') {
-        setCurrentView('savannah');
+        newView = 'savannah';
       } else if (hash === 'augusta') {
-        setCurrentView('augusta');
+        newView = 'augusta';
       } else if (hash === 'athens') {
-        setCurrentView('athens');
+        newView = 'athens';
       } else if (hash === 'marietta') {
-        setCurrentView('marietta');
-      } else {
-        setCurrentView('home');
+        newView = 'marietta';
       }
+      
+      setCurrentView(newView);
     };
 
     window.addEventListener('hashchange', handleHashChange);
@@ -354,33 +383,35 @@ function App() {
   };
 
   return (
-    <div style={{ 
-      position: 'relative',
-      background: 'black'
-    }}>
-      {/* Fixed Background Animation Canvas */}
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 0,
-          background: 'black'
-        }}
-      />
+    <HelmetProvider> {/* ✅ ADD THIS WRAPPER */}
+      <div style={{ 
+        position: 'relative',
+        background: 'black'
+      }}>
+        {/* Fixed Background Animation Canvas */}
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 0,
+            background: 'black'
+          }}
+        />
 
-      {/* Fixed Header */}
-      <div style={{ position: 'relative', zIndex: 20 }}>
-        <ArgusHeader onNavigate={handleNavigation} currentView={currentView} />
+        {/* Fixed Header */}
+        <div style={{ position: 'relative', zIndex: 20 }}>
+          <ArgusHeader onNavigate={handleNavigation} currentView={currentView} />
+        </div>
+        
+        {/* Dynamic Content based on currentView */}
+        {renderContent()}
+        <CookieSettings />
       </div>
-      
-      {/* Dynamic Content based on currentView */}
-      {renderContent()}
-      <CookieSettings />
-    </div>
+    </HelmetProvider> 
   );
 }
 
