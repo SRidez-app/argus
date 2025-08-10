@@ -1,9 +1,15 @@
 {
     "redirects": [
       {
-        "source": "https://argusai.live/(.*)",
+        "source": "/(.*)",
         "destination": "https://www.argusai.live/$1",
-        "permanent": true
+        "permanent": true,
+        "has": [
+          {
+            "type": "host",
+            "value": "argusai.live"
+          }
+        ]
       }
     ]
   }
