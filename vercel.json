@@ -2,7 +2,7 @@
     "redirects": [
       {
         "source": "https://argusai.live/(.*)",
-        "destination": "https://www.argusai.live/$1",
+        "destination": "https://www.argusai.live/",
         "permanent": true
       }
     ]
