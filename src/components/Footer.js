@@ -250,6 +250,18 @@ const navigationItems = [
     }
   };
 
+  // Mobile-specific click handler with improved touch handling
+  const handleMobileClick = (callback, event) => {
+    // Prevent any potential interference and ensure the click fires
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Add a small delay to ensure touch events complete
+    setTimeout(() => {
+      callback();
+    }, 50);
+  };
+
   return (
     <>
       <footer style={{
@@ -398,7 +410,7 @@ const navigationItems = [
               ))}
             </div>
           ) : (
-            // Mobile Layout - Dropdown Menus
+            // Mobile Layout - Dropdown Menus with Fixed Navigation
             <div style={{
               display: 'flex',
               flexDirection: 'column',
@@ -411,12 +423,12 @@ const navigationItems = [
                 }}>
                   {/* Main Navigation Button */}
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
                       // For Contact Us, don't toggle dropdown, just execute action
                       if (item.title === 'Contact Us') {
-                        handleNavigation(item.title);
+                        handleMobileClick(() => handleNavigation(item.title), e);
                       } else {
-                        toggleDropdown(item.title);
+                        handleMobileClick(() => toggleDropdown(item.title), e);
                       }
                     }}
                     style={{
@@ -432,7 +444,10 @@ const navigationItems = [
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      transition: 'color 0.2s ease'
+                      transition: 'color 0.2s ease',
+                      // Better touch targets for mobile
+                      minHeight: '48px',
+                      WebkitTapHighlightColor: 'rgba(59, 130, 246, 0.2)'
                     }}
                   >
                     <span>{item.title}</span>
@@ -465,7 +480,7 @@ const navigationItems = [
                         {item.bookmarks.map((bookmark) => (
                           <button
                             key={bookmark.id}
-                            onClick={() => handleBookmarkClick(item, bookmark)}
+                            onClick={(e) => handleMobileClick(() => handleBookmarkClick(item, bookmark), e)}
                             style={{
                               background: bookmark.type === 'button' ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'none',
                               border: 'none',
@@ -480,19 +495,10 @@ const navigationItems = [
                               width: '100%',
                               minHeight: '44px',
                               display: 'flex',
-                              alignItems: 'center'
-                            }}
-                            onTouchStart={(e) => {
-                              if (bookmark.type !== 'button') {
-                                e.target.style.color = '#3b82f6';
-                              }
-                            }}
-                            onTouchEnd={(e) => {
-                              if (bookmark.type !== 'button') {
-                                setTimeout(() => {
-                                  e.target.style.color = '#94a3b8';
-                                }, 150);
-                              }
+                              alignItems: 'center',
+                              // Better mobile touch handling
+                              WebkitTapHighlightColor: bookmark.type === 'button' ? 
+                                'rgba(34, 197, 94, 0.2)' : 'rgba(59, 130, 246, 0.2)'
                             }}
                           >
                             {bookmark.label}
