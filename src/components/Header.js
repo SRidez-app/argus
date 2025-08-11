@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import argusLogo from '../assets/images/argusLogo.png';
 
-const ArgusHeader = ({ onNavigate, currentView }) => {
+const ArgusHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero'); // Track active section
   const [isMobile, setIsMobile] = useState(false);
+  
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get current view from location
+  const getCurrentView = () => {
+    const path = location.pathname;
+    if (path === '/') return 'home';
+    return path.substring(1); // Remove leading slash
+  };
+
+  const currentView = getCurrentView();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -52,7 +65,8 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
           selectors: [
             '[data-section="process"]',
             '.process-section',
-            '#process'
+            '#process',
+            '[data-component="process"]'
           ]
         },
         { 
@@ -60,7 +74,8 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
           selectors: [
             '[data-section="the-future"]',
             '.the-future-section',
-            '#the-future'
+            '#the-future',
+            '[data-component="the-future"]'
           ]
         }
       ];
@@ -140,32 +155,34 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
     return false;
   };
 
-  // Function to handle navigation clicks
+  // Function to handle navigation clicks using React Router
   const handleNavClick = (section) => {
     // Close mobile menu when navigating
     setIsMobileMenuOpen(false);
     
     if (section === 'home') {
-      // Navigate to home page and scroll to top
-      onNavigate && onNavigate('home');
+      // Always navigate to home page and scroll to top
+      navigate('/');
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
     } else if (section === 'how-it-works') {
       // Navigate to home first if not already there, then scroll to process section
       if (currentView !== 'home') {
-        onNavigate && onNavigate('home');
+        navigate('/');
         // Wait for navigation to complete, then scroll to process section
         setTimeout(() => {
           scrollToSection([
+            '[data-component="process"]',
             '[data-section="process"]',
             '.process-section',
             '#process'
           ]);
-        }, 300);
+        }, 500);
       } else {
         // If already on home, just scroll to process section
         scrollToSection([
+          '[data-component="process"]',
           '[data-section="process"]',
           '.process-section',
           '#process'
@@ -174,18 +191,20 @@ const ArgusHeader = ({ onNavigate, currentView }) => {
     } else if (section === 'the-future') {
       // Navigate to home first if not already there, then scroll to the-future section
       if (currentView !== 'home') {
-        onNavigate && onNavigate('home');
+        navigate('/');
         // Wait for navigation to complete, then scroll to the-future section
         setTimeout(() => {
           scrollToSection([
+            '[data-component="the-future"]',
             '[data-section="the-future"]',
             '.the-future-section',
             '#the-future'
           ]);
-        }, 300);
+        }, 500);
       } else {
         // If already on home, just scroll to the-future section
         scrollToSection([
+          '[data-component="the-future"]',
           '[data-section="the-future"]',
           '.the-future-section',
           '#the-future'
