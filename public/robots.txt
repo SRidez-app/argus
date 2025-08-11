@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://www.argusai.live/sitemap.xml
+Sitemap: https://argusai.live/sitemap.xml
