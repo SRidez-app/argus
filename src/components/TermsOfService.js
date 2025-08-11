@@ -166,16 +166,16 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <li style={{ marginBottom: '0.5rem' }}>Unauthorized distribution, reproduction, or modification of TDG's data, video feeds, or other content.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Using automated tools (such as bots or scrapers) to extract or collect TDG content.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Attempting to bypass security features or disrupt TDG services.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Using TDG's content or services in any way that violates privacy laws, intellectual property laws, or other legal statutes.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Unauthorized distribution, reproduction, or modification of Argus AI's data, video feeds, or other content.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Using automated tools (such as bots or scrapers) to extract or collect Argus AI content.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Attempting to bypass security features or disrupt Argus AI services.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Using Argus AI's content or services in any way that violates privacy laws, intellectual property laws, or other legal statutes.</li>
             </ul>
             <p style={{
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              TDG reserves the right to suspend or terminate accounts found in violation of these Terms.
+              Argus AI reserves the right to suspend or terminate accounts found in violation of these Terms.
             </p>
 
             <h2 
@@ -202,9 +202,9 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <li style={{ marginBottom: '0.5rem' }}>No ownership rights are granted by using TDG services.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Any modifications or derivative works based on TDG's data remain the exclusive property of TDG.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Unauthorized use of TDG's intellectual property, trademarks, or copyrighted materials is strictly prohibited.</li>
+              <li style={{ marginBottom: '0.5rem' }}>No ownership rights are granted by using Argus AI services.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Any modifications or derivative works based on Argus AI's data remain the exclusive property of Argus AI.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Unauthorized use of Argus AI's intellectual property, trademarks, or copyrighted materials is strictly prohibited.</li>
             </ul>
 
             <h2 
@@ -231,7 +231,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <li style={{ marginBottom: '0.5rem' }}>Pay all applicable fees as outlined in TDG's pricing structure.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Pay all applicable fees as outlined in Argus AI's pricing structure.</li>
               <li style={{ marginBottom: '0.5rem' }}>Authorize automatic billing for recurring services, if applicable.</li>
               <li style={{ marginBottom: '0.5rem' }}>Acknowledge that all fees are non-refundable unless otherwise stated.</li>
             </ul>
@@ -256,13 +256,13 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              Use of TDG's services is also governed by our Privacy Policy, which outlines how we collect, use, and protect personal information.
+              Use of Argus AI's services is also governed by our Privacy Policy, which outlines how we collect, use, and protect personal information.
             </p>
             <p style={{
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              While TDG implements security measures, users acknowledge that:
+              While Argus AI implements security measures, users acknowledge that:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -271,13 +271,13 @@ const TermsOfService = ({ onNavigate }) => {
             }}>
               <li style={{ marginBottom: '0.5rem' }}>No online service is 100% secure, and unauthorized access is always a risk.</li>
               <li style={{ marginBottom: '0.5rem' }}>Users are responsible for maintaining the confidentiality of their login credentials.</li>
-              <li style={{ marginBottom: '0.5rem' }}>TDG is not liable for security breaches caused by user negligence.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Argus AI is not liable for security breaches caused by user negligence.</li>
             </ul>
             <p style={{
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              If unauthorized account activity is suspected, notify TDG immediately.
+              If unauthorized account activity is suspected, notify Argus AI immediately.
             </p>
 
             <h2 
@@ -304,7 +304,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <li style={{ marginBottom: '0.5rem' }}>Rebroadcast on television, cable, streaming services, or any other media platform without express written consent from TDG.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Rebroadcast on television, cable, streaming services, or any other media platform without express written consent from Argus AI.</li>
               <li style={{ marginBottom: '0.5rem' }}>Embedded within another website or used in a "framing" technique to give the appearance that it is part of another website without written permission.</li>
               <li style={{ marginBottom: '0.5rem' }}>Republished, resold, or used in any commercial application without explicit authorization.</li>
               <li style={{ marginBottom: '0.5rem' }}>Utilized for any purpose other than private, non-commercial viewing without prior approval.</li>
@@ -313,7 +313,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              In cases where redistribution is permitted, all author attributions, copyright notices, and trademarks must remain intact. Users acknowledge that they do not acquire any ownership rights over TDG's content by using, downloading, or otherwise interacting with TDG's Services.
+              In cases where redistribution is permitted, all author attributions, copyright notices, and trademarks must remain intact. Users acknowledge that they do not acquire any ownership rights over Argus AI's content by using, downloading, or otherwise interacting with Argus AI's Services.
             </p>
             <p style={{
               marginBottom: '2rem',
@@ -336,7 +336,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              TDG may include links to third-party websites or integrate third-party content. We do not endorse, control, or assume responsibility for external content, services, or practices. Users access third-party sites at their own risk.
+              Argus AI may include links to third-party websites or integrate third-party content. We do not endorse, control, or assume responsibility for external content, services, or practices. Users access third-party sites at their own risk.
             </p>
 
             <h2 
@@ -356,7 +356,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              TDG strives to provide reliable and accurate services; however, users acknowledge that:
+              Argus AI strives to provide reliable and accurate services; however, users acknowledge that:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -364,9 +364,9 @@ const TermsOfService = ({ onNavigate }) => {
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
               <li style={{ marginBottom: '0.5rem' }}>All information is provided "as is," "with all faults," and "as available" without warranties of any kind, either express or implied.</li>
-              <li style={{ marginBottom: '0.5rem' }}>TDG makes no guarantees regarding the availability, accuracy, timeliness, uninterrupted use, or reliability of the data, video feeds, or analytics.</li>
-              <li style={{ marginBottom: '0.5rem' }}>The accuracy of traffic conditions, weather reports, and related data may be affected by external factors beyond TDG's control, such as network issues, environmental conditions, or hardware malfunctions.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Users rely on TDG's data and services at their own risk. TDG, its employees, partners, and affiliates shall not be liable for decisions made based on the information provided.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Argus AI makes no guarantees regarding the availability, accuracy, timeliness, uninterrupted use, or reliability of the data, video feeds, or analytics.</li>
+              <li style={{ marginBottom: '0.5rem' }}>The accuracy of traffic conditions, weather reports, and related data may be affected by external factors beyond Argus AI's control, such as network issues, environmental conditions, or hardware malfunctions.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Users rely on Argus AI's data and services at their own risk. Argus AI, its employees, partners, and affiliates shall not be liable for decisions made based on the information provided.</li>
             </ul>
 
             <h3 style={{
@@ -383,29 +383,29 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              To the fullest extent permitted by law, TDG, its officers, employees, and affiliates shall not be liable for:
+              To the fullest extent permitted by law, Argus AI, its officers, employees, and affiliates shall not be liable for:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
               marginBottom: '1.5rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              <li style={{ marginBottom: '0.5rem' }}>Direct, indirect, incidental, special, consequential, or punitive damages resulting from the use of or inability to use TDG's services.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Loss of data, revenue, business opportunities, or personal injury resulting from reliance on TDG's data or service interruptions.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Direct, indirect, incidental, special, consequential, or punitive damages resulting from the use of or inability to use Argus AI's services.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Loss of data, revenue, business opportunities, or personal injury resulting from reliance on Argus AI's data or service interruptions.</li>
               <li style={{ marginBottom: '0.5rem' }}>Any damage, including damage caused by viruses, cyberattacks, hacking, or technical failures, that affects users' devices, systems, or networks as a result of accessing ARGUSAI.live.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Any failure, interruption, or delay of service due to acts of nature, government actions, cyberattacks, or unforeseen circumstances beyond TDG's control.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Any failure, interruption, or delay of service due to acts of nature, government actions, cyberattacks, or unforeseen circumstances beyond Argus AI's control.</li>
             </ul>
             <p style={{
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              TDG does not guarantee that our services will be free from security breaches, hacking, data loss, or system failures, and we expressly disclaim liability for any such incidents.
+              Argus AI does not guarantee that our services will be free from security breaches, hacking, data loss, or system failures, and we expressly disclaim liability for any such incidents.
             </p>
             <p style={{
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              If you are dissatisfied with any part of TDG's services or these Terms, your sole and exclusive remedy is to discontinue use of our website and services.
+              If you are dissatisfied with any part of Argus AI's services or these Terms, your sole and exclusive remedy is to discontinue use of our website and services.
             </p>
 
             <h2 style={{
@@ -430,8 +430,8 @@ const TermsOfService = ({ onNavigate }) => {
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
               <li style={{ marginBottom: '0.5rem' }}>Any violation of these Terms.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Unauthorized use of TDG's content, data, or intellectual property.</li>
-              <li style={{ marginBottom: '0.5rem' }}>Third-party claims related to users' actions or reliance on TDG's services.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Unauthorized use of Argus AI's content, data, or intellectual property.</li>
+              <li style={{ marginBottom: '0.5rem' }}>Third-party claims related to users' actions or reliance on Argus AI's services.</li>
             </ul>
 
             <h2 style={{
@@ -448,7 +448,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '1rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              TDG reserves the right to suspend, restrict, or terminate access to its services at any time, including but not limited to:
+              Argus AI reserves the right to suspend, restrict, or terminate access to its services at any time, including but not limited to:
             </p>
             <ul style={{
               marginLeft: '1.5rem',
@@ -503,7 +503,7 @@ const TermsOfService = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              TDG reserves the right to modify these Terms at any time. Significant changes will be communicated via email or posted on ARGUSAI.live. Continued use of the Services after modifications constitutes acceptance of the revised Terms.
+              Argus AI reserves the right to modify these Terms at any time. Significant changes will be communicated via email or posted on ARGUSAI.live. Continued use of the Services after modifications constitutes acceptance of the revised Terms.
             </p>
 
             <h2 

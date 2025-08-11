@@ -105,7 +105,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               marginBottom: '2rem',
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
-              ARGUS AI  ("TDG," "we," "us," or "our") is committed to protecting the privacy and security of our users. This Privacy Policy outlines the types of information we collect, how we use it, and the measures we take to safeguard your data.
+              ARGUS AI  (" "we," "us," or "our") is committed to protecting the privacy and security of our users. This Privacy Policy outlines the types of information we collect, how we use it, and the measures we take to safeguard your data.
             </p>
 
             <p style={{
@@ -386,7 +386,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
             }}>
               <li style={{ marginBottom: '0.5rem' }}>No content from ARGUS AI.live may be rebroadcasted, embedded, or resold without prior written consent.</li>
-              <li style={{ marginBottom: '0.5rem' }}>You may not use TDG's content in any commercial application, software, or third-party platform without authorization.</li>
+              <li style={{ marginBottom: '0.5rem' }}>You may not use Argus AI's content in any commercial application, software, or third-party platform without authorization.</li>
               <li style={{ marginBottom: '0.5rem' }}>Any approved redistribution must retain author attributions, copyright notices, and trademarks.</li>
               <li style={{ marginBottom: '0.5rem' }}>Unauthorized use may result in legal action, including account termination, civil liability, and criminal prosecution.</li>
             </ul>
@@ -441,7 +441,7 @@ const PrivacyPolicy = ({ onNavigate }) => {
               <li style={{ marginBottom: '0.5rem' }}><strong>Access & Correction:</strong> Request a copy of your data or correct inaccuracies.</li>
               <li style={{ marginBottom: '0.5rem' }}><strong>Data Deletion:</strong> Request deletion of personal information (subject to legal and operational requirements).</li>
               <li style={{ marginBottom: '0.5rem' }}><strong>Marketing Preferences:</strong> Opt out of promotional emails or targeted advertising.</li>
-              <li style={{ marginBottom: '0.5rem' }}><strong>Do Not Track (DNT):</strong> While TDG respects browser DNT signals, third-party services may not respond to them consistently.</li>
+              <li style={{ marginBottom: '0.5rem' }}><strong>Do Not Track (DNT):</strong> While Argus AI respects browser DNT signals, third-party services may not respond to them consistently.</li>
             </ul>
             <p style={{
               marginBottom: '1.5rem',
