@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import argusLogo from '../assets/images/argusLogo.png';
 import CookieSettings from './CookieSettings.js';
 
-const Footer = ({ onNavigate, currentPage = 'home' }) => {
+const Footer = ({ currentPage = 'home' }) => {
   const [email, setEmail] = useState('');
   const [showCookieSettings, setShowCookieSettings] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [openDropdowns, setOpenDropdowns] = useState({});
+  
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Check if mobile
   useEffect(() => {
@@ -33,46 +37,106 @@ const Footer = ({ onNavigate, currentPage = 'home' }) => {
     }));
   };
 
+  // Get current page from location
+  const getCurrentPage = () => {
+    const path = location.pathname;
+    if (path === '/') return 'home';
+    return path.substring(1); // Remove leading slash
+  };
+
+  // Centralized navigation handler using React Router
+  const navigateToPage = (targetPage, sectionId = null) => {
+    const currentPageActual = getCurrentPage();
+    console.log('Navigating to:', targetPage, 'Section:', sectionId, 'Current page:', currentPageActual);
+    
+    if (currentPageActual === targetPage) {
+      // Already on target page, just scroll to section if provided
+      if (sectionId) {
+        setTimeout(() => {
+          const element = document.getElementById(sectionId) || 
+                         document.querySelector(`[data-component="${sectionId}"]`) || 
+                         document.querySelector(`.${sectionId}-section`) ||
+                         document.querySelector(`h2[id="${sectionId}"]`) ||
+                         document.querySelector(`h3[id="${sectionId}"]`) ||
+                         document.querySelector(`div[id="${sectionId}"]`);
+          
+          console.log('Found element for section:', sectionId, element);
+          
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            console.warn('Section not found:', sectionId);
+          }
+        }, 200);
+      } else {
+        // Scroll to top if no section specified
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to different page using React Router
+      const targetPath = targetPage === 'home' ? '/' : `/${targetPage}`;
+      console.log('Navigating to path:', targetPath);
+      
+      navigate(targetPath);
+      
+      // If section specified, scroll to it after navigation
+      if (sectionId) {
+        setTimeout(() => {
+          const element = document.getElementById(sectionId) || 
+                         document.querySelector(`[data-component="${sectionId}"]`) || 
+                         document.querySelector(`.${sectionId}-section`) ||
+                         document.querySelector(`h2[id="${sectionId}"]`) ||
+                         document.querySelector(`h3[id="${sectionId}"]`) ||
+                         document.querySelector(`div[id="${sectionId}"]`);
+          
+          console.log('Found element for section after navigation:', sectionId, element);
+          
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            console.warn('Section not found after navigation:', sectionId);
+            // Try again with a longer delay
+            setTimeout(() => {
+              const retryElement = document.getElementById(sectionId) || 
+                                 document.querySelector(`[data-component="${sectionId}"]`) || 
+                                 document.querySelector(`.${sectionId}-section`) ||
+                                 document.querySelector(`h2[id="${sectionId}"]`) ||
+                                 document.querySelector(`h3[id="${sectionId}"]`) ||
+                                 document.querySelector(`div[id="${sectionId}"]`);
+              
+              console.log('Retry found element:', sectionId, retryElement);
+              
+              if (retryElement) {
+                retryElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              } else {
+                console.error('Section still not found after retry:', sectionId);
+              }
+            }, 500);
+          }
+        }, 700); // Longer timeout for cross-page navigation
+      }
+    }
+  };
+
   const handleNavigation = (link) => {
     switch(link) {
       case 'Home':
-        if (currentPage === 'home') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          onNavigate && onNavigate('home');
-        }
+        navigateToPage('home');
         break;
       case 'How It Works':
-        if (currentPage === 'home') {
-          const processElement = document.querySelector('[data-component="process"]') || 
-                                document.querySelector('.process-section') ||
-                                document.getElementById('process');
-          if (processElement) {
-            processElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        } else {
-          onNavigate && onNavigate('home');
-          setTimeout(() => {
-            const processElement = document.querySelector('[data-component="process"]') || 
-                                  document.querySelector('.process-section') ||
-                                  document.getElementById('process');
-            if (processElement) {
-              processElement.scrollIntoView({ behavior: 'smooth' });
-            }
-          }, 100);
-        }
+        navigateToPage('home', 'process');
         break;
       case 'FAQ':
-        onNavigate && onNavigate('faq');
+        navigateToPage('faq');
         break;
       case 'About Us':
-        onNavigate && onNavigate('about-us');
+        navigateToPage('about-us');
         break;
       case 'Terms & Conditions':
-        onNavigate && onNavigate('terms-of-service');
+        navigateToPage('terms-of-service');
         break;
       case 'Privacy Policy':
-        onNavigate && onNavigate('privacy-policy');
+        navigateToPage('privacy-policy');
         break;
       case 'Contact Us':
         window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank');
@@ -85,10 +149,10 @@ const Footer = ({ onNavigate, currentPage = 'home' }) => {
   const handleLegalClick = (action) => {
     switch(action) {
       case 'privacy-policy':
-        onNavigate && onNavigate('privacy-policy');
+        navigateToPage('privacy-policy');
         break;
       case 'terms-of-service':
-        onNavigate && onNavigate('terms-of-service');
+        navigateToPage('terms-of-service');
         break;
       case 'cookies-settings':
         setShowCookieSettings(true);
@@ -101,55 +165,61 @@ const Footer = ({ onNavigate, currentPage = 'home' }) => {
 const navigationItems = [
   {
     title: 'How It Works',
+    targetPage: 'home',
     bookmarks: [
-      { label: 'AI Detection', id: 'ai-detection' },
-      { label: 'Evidence Analysis', id: 'evidence-analysis' },
-      { label: 'Case Documentation', id: 'case-documentation' }
+      { label: 'AI Detection', id: 'process', targetPage: 'home' },
+      { label: 'Evidence Analysis', id: 'process', targetPage: 'home' },
+      { label: 'Case Documentation', id: 'process', targetPage: 'home' }
     ]
   },
   {
     title: 'FAQ',
+    targetPage: 'faq',
     bookmarks: [
-      { label: 'Platform Access', id: 'platform-access' },
-      { label: 'Video Quality', id: 'video-quality' },
-      { label: 'AI Technology', id: 'ai-technology' },
-      { label: 'Pricing & Support', id: 'pricing-support' },
-      { label: 'Court Evidence', id: 'court-evidence' },
-      { label: 'API Integration', id: 'api-integration' }
+      { label: 'Platform Access', id: 'platform-access', targetPage: 'faq' },
+      { label: 'Video Quality', id: 'video-quality', targetPage: 'faq' },
+      { label: 'AI Technology', id: 'ai-technology', targetPage: 'faq' },
+      { label: 'Pricing & Support', id: 'pricing-support', targetPage: 'faq' },
+      { label: 'Court Evidence', id: 'court-evidence', targetPage: 'faq' },
+      { label: 'API Integration', id: 'api-integration', targetPage: 'faq' }
     ]
   },
   {
     title: 'About Us',
+    targetPage: 'about-us',
     bookmarks: [
-      { label: 'Our Mission', id: 'our-mission' },
-      { label: 'Technology Platform', id: 'technology-platform' },
-      { label: 'Coverage Network', id: 'coverage-network' },
-      { label: 'Professional Standards', id: 'professional-standards' },
-      { label: 'Industry Leadership', id: 'industry-leadership' }
+      { label: 'Our Mission', id: 'our-mission', targetPage: 'about-us' },
+      { label: 'Technology Platform', id: 'technology-platform', targetPage: 'about-us' },
+      { label: 'Coverage Network', id: 'coverage-network', targetPage: 'about-us' },
+      { label: 'Professional Standards', id: 'professional-standards', targetPage: 'about-us' },
+      { label: 'Industry Leadership', id: 'industry-leadership', targetPage: 'about-us' }
     ]
   },
   {
     title: 'Terms & Conditions',
+    targetPage: 'terms-of-service',
     bookmarks: [
-      { label: 'Data & IP Rights', id: 'data-ownership' },
-      { label: 'Service Terms', id: 'authorized-use' },
-      { label: 'Payment Terms', id: 'subscription-fees' },
-      { label: 'Redistribution', id: 'redistribution' },
-      { label: 'Liability', id: 'disclaimer-warranty' }
+      { label: 'Data & IP Rights', id: 'data-ownership', targetPage: 'terms-of-service' },
+      { label: 'Service Terms', id: 'authorized-use', targetPage: 'terms-of-service' },
+      { label: 'Payment Terms', id: 'subscription-fees', targetPage: 'terms-of-service' },
+      { label: 'Redistribution', id: 'redistribution', targetPage: 'terms-of-service' },
+      { label: 'Liability', id: 'disclaimer-warranty', targetPage: 'terms-of-service' }
     ]
   },
   {
     title: 'Privacy Policy',
+    targetPage: 'privacy-policy',
     bookmarks: [
-      { label: 'Data Collection', id: 'information-we-collect' },
-      { label: 'Data Usage', id: 'how-we-use' },
-      { label: 'Data Sharing', id: 'data-sharing' },
-      { label: 'Cookies & Tracking', id: 'cookies-tracking' },
-      { label: 'Your Rights', id: 'your-rights' }
+      { label: 'Data Collection', id: 'information-we-collect', targetPage: 'privacy-policy' },
+      { label: 'Data Usage', id: 'how-we-use', targetPage: 'privacy-policy' },
+      { label: 'Data Sharing', id: 'data-sharing', targetPage: 'privacy-policy' },
+      { label: 'Cookies & Tracking', id: 'cookies-tracking', targetPage: 'privacy-policy' },
+      { label: 'Your Rights', id: 'your-rights', targetPage: 'privacy-policy' }
     ]
   },
   {
     title: 'Contact Us',
+    targetPage: null, // Special handling
     bookmarks: [
       { label: 'hello@argusai.live', id: 'email', type: 'email' },
       { label: '1-402-480-6092', id: 'phone', type: 'phone' },
@@ -160,86 +230,10 @@ const navigationItems = [
 
   // Handle bookmark navigation
   const handleBookmarkClick = (item, bookmark) => {
-    if (item.title === 'How It Works') {
-      if (currentPage === 'home') {
-        const processElement = document.querySelector('[data-component="process"]') || 
-                              document.querySelector('.process-section') ||
-                              document.getElementById('process');
-        if (processElement) {
-          processElement.scrollIntoView({ behavior: 'smooth' });
-        }
-      } else {
-        onNavigate && onNavigate('home');
-        setTimeout(() => {
-          const processElement = document.querySelector('[data-component="process"]') || 
-                                document.querySelector('.process-section') ||
-                                document.getElementById('process');
-          if (processElement) {
-            processElement.scrollIntoView({ behavior: 'smooth' });
-          }
-        }, 100);
-      }
-    } else if (item.title === 'FAQ') {
-      if (currentPage === 'faq') {
-        const element = document.getElementById(bookmark.id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      } else {
-        onNavigate && onNavigate('faq');
-        setTimeout(() => {
-          const element = document.getElementById(bookmark.id);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 300);
-      }
-    } else if (item.title === 'About Us') {
-      if (currentPage === 'about-us') {
-        const element = document.getElementById(bookmark.id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      } else {
-        onNavigate && onNavigate('about-us');
-        setTimeout(() => {
-          const element = document.getElementById(bookmark.id);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 300);
-      }
-    } else if (item.title === 'Terms & Conditions') {
-      if (currentPage === 'terms-of-service') {
-        const element = document.getElementById(bookmark.id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      } else {
-        onNavigate && onNavigate('terms-of-service');
-        setTimeout(() => {
-          const element = document.getElementById(bookmark.id);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 300);
-      }
-    } else if (item.title === 'Privacy Policy') {
-      if (currentPage === 'privacy-policy') {
-        const element = document.getElementById(bookmark.id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      } else {
-        onNavigate && onNavigate('privacy-policy');
-        setTimeout(() => {
-          const element = document.getElementById(bookmark.id);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 300);
-      }
-    } else if (item.title === 'Contact Us') {
+    console.log('Bookmark clicked:', item.title, bookmark.label, bookmark.id);
+    
+    // Handle contact actions
+    if (item.title === 'Contact Us') {
       if (bookmark.type === 'email') {
         window.open('mailto:hello@argusai.live', '_self');
       } else if (bookmark.type === 'phone') {
@@ -247,6 +241,30 @@ const navigationItems = [
       } else if (bookmark.type === 'button') {
         window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank');
       }
+      return;
+    }
+
+    // Handle "How It Works" special case - always goes to process section on home page
+    if (item.title === 'How It Works') {
+      navigateToPage('home', 'process');
+      return;
+    }
+
+    // Handle all other bookmark navigation
+    if (bookmark.targetPage) {
+      console.log('Navigating bookmark to:', bookmark.targetPage, 'Section:', bookmark.id);
+      navigateToPage(bookmark.targetPage, bookmark.id);
+    }
+  };
+
+  // Handle main navigation item clicks
+  const handleMainNavClick = (item) => {
+    if (item.title === 'Contact Us') {
+      window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank');
+    } else if (item.title === 'How It Works') {
+      navigateToPage('home', 'process');
+    } else if (item.targetPage) {
+      navigateToPage(item.targetPage);
     }
   };
 
@@ -318,7 +336,7 @@ const navigationItems = [
                   minHeight: '140px'
                 }}>
                   <button
-                    onClick={() => handleNavigation(item.title)}
+                    onClick={() => handleMainNavClick(item)}
                     style={{
                       background: 'none',
                       border: 'none',
@@ -414,7 +432,7 @@ const navigationItems = [
                     onClick={() => {
                       // For Contact Us, don't toggle dropdown, just execute action
                       if (item.title === 'Contact Us') {
-                        handleNavigation(item.title);
+                        handleMainNavClick(item);
                       } else {
                         toggleDropdown(item.title);
                       }
@@ -532,6 +550,11 @@ const navigationItems = [
           </div>
         </div>
       </footer>
+
+      {/* Cookie Settings Modal */}
+      {showCookieSettings && (
+        <CookieSettings onClose={() => setShowCookieSettings(false)} />
+      )}
     </>
   );
 };
