@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import mapImage from '../assets/images/map.png';
 
 // Georgia coverage areas data optimized for SEO
@@ -64,6 +64,11 @@ const sectionContent = {
 
 const Map = ({ onNavigate }) => { 
   const [isMobile, setIsMobile] = useState(false);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [mapPosition, setMapPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const mapRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -75,6 +80,83 @@ const Map = ({ onNavigate }) => {
     
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Handle map click to toggle zoom
+  const handleMapClick = () => {
+    if (!isZoomed) {
+      setIsZoomed(true);
+      setMapPosition({ x: 0, y: 0 }); // Reset position when zooming in
+    }
+  };
+
+  // Handle closing zoom mode
+  const handleCloseZoom = (e) => {
+    e.stopPropagation();
+    setIsZoomed(false);
+    setMapPosition({ x: 0, y: 0 });
+    setIsDragging(false);
+  };
+
+  // Handle drag start
+  const handleDragStart = (e) => {
+    if (!isZoomed) return;
+    setIsDragging(true);
+    const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
+    const clientY = e.type === 'mousedown' ? e.clientY : e.touches[0].clientY;
+    setDragStart({
+      x: clientX - mapPosition.x,
+      y: clientY - mapPosition.y
+    });
+  };
+
+  // Handle drag move
+  const handleDragMove = (e) => {
+    if (!isDragging || !isZoomed) return;
+    e.preventDefault();
+    const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
+    const clientY = e.type === 'mousemove' ? e.clientY : e.touches[0].clientY;
+    
+    const newX = clientX - dragStart.x;
+    const newY = clientY - dragStart.y;
+    
+    // Limit drag bounds (adjust these values based on your map size)
+    const maxX = 100;
+    const maxY = 100;
+    const minX = -100;
+    const minY = -100;
+    
+    setMapPosition({
+      x: Math.max(minX, Math.min(maxX, newX)),
+      y: Math.max(minY, Math.min(maxY, newY))
+    });
+  };
+
+  // Handle drag end
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
+
+  // Add event listeners for drag
+  useEffect(() => {
+    if (isDragging) {
+      const handleMouseMove = (e) => handleDragMove(e);
+      const handleMouseUp = () => handleDragEnd();
+      const handleTouchMove = (e) => handleDragMove(e);
+      const handleTouchEnd = () => handleDragEnd();
+
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
+      document.addEventListener('touchend', handleTouchEnd);
+
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+  }, [isDragging, dragStart, mapPosition]);
 
   // Determine grid columns based on screen size
   const getBenefitsGridColumns = () => {
@@ -279,7 +361,7 @@ const Map = ({ onNavigate }) => {
             ))}
           </div>
 
-          {/* Centered Bigger Map */}
+          {/* Map Section with Zoom Feature */}
           <div style={{
             textAlign: 'center',
             marginBottom: isMobile ? '3rem' : '4rem',
@@ -295,25 +377,96 @@ const Map = ({ onNavigate }) => {
             }}>
               Georgia Coverage Network
             </h3>
-            <div style={{
-              maxWidth: isMobile ? '100%' : '800px',
-              margin: '0 auto',
-              position: 'relative',
-              borderRadius: isMobile ? '12px' : '16px',
-              overflow: 'hidden',
-              boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
-              background: 'rgba(62, 133, 247, 0.15)',
-              border: '1px solid rgba(37, 99, 235, 0.3)'
-            }}>
+            
+            {/* Click to zoom hint */}
+            {!isZoomed && (
+              <p style={{
+                color: '#94a3b8',
+                fontSize: '0.9rem',
+                marginBottom: '1rem',
+                fontStyle: 'italic'
+              }}>
+                Click map to zoom and explore coverage areas
+              </p>
+            )}
+
+            <div 
+              ref={mapRef}
+              style={{
+                maxWidth: isMobile ? '100%' : '800px',
+                margin: '0 auto',
+                position: 'relative',
+                borderRadius: isMobile ? '12px' : '16px',
+                overflow: 'hidden',
+                boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+                background: 'rgba(62, 133, 247, 0.15)',
+                border: '1px solid rgba(37, 99, 235, 0.3)',
+                cursor: isZoomed ? (isDragging ? 'grabbing' : 'grab') : 'pointer'
+              }}
+              onClick={handleMapClick}
+              onMouseDown={handleDragStart}
+              onTouchStart={handleDragStart}
+            >
               <img 
                 src={mapImage}
                 alt="Georgia traffic camera coverage map showing Atlanta, Savannah, Columbus, Augusta, and major interstate corridors"
                 style={{
                   width: '100%',
                   height: 'auto',
-                  display: 'block'
+                  display: 'block',
+                  transform: isZoomed 
+                    ? `scale(2) translate(${mapPosition.x}px, ${mapPosition.y}px)` 
+                    : 'scale(1)',
+                  transition: isDragging ? 'none' : 'transform 0.3s ease',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  MozUserSelect: 'none'
                 }}
+                draggable={false}
               />
+              
+              {/* Close button when zoomed */}
+              {isZoomed && (
+                <button
+                  onClick={handleCloseZoom}
+                  style={{
+                    position: 'absolute',
+                    top: '10px',
+                    right: '10px',
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '40px',
+                    height: '40px',
+                    fontSize: '20px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    zIndex: 10
+                  }}
+                >
+                  ×
+                </button>
+              )}
+              
+              {/* Zoom instructions */}
+              {isZoomed && (
+                <div style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  left: '10px',
+                  background: 'rgba(0, 0, 0, 0.7)',
+                  color: 'white',
+                  padding: '8px 12px',
+                  borderRadius: '6px',
+                  fontSize: '0.8rem',
+                  zIndex: 10
+                }}>
+                  Drag to explore • Click × to close
+                </div>
+              )}
             </div>
           </div>
 
