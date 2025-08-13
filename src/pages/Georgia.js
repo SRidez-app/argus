@@ -135,31 +135,25 @@ const Georgia = ({ onNavigate }) => {
                   city: 'Atlanta Metro',
                   description: 'I-285 Perimeter, I-75, I-85, I-20 interstate coverage with downtown connector and major suburban corridors.',
                   cameras: '2,400+',
-                  highlights: 'Hartsfield-Jackson Airport, Mercedes-Benz Stadium, State Capitol district'
+                  
                 },
                 {
                   city: 'Savannah Coastal',
                   description: 'Historic district, I-95, I-16 corridor, Port of Savannah traffic, and Tybee Island connector coverage.',
                   cameras: '450+',
-                  highlights: 'Port traffic, Historic squares, Tourism corridors'
+               
                 },
                 {
                   city: 'Augusta CSRA',
                   description: 'I-20, I-520 loop, Medical District, Augusta National area, and Richmond County networks.',
                   cameras: '350+',
-                  highlights: 'Medical District, Masters tournament area, Fort Eisenhower'
-                },
-                {
-                  city: 'Athens University',
-                  description: 'UGA campus perimeter, Loop 10, downtown historic district, and student traffic patterns.',
-                  cameras: '200+',
-                  highlights: 'Game day traffic, Campus safety, Five Points intersection'
+           
                 },
                 {
                   city: 'Marietta Suburban',
                   description: 'I-75, I-575, Cobb Parkway, historic Marietta Square, and major shopping corridors.',
                   cameras: '300+',
-                  highlights: 'Historic Square, Shopping centers, Suburban intersections'
+                 
                 }
               ].map((area, index) => (
                 <div key={index} style={{
@@ -207,7 +201,7 @@ const Georgia = ({ onNavigate }) => {
                     fontSize: '0.9rem',
                     fontStyle: 'italic'
                   }}>
-                    Key Areas: {area.highlights}
+    
                   </div>
                 </div>
               ))}
