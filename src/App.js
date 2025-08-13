@@ -15,7 +15,7 @@ import Map from './components/Map.js';
 import FAQ from './components/FAQ.js';
 import AboutUs from './components/AboutUs.js';
 import CTA from './components/CTA.js';
-
+import { Analytics } from '@vercel/analytics/react'; 
 // Import city components
 import Atlanta from './pages/Atlanta.js';
 import Savannah from './pages/Savannah.js';
@@ -331,6 +331,7 @@ function AppContent() {
       </div>
       
       <CookieSettings />
+      <Analytics />
     </div>
   );
 }
