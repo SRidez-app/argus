@@ -339,7 +339,7 @@ const CityLanding = ({ cityData, onNavigate }) => {
                       color: '#3b82f6',
                       marginBottom: '0.5rem'
                     }}>
-                      {stat.value}
+                     {stat.number}  
                     </div>
                     <p style={{
                       color: '#94a3b8',
@@ -353,6 +353,93 @@ const CityLanding = ({ cityData, onNavigate }) => {
               </div>
             </div>
           </div>
+
+  
+          {/* Statewide Georgia Coverage Link Section */}
+          <div style={{
+            background: 'rgba(30, 41, 59, 0.4)',
+            borderRadius: isMobile ? '20px' : '32px',
+            padding: isMobile ? '2.5rem 1.5rem' : '3rem',
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3)',
+            border: '1px solid rgba(59, 130, 246, 0.2)',
+            backdropFilter: 'blur(12px)',
+            marginBottom: '3rem',
+            textAlign: 'center',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+            transition: 'all 0.8s ease-out 0.6s'
+          }}>
+            
+            <h3 style={{
+              fontSize: isMobile ? '1.5rem' : '2rem',
+              fontWeight: '700',
+              color: '#22c55e',
+              marginBottom: '1.5rem',
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+            }}>
+              Comprehensive Georgia Coverage
+            </h3>
+            
+            <p style={{
+              fontSize: isMobile ? '1rem' : '1.1rem',
+              color: '#e2e8f0',
+              lineHeight: '1.7',
+              marginBottom: '1.5rem',
+              maxWidth: '700px',
+              margin: '0 auto 1.5rem'
+            }}>
+              Need evidence from multiple locations across Georgia? Our{' '}
+              <button
+                onClick={() => onNavigate('georgia')}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: '#3b82f6',
+                  fontSize: 'inherit',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  padding: 0
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = '#60a5fa'}
+                onMouseLeave={(e) => e.currentTarget.style.color = '#3b82f6'}
+              >
+                traffic camera video evidence Georgia
+              </button>{' '}
+              services provide comprehensive coverage across all major cities, interstate corridors, and rural highways throughout the state.
+            </p>
+            
+            <button
+              onClick={() => onNavigate('georgia')}
+              style={{
+                background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                color: 'white',
+                padding: '14px 28px',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '1.1rem',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)'
+              }}
+              onMouseEnter={(e) => {
+                if (!isMobile) {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.4)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isMobile) {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                }
+              }}
+            >
+              View All Georgia Coverage →
+            </button>
+          </div>
+
 
           {/* Contact CTA */}
           <div style={{

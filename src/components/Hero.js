@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hero = () => {
+const Hero = ({ onNavigate }) => {  
   // Function to handle the button click and open Calendly
   const handleGetEvidenceClick = () => {
     window.open('https://calendly.com/getargusai/30min?month=2025-08', '_blank', 'noopener,noreferrer');
@@ -49,7 +49,28 @@ const Hero = () => {
           margin: '0 auto 3rem auto',
           fontWeight: '400'
         }}>
-          Professional traffic camera footage retrieval for Georgia personal injury attorneys. We provide 24/7 access to traffic camera networks across Atlanta, Savannah, Augusta, Athens, and Marietta with court-ready evidence packages and full chain of custody documentation.
+          Professional traffic camera footage retrieval for Georgia personal injury attorneys. We provide 24/7 access to{' '}
+          <a 
+            href="/georgia"
+            onClick={(e) => {
+              e.preventDefault();
+              if (typeof onNavigate === 'function') {
+                onNavigate('georgia');
+              } else {
+                window.location.href = '/georgia';
+              }
+            }}
+            style={{
+              color: '#22c55e',
+              textDecoration: 'none',
+              fontWeight: '600'
+            }}
+            onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+            onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+          >
+            traffic camera networks across Georgia
+          </a>{' '}
+          including Atlanta, Savannah, Augusta, Athens, and Marietta with court-ready evidence packages and full chain of custody documentation.
         </p>
 
         {/* CTA Buttons */}

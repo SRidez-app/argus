@@ -22,6 +22,7 @@ import Savannah from './pages/Savannah.js';
 import Augusta from './pages/Augusta.js';
 import Athens from './pages/Athens.js';
 import Marietta from './pages/Marietta.js';
+import Georgia from './pages/Georgia.js'
 
 // Home page component
 const HomePage = ({ onNavigate }) => (
@@ -30,11 +31,11 @@ const HomePage = ({ onNavigate }) => (
     zIndex: 10,
     background: 'transparent'
   }}>
-    <Hero />
+    <Hero onNavigate={onNavigate} />
     <Problem />
     <Process />
     <TheFuture />
-    <Map />
+    <Map onNavigate={onNavigate} />
     <CTA />
     <Footer onNavigate={onNavigate} />
   </div>
@@ -285,6 +286,7 @@ function AppContent() {
           
           {/* Info Pages - Canonical URLs */}
           <Route path="/about-us" element={<AboutUs onNavigate={handleNavigation} />} />
+          <Route path="/georgia" element={<Georgia onNavigate={handleNavigation} />} />
           <Route path="/faq" element={<FAQ onNavigate={handleNavigation} />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy onNavigate={handleNavigation} />} />
           <Route path="/terms-of-service" element={<TermsOfService onNavigate={handleNavigation} />} />
@@ -321,7 +323,7 @@ function AppContent() {
           <Route path="/Augusta" element={<Navigate to="/augusta" replace />} />
           <Route path="/Athens" element={<Navigate to="/athens" replace />} />
           <Route path="/Marietta" element={<Navigate to="/marietta" replace />} />
-          
+          <Route path="/Georgia" element={<Navigate to="/georgia" replace />} />
           {/* 404 Catch-all */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

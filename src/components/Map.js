@@ -62,7 +62,7 @@ const sectionContent = {
   ]
 };
 
-const Map = () => {
+const Map = ({ onNavigate }) => { 
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -174,7 +174,7 @@ const Map = () => {
                 {sectionContent.headline.highlight}
               </span>
             </h2>
-            <p style={{
+          <p style={{
               fontSize: isMobile ? '1rem' : '1.25rem',
               color: '#e2e8f0',
               maxWidth: '900px',
@@ -182,7 +182,28 @@ const Map = () => {
               lineHeight: '1.7',
               textShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
             }}>
-              Our statewide camera network provides comprehensive traffic camera coverage across Georgia's major cities and interstate corridors, ensuring rapid evidence collection for personal injury cases.
+              Our statewide camera network provides comprehensive{' '}
+              <a 
+                href="/georgia"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (typeof onNavigate === 'function') {
+                    onNavigate('georgia');
+                  } else {
+                    window.location.href = '/georgia';
+                  }
+                }}
+                style={{
+                  color: '#3b82f6',
+                  textDecoration: 'none',
+                  fontWeight: '600'
+                }}
+                onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+              >
+                traffic camera coverage across Georgia
+              </a>{' '}
+              major cities and interstate corridors, ensuring rapid evidence collection for personal injury cases.
             </p>
           </div>
 
