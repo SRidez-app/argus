@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 import ArgusHeader from './components/Header.js'; 
@@ -47,6 +47,7 @@ function AppContent() {
   const animationRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Network configuration
   const nodeCount = 120;
@@ -66,9 +67,9 @@ function AppContent() {
   // Function to handle navigation using React Router
   const handleNavigation = (view) => {
     if (view === 'home') {
-      window.history.pushState({}, '', '/');
+      navigate('/');
     } else {
-      window.history.pushState({}, '', `/${view}`);
+      navigate(`/${view}`);
     }
     
     // Scroll to top
@@ -245,7 +246,7 @@ function AppContent() {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [dimensions]);
+  }, []);
 
   return (
     <div style={{ 
