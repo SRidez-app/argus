@@ -50,6 +50,12 @@
     <loc>https://argusai.live/faq</loc>
     <lastmod>2025-01-10</lastmod>
   </url>
+
+  <url>
+  <loc>https://argusai.live/the-future</loc>
+  <lastmod>2025-08-14</lastmod>
+  <priority>0.5</priority>
+</url>
   
   <!-- Legal Compliance Pages - Required for Trust/E-A-T -->
   <url>

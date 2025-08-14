@@ -95,7 +95,10 @@ function AppContent() {
     if (!dimensions.width || !dimensions.height) return;
 
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
     
     canvas.width = dimensions.width;
     canvas.height = dimensions.height;
@@ -163,8 +166,11 @@ function AppContent() {
     }
 
     let time = 0;
+    let isRunning = true;
 
     const animate = () => {
+      if (!isRunning) return;
+      
       time += 16;
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -242,11 +248,13 @@ function AppContent() {
     animate();
 
     return () => {
+      isRunning = false;
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+        animationRef.current = null;
       }
     };
-  }, []);
+  }, [dimensions]);
 
   return (
     <div style={{ 
