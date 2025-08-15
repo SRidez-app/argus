@@ -36,9 +36,9 @@ const AboutUs = ({ onNavigate }) => {
         },
         "areaServed": [
           { "@type": "State", "name": "Georgia" },
-          { "@type": "State", "name": "Florida" },
+          { "@type": "State", "name": "Maryland" },
           { "@type": "State", "name": "California" },
-          { "@type": "State", "name": "New York" },
+          { "@type": "State", "name": "Virgina" },
           { "@type": "State", "name": "Nevada" }
         ],
         "serviceType": [
@@ -386,9 +386,9 @@ const AboutUs = ({ onNavigate }) => {
             },
             "areaServed": [
               { "@type": "State", "name": "Georgia" },
-              { "@type": "State", "name": "Florida" },
+              { "@type": "State", "name": "Virginia" },
               { "@type": "State", "name": "California" },
-              { "@type": "State", "name": "New York" },
+              { "@type": "State", "name": "Maryland" },
               { "@type": "State", "name": "Nevada" }
             ],
             "serviceType": [
@@ -555,7 +555,7 @@ const AboutUs = ({ onNavigate }) => {
                 marginBottom: '1.5rem'
               }} itemProp="description">
                 We serve personal injury attorneys, insurance investigators, and law enforcement agencies 
-                across <strong style={{ color: '#3b82f6' }}>Georgia, Florida, California, New York, and Nevada</strong>. 
+                across <strong style={{ color: '#3b82f6' }}>Georgia, Virginia, California, Maryland, and Nevada</strong>. 
                 Our commitment extends beyond simple footage retrieval—we're dedicated to delivering 
                 truth through technology.
               </p>
@@ -767,11 +767,11 @@ const AboutUs = ({ onNavigate }) => {
                 gap: '1rem'
               }}>
                 {[
-                  { state: 'Georgia', cities: 'Atlanta, Augusta, Savannah, Macon' },
-                  { state: 'Florida', cities: 'Miami, Orlando, Tampa, Jacksonville' },
-                  { state: 'California', cities: 'Los Angeles, San Francisco, San Diego' },
-                  { state: 'New York', cities: 'NYC, Buffalo, Rochester, Albany' },
-                  { state: 'Nevada', cities: 'Las Vegas, Reno, Carson City' }
+                  { state: 'Georgia', cities: 'Atlanta, Augusta, Savannah, Marietta, Athens' },
+                  { state: 'Virginia', cities: 'Norfolk, Newport News, Virginia Beach, Richmond, Alexandria, Alrginton' },
+                  { state: 'California', cities: 'Los Angeles, Sacramento, Anaheim, Long Beach, Riverside, San Bernadino, San Deigo' },
+                  { state: 'Maryland', cities: 'Baltimore, Frederick, Annapolis' },
+                  { state: 'Nevada', cities: 'Las Vegas, Reno, Carson City, Hendersonville' }
                 ].map((location, index) => (
                   <div
                     key={index}
