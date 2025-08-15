@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, Helmet } from 'react-helmet-async';
 import './App.css';
 import ArgusHeader from './components/Header.js'; 
 import Hero from './components/Hero.js';
@@ -31,6 +31,29 @@ const HomePage = ({ onNavigate }) => (
     zIndex: 10,
     background: 'transparent'
   }}>
+     <Helmet>
+      {/* Primary favicon for Google Search - your 150x150 black background version */}
+      <link rel="icon" href="/favico.ico" />
+      
+      {/* SVG favicon for scalable displays */}
+      <link rel="icon" type="image/svg+xml" href="/favico.svg" />
+      
+      {/* PNG favicons for specific sizes */}
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      
+      {/* Apple touch icons */}
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      
+      {/* Microsoft tiles */}
+      <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+      <meta name="msapplication-square150x150logo" content="/mstile-310x150.png" />
+      <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+      
+      {/* Open Graph image */}
+      <meta property="og:image" content="/og-image.png" />
+    </Helmet>
+    
     <Hero onNavigate={onNavigate} />
     <Problem />
     <Process />
