@@ -1,15 +1,16 @@
 {
-    "redirects": [
-      {
-        "source": "/(.*)",
-        "destination": "https://www.argusai.live/$1",
-        "permanent": true,
-        "has": [
-          {
-            "type": "host",
-            "value": "argusai.live"
-          }
-        ]
-      }
-    ]
-  }
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.argusai.live/$1", 
+      "permanent": true,
+      "statusCode": 301,
+      "has": [
+        {
+          "type": "host",
+          "value": "argusai.live"
+        }
+      ]
+    }
+  ]
+}
