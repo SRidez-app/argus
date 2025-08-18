@@ -49,7 +49,7 @@ const Hero = ({ onNavigate }) => {
           margin: '0 auto 3rem auto',
           fontWeight: '400'
         }}>
-          Professional traffic camera footage retrieval for Georgia personal injury attorneys. We provide 24/7 access to{' '}
+          Professional traffic camera footage services and video evidence retrieval for Georgia personal injury attorneys. We provide 24/7 access to{' '}
           <a 
             href="/georgia"
             onClick={(e) => {
