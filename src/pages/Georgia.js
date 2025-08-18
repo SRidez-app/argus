@@ -18,25 +18,26 @@ const Georgia = ({ onNavigate }) => {
         {/* Open Graph */}
         <meta property="og:title" content="Georgia Traffic Camera Footage Services | AI-Enhanced Video Evidence - Argus AI" />
         <meta property="og:description" content="Professional Georgia traffic camera footage services with AI enhancement. Instant access to high-quality traffic camera video footage across Atlanta, Savannah, Augusta. Court-ready documentation available 24/7." />
-        <meta property="og:url" content="https://argusai.live/georgia" />
+       <meta property="og:url" content="https://www.argusai.live/georgia" />
         
         {/* Canonical URL */}
-        <link rel="canonical" href="https://argusai.live/georgia" />
+  <link rel="canonical" href="https://www.argusai.live/georgia" />
         
         {/* Structured Data */}
-       <script type="application/ld+json">
-{JSON.stringify({
+{/* Structured Data */}
+<script type="application/ld+json">
+{`{
   "@context": "https://schema.org",
-  "@type": "ProfessionalService", 
+  "@type": "ProfessionalService",
   "name": "Traffic Camera Video Evidence Georgia",
-  "description": "Professional traffic camera footage video evidence collection throughout Georgia for personal injury attorneys",
-  "category": "Legal Technology Services", 
+  "description": "Professional traffic camera footage services and video evidence retrieval for personal injury attorneys",
+  "category": "Legal Technology Services",
   "provider": {
     "@type": "Organization",
     "name": "Argus AI",
-    "url": "https://argusai.live",
+    "url": "https://www.argusai.live",
     "sameAs": [
-      "https://argusai.live/about-us"
+      "https://www.argusai.live/about-us"
     ]
   },
   "areaServed": {
@@ -45,7 +46,7 @@ const Georgia = ({ onNavigate }) => {
   },
   "availableChannel": {
     "@type": "ServiceChannel",
-    "serviceUrl": "https://argusai.live/georgia",
+    "serviceUrl": "https://www.argusai.live/georgia",
     "servicePhone": "+1-402-480-6092"
   },
   "offers": {
@@ -56,21 +57,21 @@ const Georgia = ({ onNavigate }) => {
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "Georgia Traffic Camera Services",
+    "name": "Georgia Traffic Camera Footage Services and Video Evidence Retrieval",
     "itemListElement": [
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Atlanta Traffic Camera Evidence",
+          "name": "Atlanta Traffic Camera Footage Services and Video Evidence Retrieval",
           "areaServed": "Atlanta, GA"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
-          "@type": "Service", 
-          "name": "Savannah Traffic Camera Evidence",
+          "@type": "Service",
+          "name": "Savannah Traffic Camera Footage Services and Video Evidence Retrieval",
           "areaServed": "Savannah, GA"
         }
       },
@@ -78,14 +79,31 @@ const Georgia = ({ onNavigate }) => {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Augusta Traffic Camera Evidence", 
+          "name": "Augusta Traffic Camera Footage Services and Video Evidence Retrieval",
           "areaServed": "Augusta, GA"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Athens Traffic Camera Footage Services and Video Evidence Retrieval",
+          "areaServed": "Athens, GA"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Marietta Traffic Camera Footage Services and Video Evidence Retrieval",
+          "areaServed": "Marietta, GA"
         }
       }
     ]
   }
-})}
+}`}
 </script>
+
       </Helmet>
 
       <div style={{ 
