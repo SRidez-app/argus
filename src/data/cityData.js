@@ -17,7 +17,7 @@ export const cityData = {
       stats: [
         { number: "2,400+", label: "Traffic Cameras" },
         { number: "24/7", label: "Evidence Access" },
-        { number: "2hrs", label: "Average Response" }
+     
       ],
       coverageAreas: [
         {
@@ -53,7 +53,7 @@ export const cityData = {
       stats: [
         { number: "450+", label: "Traffic Cameras" },
         { number: "24/7", label: "Evidence Access" },
-        { number: "2-3hrs", label: "Average Response" }
+   
       ],
       coverageAreas: [
         {
@@ -89,7 +89,7 @@ export const cityData = {
       stats: [
         { number: "350+", label: "Traffic Cameras" },
         { number: "24/7", label: "Evidence Access" },
-        { number: "2-3hrs", label: "Average Response" }
+
       ],
       coverageAreas: [
         {
@@ -125,7 +125,7 @@ export const cityData = {
       stats: [
         { number: "200+", label: "Traffic Cameras" },
         { number: "24/7", label: "Evidence Access" },
-        { number: "2-3hrs", label: "Average Response" }
+  
       ],
       coverageAreas: [
         {
@@ -161,7 +161,7 @@ export const cityData = {
       stats: [
         { number: "300+", label: "Traffic Cameras" },
         { number: "24/7", label: "Evidence Access" },
-        { number: "2hrs", label: "Average Response" }
+
       ],
       coverageAreas: [
         {

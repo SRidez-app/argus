@@ -44,8 +44,7 @@ const sectionContent = {
     {
       title: "Immediate Response Network",
       description: "24/7 emergency evidence preservation across Georgia's busiest accident corridors",
-      stat: "2hrs",
-      statLabel: "Average Response"
+ 
     },
     {
       title: "Comprehensive Camera Access", 
