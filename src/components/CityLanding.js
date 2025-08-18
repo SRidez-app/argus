@@ -327,7 +327,7 @@ const CityLanding = ({ cityData, onNavigate }) => {
               </h3>
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(3, 1fr)',
+               gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(2, 1fr)',
                 gap: '1.5rem',
                 marginTop: '1.5rem'
               }}>
