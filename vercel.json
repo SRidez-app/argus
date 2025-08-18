@@ -2,8 +2,7 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "destination": "https://www.argusai.live/$1", 
-      "permanent": true,
+      "destination": "https://www.argusai.live/$1",
       "statusCode": 301,
       "has": [
         {
