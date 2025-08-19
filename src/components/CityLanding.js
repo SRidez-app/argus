@@ -36,32 +36,7 @@ const CityLanding = ({ cityData, onNavigate }) => {
   return (
     <>
       {/* SEO Schema Markup */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LegalService",
-          "name": `Argus AI - ${cityData.name}`,
-          "description": cityData.description,
-          "url": `https://argusai.live/${cityData.slug}`,
-          "areaServed": {
-            "@type": "City",
-            "name": cityData.name,
-            "addressRegion": "GA",
-            "addressCountry": "US"
-          },
-          "serviceType": [
-            "Traffic Camera Footage Retrieval",
-            "Video Evidence Analysis",
-            "Car Accident Video Evidence",
-            "Personal Injury Legal Support"
-          ],
-          "provider": {
-            "@type": "Organization",
-            "name": "Argus AI",
-            "url": "https://argusai.live"
-          }
-        })}
-      </script>
+
 
       <div style={{
         minHeight: '100vh',
