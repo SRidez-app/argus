@@ -22,7 +22,7 @@ const AboutUs = ({ onNavigate }) => {
       "@context": "https://schema.org",
       "@type": "AboutPage",
       "mainEntity": {
-        "@type": ["LegalService", "TechnologyCompany"],
+        "@type": ["ProfessionalService", "TechnologyCompany"],
         "name": "Argus AI",
         "alternateName": "ArgusAI",
         "description": "Professional traffic camera footage retrieval and video evidence collection services for personal injury attorneys and insurance investigators",
@@ -372,7 +372,7 @@ const AboutUs = ({ onNavigate }) => {
           "@context": "https://schema.org",
           "@type": "AboutPage",
           "mainEntity": {
-            "@type": ["LegalService", "TechnologyCompany"],
+            "@type": ["ProfessionalService", "TechnologyCompany"],
             "name": "Argus AI",
             "alternateName": "ArgusAI",
             "description": "Professional traffic camera footage retrieval and video evidence collection services for personal injury attorneys and insurance investigators",
